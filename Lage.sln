@@ -11,6 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LagerMVC", "src\LagerMVC\LagerMVC.xproj", "{4145288E-72C5-4DF4-946F-749A97F0967E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F8E0D194-7528-44D4-B737-47E6DA1EE997} = {F8E0D194-7528-44D4-B737-47E6DA1EE997}
+	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LagerCore", "LagerCore\LagerCore.xproj", "{F8E0D194-7528-44D4-B737-47E6DA1EE997}"
 EndProject
