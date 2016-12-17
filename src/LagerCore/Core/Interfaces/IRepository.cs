@@ -2,7 +2,7 @@
 
 namespace LagerCore.Core.Interfaces
 {
-    interface IRepository<T>
+    public interface IRepository<T>
     {
         /// <summary>
         /// Add an item to the repo
