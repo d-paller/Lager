@@ -5,8 +5,8 @@ using MongoDB.Driver.Builders;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LagerCore.Core.Models;
-
+using Lager.Models;
+using MongoDB.Bson.Serialization;
 
 /// <summary>
 /// inside <> are the collections that are in the database
@@ -27,21 +27,23 @@ namespace Lager.Models
             collection = _db.GetCollection<Part>("Parts");
         }
 
-        public List<Part> GetProducts()
+        public List<Part> GetParts()
         {
             return collection.Find(new BsonDocument()).ToList();
         }
 
 
-        public Part GetPart(String name, int partID)
+        public List<Part> GetPart(String name, int partID)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("Name", name);
-            return _db.GetCollection<Part>("Products").FindOne(res);
+            var builder = Builders<Part>.Filter;
+            var filter = builder.Eq("Name", name)&builder.Eq("PartID", partID);
+            var p = collection.Find(filter).ToList();
+            return p;
         }
 
         public Part Create(Part p)
         {
-            _db.GetCollection<Part>("Products").Save(p);
+            collection.InsertOne(p);
             return p;
         }
 
