@@ -50,13 +50,14 @@ namespace Lager.Models
         }
 
         /// <summary>
-        /// 
+        /// Checks to see if the users data entered is valid or not
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public bool IsValid(string username, string password)
+        /// <param name="username">The username of the user</param>
+        /// <param name="password">The hashed password of the user</param>
+        /// <returns>True if the data is valid, false if not</returns>
+        public bool IsValid(string username, string hashedPassword)
         {
+            // TODO: Add logic once database is up
             return true;
         }
 

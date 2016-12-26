@@ -17,7 +17,7 @@
         /// <param name="userName">The hashed username of the user</param>
         /// <param name="password">The hashed password of the user</param>
         /// <returns></returns>
-        bool IsValid(string userName, string password);
+        bool IsValid(string userName, string hashedPassword);
 
     }
 }
