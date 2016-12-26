@@ -4,9 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Lager.Interfaces;
+using Scrypt;
+using Lager.Services;
 
 namespace Lager
 {
@@ -35,6 +39,7 @@ namespace Lager
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            services.AddTransient<IPasswordHasher<IUser>, SCryptPasswordHasher>();
 
             services.AddMvc();
         }
@@ -65,7 +70,7 @@ namespace Lager
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Login}");
             });
         }
     }

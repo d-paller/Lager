@@ -16,9 +16,12 @@
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\dotnet5.4\Microsoft.ApplicationInsights.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\netstandard1.6\Microsoft.ApplicationInsights.AspNetCore.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.1\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll
+--reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Authentication\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Authentication.dll
+--reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Authentication.Cookies\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Authentication.Cookies.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Authorization\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Authorization.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Cors\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Cors.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Cryptography.Internal\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Cryptography.Internal.dll
+--reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Cryptography.KeyDerivation\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.DataProtection\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.DataProtection.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.DataProtection.Abstractions\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.DataProtection.Abstractions.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Diagnostics\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Diagnostics.dll
@@ -32,6 +35,7 @@
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Http.Extensions\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Http.Extensions.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Http.Features\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Http.Features.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.HttpOverrides\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.HttpOverrides.dll
+--reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Identity\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Identity.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.JsonPatch\1.0.0\lib\netstandard1.1\Microsoft.AspNetCore.JsonPatch.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Localization\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Localization.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.AspNetCore.Mvc\1.0.1\lib\netstandard1.6\Microsoft.AspNetCore.Mvc.dll
@@ -112,6 +116,7 @@
 --reference:C:\Users\dpall\.nuget\packages\NuGet.Repositories\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Repositories.dll
 --reference:C:\Users\dpall\.nuget\packages\NuGet.RuntimeModel\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.RuntimeModel.dll
 --reference:C:\Users\dpall\.nuget\packages\NuGet.Versioning\3.5.0-beta2-1484\lib\netstandard1.0\NuGet.Versioning.dll
+--reference:C:\Users\dpall\.nuget\packages\Scrypt.NET\1.1.0\lib\netstandard1.3\Scrypt.dll
 --reference:C:\Users\dpall\.nuget\packages\System.AppContext\4.1.0\ref\netstandard1.6\System.AppContext.dll
 --reference:C:\Users\dpall\.nuget\packages\System.Buffers\4.0.0\lib\netstandard1.1\System.Buffers.dll
 --reference:C:\Users\dpall\.nuget\packages\System.Collections\4.0.11\ref\netstandard1.3\System.Collections.dll
@@ -199,13 +204,14 @@
 --resource:"C:\Websites\Capstone\Lager\src\Lager\obj\Debug\netcoreapp1.0\Lagerdotnet-compile.deps.json",Lager.deps.json
 C:\Websites\Capstone\Lager\src\Lager\Program.cs
 C:\Websites\Capstone\Lager\src\Lager\Startup.cs
+C:\Websites\Capstone\Lager\src\Lager\Controllers\AdminController.cs
 C:\Websites\Capstone\Lager\src\Lager\Controllers\HomeController.cs
 C:\Websites\Capstone\Lager\src\Lager\Controllers\LoginController.cs
 C:\Websites\Capstone\Lager\src\Lager\Interfaces\IPart.cs
 C:\Websites\Capstone\Lager\src\Lager\Interfaces\IRepository.cs
 C:\Websites\Capstone\Lager\src\Lager\Interfaces\IUser.cs
-C:\Websites\Capstone\Lager\src\Lager\Models\AdminUser.cs
+C:\Websites\Capstone\Lager\src\Lager\Models\Login.cs
 C:\Websites\Capstone\Lager\src\Lager\Models\Part.cs
-C:\Websites\Capstone\Lager\src\Lager\Models\RegularUser.cs
+C:\Websites\Capstone\Lager\src\Lager\Models\User.cs
 C:\Websites\Capstone\Lager\src\Lager\Services\Repositories\PartRepository.cs
 C:\Websites\Capstone\Lager\src\Lager\Services\Repositories\UserRepository.cs

@@ -11,5 +11,13 @@
         /// <returns>True if user is admin, false if not</returns>
         bool IsAdmin();
 
+        /// <summary>
+        /// Checks to make sure the form data entered is Valid
+        /// </summary>
+        /// <param name="userName">The hashed username of the user</param>
+        /// <param name="password">The hashed password of the user</param>
+        /// <returns></returns>
+        bool IsValid(string userName, string password);
+
     }
 }

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "943276bd15ec7ab571f2bddd6761d660c75b21cc"
+    "signature": "48137101fe5691a2571b1f289e46802aa25368e1"
   },
   "compilationOptions": {
     "defines": [
@@ -30,7 +30,8 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+          "Scrypt.NET": "1.1.0"
         },
         "runtime": {
           "Lager.dll": {}
@@ -1516,6 +1517,14 @@
         },
         "compile": {
           "lib/netstandard1.0/NuGet.Versioning.dll": {}
+        }
+      },
+      "Scrypt.NET/1.1.0": {
+        "runtime": {
+          "lib/netstandard1.3/Scrypt.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Scrypt.dll": {}
         }
       },
       "System.Collections.NonGeneric/4.0.1": {
@@ -3744,6 +3753,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-Stok+SI5lWxOkTgZZM7jT4xuAZogm5+j85mKJeHSXb8o0OAbB+qDX9jkdM2wIEnjoR8R29J0nQYwk2Kl2lWFpA=="
+    },
+    "Scrypt.NET/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/FhBv3+iupmHacw+wMkupYGEacIuDe8MyPS811fas/hGndp3yDUjXBtd1Gk3SyT1ZQgMJR6l/dfkOArFYma+ug=="
     },
     "System.Collections.NonGeneric/4.0.1": {
       "type": "package",
