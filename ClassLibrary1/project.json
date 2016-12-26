@@ -1,0 +1,17 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "LagerTests Class Library",
+  "dependencies": {
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "Accessibility": "4.0.0.0"
+      }
+    },
+    "dnxcore50": {}
+  }
+}
