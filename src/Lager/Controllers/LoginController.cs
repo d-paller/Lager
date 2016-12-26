@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Lager.Services.Repositories;
+using Lager.Models;
 
 namespace LagerCore.Controllers
 {
     public class LoginController : Controller
     {
+        // TODO: Add current user service to fetch and store the user in session
+
         [HttpGet]
         public IActionResult Login()
-        {
+        {  
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login(Lager.Models.User user)
+        public IActionResult Login(User user)
         {
             // If all fields contain data and are in the correct format
             if (ModelState.IsValid)

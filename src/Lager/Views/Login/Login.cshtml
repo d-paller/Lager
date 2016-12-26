@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Lager.Models
+@model Lager.Models.User
+
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -10,7 +14,7 @@
         <h1>Lager <small>Inventory System</small></h1>
     </div>
     <div>
-        @Html.Partial("_Login")
+        @Html.Partial("PartialViews/_Login", Model)
     </div>
 </body>
 </html>

@@ -210,8 +210,8 @@ C:\Websites\Capstone\Lager\src\Lager\Controllers\LoginController.cs
 C:\Websites\Capstone\Lager\src\Lager\Interfaces\IPart.cs
 C:\Websites\Capstone\Lager\src\Lager\Interfaces\IRepository.cs
 C:\Websites\Capstone\Lager\src\Lager\Interfaces\IUser.cs
-C:\Websites\Capstone\Lager\src\Lager\Models\Login.cs
 C:\Websites\Capstone\Lager\src\Lager\Models\Part.cs
 C:\Websites\Capstone\Lager\src\Lager\Models\User.cs
+C:\Websites\Capstone\Lager\src\Lager\Services\SCryptPasswordHasher.cs
 C:\Websites\Capstone\Lager\src\Lager\Services\Repositories\PartRepository.cs
 C:\Websites\Capstone\Lager\src\Lager\Services\Repositories\UserRepository.cs

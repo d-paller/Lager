@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Lager.Interfaces;
 using Scrypt;
 using Lager.Services;
+using Lager.Models;
 
 namespace Lager
 {
@@ -39,7 +40,7 @@ namespace Lager
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddTransient<IPasswordHasher<IUser>, SCryptPasswordHasher>();
+            services.AddTransient<IPasswordHasher<User>, SCryptPasswordHasher>();
 
             services.AddMvc();
         }

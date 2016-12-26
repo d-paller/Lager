@@ -28,7 +28,9 @@ namespace Lager.Models
         /// </summary>
         public string Name { get; set; }
 
-        private bool Admin;
+
+        // TODO:  Change back to private
+        public bool Admin;
 
         /// <summary>
         /// If the user is active or not.  The default value is true.
