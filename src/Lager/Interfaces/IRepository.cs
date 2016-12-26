@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LagerCore.Core.Interfaces
+namespace Lager.Interfaces
 {
     public interface IRepository<T>
     {

@@ -1,10 +1,10 @@
-﻿using LagerCore.Core.Interfaces;
+﻿using Lager.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LagerCore.Core.Models
+namespace Lager.Models
 {
     public sealed class RegularUser : IUser
     {

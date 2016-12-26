@@ -1,4 +1,4 @@
-﻿namespace LagerCore.Core.Interfaces
+﻿namespace Lager.Interfaces
 {
     public interface IPart
     {

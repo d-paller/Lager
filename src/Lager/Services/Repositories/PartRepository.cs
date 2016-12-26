@@ -1,10 +1,10 @@
-﻿using LagerCore.Core.Interfaces;
+﻿using Lager.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LagerCore.Core.Services.Repositories
+namespace Lager.Services.Repositories
 {
     public class PartRepository : IRepository<IPart>
     {
