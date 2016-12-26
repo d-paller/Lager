@@ -28,16 +28,17 @@ namespace LagerCore.Controllers
                 if (user.IsValid(user.Username, user.Password))
                 {
                     // if the user is an admin send them to the admin view, if not send them to the user view
-                    if (user.IsAdmin())
-                        RedirectToAction("Admin", "Index");
+                    if (true) //(user.IsAdmin())
+                        return RedirectToAction("Index", "Admin");
                     else
-                        RedirectToAction("User", "Index");
+                       return  RedirectToAction("User", "Index");
                 }
                 else
                 { 
                     ModelState.AddModelError("", "Invalid Login Credentials");
                 }
             }
+            
             return View(user);
         }
 
