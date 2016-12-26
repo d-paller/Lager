@@ -1,4 +1,4 @@
-﻿namespace Lager.CoreFiles.Interfaces
+﻿namespace Lager.Interfaces
 {
     /// <summary>
     /// The interface for all users.

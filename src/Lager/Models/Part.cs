@@ -1,10 +1,13 @@
-﻿using Lager.CoreFiles.Interfaces;
+﻿using Lager.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LagerCore.Core.Models
+namespace Lager.Models
 {
     public class Part
     {
