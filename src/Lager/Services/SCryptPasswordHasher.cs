@@ -1,26 +1,60 @@
 ﻿using Lager.Interfaces;
+using Lager.Models;
 using Microsoft.AspNetCore.Identity;
 using Scrypt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Lager.Services
 {
-    public class SCryptPasswordHasher : IPasswordHasher<IUser>
+    public class SCryptPasswordHasher : IPasswordHasher<User>
     {
 
         private readonly ScryptEncoder _encoder;
 
-        public string HashPassword(IUser user, string password)
+        public SCryptPasswordHasher()
         {
-            throw new NotImplementedException();
+            _encoder = new ScryptEncoder(3 ^ 16, 10, 1);
         }
 
-        public PasswordVerificationResult VerifyHashedPassword(IUser user, string hashedPassword, string providedPassword)
+        /// <summary>
+        /// Hashes the password
+        /// </summary>
+        /// <param name="user">The user that the password belongs to</param>
+        /// <param name="password">The raw string</param>
+        /// <returns>A hashed and salted string</returns>
+        public string HashPassword(User user, string password)
         {
-            throw new NotImplementedException();
+            return _encoder.Encode(SaltPassword(user, password));
+        }
+
+        /// <summary>
+        /// Verifies the hashed password
+        /// </summary>
+        /// <param name="user">The user that the password belongs to</param>
+        /// <param name="hashedPassword">The password from the DB</param>
+        /// <param name="providedPassword">The password given by the user</param>
+        /// <returns></returns>
+        public PasswordVerificationResult VerifyHashedPassword(User user, string hashedPassword, string providedPassword)
+        {
+            if(_encoder.Compare(SaltPassword(user, providedPassword), hashedPassword))
+            {
+                return PasswordVerificationResult.Success;
+            }
+            else
+            {
+                return PasswordVerificationResult.Failed;
+            }
+        }
+
+        // ----- Private Methods ----- //
+        private static string SaltPassword(User user, string password)
+        {
+            return user.Salt + password;   
         }
     }
 }

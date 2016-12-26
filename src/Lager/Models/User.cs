@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace Lager.Models
@@ -35,6 +36,11 @@ namespace Lager.Models
         public bool IsActive { get; set; } = true;
 
         /// <summary>
+        /// The Salt for the users password
+        /// </summary>
+        public string Salt { get; private set; }
+
+        /// <summary>
         /// Checks to see if the user is an admin or not.
         /// </summary>
         /// <returns>True if the user is an admin, false if not.</returns>
@@ -43,9 +49,30 @@ namespace Lager.Models
             return Admin;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool IsValid(string username, string password)
         {
             return true;
         }
+
+        private void setSalt()
+        {
+            if (string.IsNullOrEmpty(Salt))
+            {
+                var bytes = new byte[128];
+                using (var rng = RandomNumberGenerator.Create())
+                {
+                    rng.GetBytes(bytes);
+                    Salt = BitConverter.ToString(bytes);
+                }
+            }
+        }
+
+
     }
 }
