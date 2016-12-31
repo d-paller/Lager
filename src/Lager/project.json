@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "mongocsharpdriver": "2.3.0",
+    "mongocsharpdriver": "2.4.0",
     "Microsoft.NETCore.App": {
       "version": "1.0.1",
       "type": "platform"
