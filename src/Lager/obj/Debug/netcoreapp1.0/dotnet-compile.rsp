@@ -101,10 +101,10 @@
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.VisualStudio.Web.BrowserLink.Loader\14.0.0\lib\netstandard1.5\Microsoft.VisualStudio.Web.BrowserLink.Loader.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.Win32.Primitives\4.0.1\ref\netstandard1.3\Microsoft.Win32.Primitives.dll
 --reference:C:\Users\dpall\.nuget\packages\Microsoft.Win32.Registry\4.0.0\ref\netstandard1.3\Microsoft.Win32.Registry.dll
---reference:C:\Users\dpall\.nuget\packages\mongocsharpdriver\2.3.0\lib\netstandard1.5\MongoDB.Driver.Legacy.dll
---reference:C:\Users\dpall\.nuget\packages\MongoDB.Bson\2.3.0\lib\netstandard1.5\MongoDB.Bson.dll
---reference:C:\Users\dpall\.nuget\packages\MongoDB.Driver\2.3.0\lib\netstandard1.5\MongoDB.Driver.dll
---reference:C:\Users\dpall\.nuget\packages\MongoDB.Driver.Core\2.3.0\lib\netstandard1.5\MongoDB.Driver.Core.dll
+--reference:C:\Users\dpall\.nuget\packages\mongocsharpdriver\2.4.0\lib\netstandard1.5\MongoDB.Driver.Legacy.dll
+--reference:C:\Users\dpall\.nuget\packages\MongoDB.Bson\2.4.0\lib\netstandard1.5\MongoDB.Bson.dll
+--reference:C:\Users\dpall\.nuget\packages\MongoDB.Driver\2.4.0\lib\netstandard1.5\MongoDB.Driver.dll
+--reference:C:\Users\dpall\.nuget\packages\MongoDB.Driver.Core\2.4.0\lib\netstandard1.5\MongoDB.Driver.Core.dll
 --reference:C:\Users\dpall\.nuget\packages\Newtonsoft.Json\9.0.1\lib\netstandard1.0\Newtonsoft.Json.dll
 --reference:C:\Users\dpall\.nuget\packages\NuGet.Common\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Common.dll
 --reference:C:\Users\dpall\.nuget\packages\NuGet.Configuration\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Configuration.dll
