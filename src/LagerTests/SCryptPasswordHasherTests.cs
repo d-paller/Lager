@@ -26,7 +26,6 @@ namespace LagerTests
                 Name = "Peter Pan",
                 Username = "peter.pan"
             };
-
         }
 
         [TestMethod]
@@ -57,5 +56,6 @@ namespace LagerTests
             Assert.AreEqual(PasswordVerificationResult.Success, sucessResult);
             Assert.AreEqual(PasswordVerificationResult.Failed, failedResult);
         }
+
     }
 }

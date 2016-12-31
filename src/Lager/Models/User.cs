@@ -59,14 +59,14 @@ namespace Lager.Models
         /// <returns>True if the data is valid, false if not</returns>
         public bool IsValid(string username, string hashedPassword)
         {
-            // TODO: Add logic once database is up
+            // TODO: Add logic once database is up and add unit tests
             return true;
         }
 
         /// <summary>
         /// Set the salt of the user.
         /// </summary>
-        public void SetSalt()
+        private void SetSalt()
         {
             if (string.IsNullOrEmpty(Salt))
             {
