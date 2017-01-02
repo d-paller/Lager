@@ -12,10 +12,6 @@ using Lager.Interfaces;
 using Scrypt;
 using Lager.Services;
 using Lager.Models;
-<<<<<<< HEAD
-using Lager.Models;
-=======
->>>>>>> origin/master
 
 namespace Lager
 {
@@ -45,9 +41,20 @@ namespace Lager
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddTransient<IPasswordHasher<User>, SCryptPasswordHasher>();
-
+            services.AddCors(options => {
+                options.AddPolicy("CorsPolicy",
+            builder => builder.AllowAnyOrigin()
+                              .AllowAnyMethod()
+                              .AllowAnyHeader()
+                              .AllowCredentials());
+            });
             services.AddTransient<DataAccess>();
             services.AddMvc();
+            services.Configure<Settings>(options =>
+            {
+                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,7 +78,7 @@ namespace Lager
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
-
+            app.UseCors("CorsPolicy");
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
