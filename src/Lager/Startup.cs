@@ -12,7 +12,10 @@ using Lager.Interfaces;
 using Scrypt;
 using Lager.Services;
 using Lager.Models;
+<<<<<<< HEAD
 using Lager.Models;
+=======
+>>>>>>> origin/master
 
 namespace Lager
 {

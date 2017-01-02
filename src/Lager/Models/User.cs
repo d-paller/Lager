@@ -40,7 +40,7 @@ namespace Lager.Models
         /// <summary>
         /// The Salt for the users password
         /// </summary>
-        public string Salt { get; private set; }
+        public string Salt { get; set; }
 
         /// <summary>
         /// Checks to see if the user is an admin or not.
@@ -59,11 +59,14 @@ namespace Lager.Models
         /// <returns>True if the data is valid, false if not</returns>
         public bool IsValid(string username, string hashedPassword)
         {
-            // TODO: Add logic once database is up
+            // TODO: Add logic once database is up and add unit tests
             return true;
         }
 
-        private void setSalt()
+        /// <summary>
+        /// Set the salt of the user.
+        /// </summary>
+        private void SetSalt()
         {
             if (string.IsNullOrEmpty(Salt))
             {
@@ -74,6 +77,15 @@ namespace Lager.Models
                     Salt = BitConverter.ToString(bytes);
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Default Constructor will run set salt.  If no salt exists, it will create a new one.
+        /// </summary>
+        public User()
+        {
+            SetSalt();
         }
 
 
