@@ -40,7 +40,7 @@ namespace Lager.Models
             var p = collection.Find(filter).ToList();
             return p;
         }
-        
+        /*
         public Part Create(Part p)
         {
             collection.InsertOne(p);
@@ -59,7 +59,7 @@ namespace Lager.Models
             var res = Query<Part>.EQ(e => e.Id, id);
             var operation = _db.GetCollection<Part>("Parts").Remove(res);
         }
-        
+        */
     }
 }
 
