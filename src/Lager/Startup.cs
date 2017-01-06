@@ -12,6 +12,8 @@ using Lager.Interfaces;
 using Scrypt;
 using Lager.Services;
 using Lager.Models;
+using LagerCore.Core.Models;
+using Lager.Models;
 
 namespace Lager
 {

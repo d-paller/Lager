@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Lager.Models
 {
-    public class Part
+    public class Part : IPart
     {
         /// <summary>
         /// uniquie id that mongo give to each document

@@ -2,40 +2,65 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Lager.Models;
 using System.Threading.Tasks;
-
+using MongoDB.Driver;
+using Microsoft.Extensions.Options;
+/*
 namespace Lager.Services.Repositories
 {
-    public class PartRepository : IRepository<IPart>
+    public class PartRepository : IRepository<Part>
     {
-        public void Add(IPart itemToAdd)
+        private readonly PartContext _context = null;
+        public PartRepository(IOptions<Settings> settings)
         {
-            throw new NotImplementedException();
+            _context = new PartContext(settings);
+        }
+        public async Task<IEnumerable<Part>> GetAllNotes()
+        {
+            return await _context.Parts.Find(_ => true).ToListAsync();
         }
 
-        public bool Contains(int key)
+        public async Task<Part> GetPart(string id)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Part>.Filter.Eq("Id", id);
+            return await _context.Parts
+                                 .Find(filter)
+                                 .FirstOrDefaultAsync();
         }
 
-        public IPart Get(int key)
+        public async Task AddPart(Part item)
         {
-            throw new NotImplementedException();
+            await _context.Parts.InsertOneAsync(item);
         }
 
-        public IList<IPart> GetAll()
+        public async Task<DeleteResult> RemovePart(string id)
         {
-            throw new NotImplementedException();
+            return await _context.Parts.DeleteOneAsync(
+                         Builders<Part>.Filter.Eq("Id", id));
         }
 
-        public void Remove(IPart itemToRemove)
+        public async Task<UpdateResult> UpdatePart(string id, string body)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Part>.Filter.Eq(s => s.Id, id);
+            var update = Builders<Part>.Update
+                                .Set(s => s.Body, body)
+                                .CurrentDate(s => s.UpdatedOn);
+            return await _context.Parts.UpdateOneAsync(filter, update);
         }
 
-        public void Replace(int keyOfItemToReplace, IPart newItem)
+        public async Task<ReplaceOneResult> UpdateNote(string id, Note item)
         {
-            throw new NotImplementedException();
+            return await _context.Notes
+                                 .ReplaceOneAsync(n => n.Id.Equals(id)
+                                                     , item
+                                                     , new UpdateOptions { IsUpsert = true });
+        }
+
+        public async Task<DeleteResult> RemoveAllNotes()
+        {
+            return await _context.Notes.DeleteManyAsync(new BsonDocument());
         }
     }
 }
+*/
