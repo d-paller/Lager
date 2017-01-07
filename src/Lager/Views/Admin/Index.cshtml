@@ -3,3 +3,11 @@
 }
 
 <div><h1>Admin Home</h1></div>
+@Model Part
+<form asp-controller="AdminController" method="post" asp-action="">
+    <label>Name:</label><input type="text" /> <br />
+    <label>Cost: </label><input type="number" /> <br />
+    <label>Vendor: </label><input type="text" /> <br />
+    
+
+</form>
