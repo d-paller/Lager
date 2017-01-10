@@ -2,7 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Lager.Models;
 using System.Threading.Tasks;
+using MongoDB.Driver;
+using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 
 namespace Lager.Services.Repositories
 {
