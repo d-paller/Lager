@@ -10,7 +10,7 @@ using MongoDB.Bson;
 
 namespace Lager.Services.Repositories
 {
-    public class PartRepository
+    public class PartRepository : IPartRepository
     {
         private readonly PartContext _context = null;
         public PartRepository(IOptions<Settings> settings)
@@ -23,7 +23,7 @@ namespace Lager.Services.Repositories
             return await _context.Parts.Find(_ => true).ToListAsync();
         }
         //Get all the same kind of parts
-        public async Task<IEnumerable<Part>> GetAllPart(string n)
+        public async Task<IEnumerable<Part>> GetAllParts(string n)
         {
             var filter = Builders<Part>.Filter.Eq("Name",n);
             return await _context.Parts.Find(filter).ToListAsync();
