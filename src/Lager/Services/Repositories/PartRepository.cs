@@ -6,6 +6,7 @@ using Lager.Models;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver.Linq;
 using MongoDB.Bson;
 
 namespace Lager.Services.Repositories
