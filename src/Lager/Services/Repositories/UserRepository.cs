@@ -10,16 +10,27 @@ using MongoDB.Bson;
 
 namespace Lager.Services.Repositories
 {
-    public class UserRepository : IRepository<IUser>
+
+    public class UserRepository 
     {
-        public void Add(IUser itemToAdd)
+        private readonly PartContext _context = null;
+        public UserRepository(IOptions<Settings> settings)
         {
-            throw new NotImplementedException();
+            _context = new PartContext(settings);
+        }
+        public async Task Add(User itemToAdd)
+        {
+            await _context.Users.InsertOneAsync(itemToAdd);
         }
 
-        public bool Contains(int key)
+        public bool Contains(string uname)
         {
-            throw new NotImplementedException();
+            var filter = Builders<User>.Filter.Eq("Username", uname);
+            long result = _context.Users.Find(filter).CountAsync;
+            if (result == 0)
+                return false;
+            else
+                return true;
         }
 
         public IUser Get(int key)
@@ -27,9 +38,9 @@ namespace Lager.Services.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<IUser> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Users.Find(_ => true).ToListAsync();
         }
 
         public void Remove(IUser itemToRemove)
