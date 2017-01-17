@@ -23,11 +23,11 @@ namespace Lager.Services.Repositories
             await _context.Users.InsertOneAsync(itemToAdd);
         }
 
-        public bool Contains(string uname)
+        public async Task<bool> Contains(string uname)
         {
             var filter = Builders<User>.Filter.Eq("Username", uname);
-            long result = _context.Users.Find(filter).CountAsync;
-            if (result == 0)
+            List<User> result = await _context.Users.Find(filter).ToListAsync();
+            if (result.Count == 0)
                 return false;
             else
                 return true;
