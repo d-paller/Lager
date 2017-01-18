@@ -28,15 +28,44 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Lager</a>
+                <a asp-area="" asp-controller="Admin" asp-action="Index" class="navbar-brand">Lager</a>
             </div>
             <div class="navbar-collapse collapse">
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Inventory</a></li>
-                        <li><a href="#">Users</a></li>
-                        <li><a href="#">Reporting</a></li>
+                        <li><a href="Index">Home</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Inventory
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Inventory">View Current</a></li>
+                                <li><a href="#">Backup</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Users
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">View All</a></li>
+                                <li><a href="#">Create/Remove</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Functions
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Reporting</a></li>
+                                <li><a href="#">Back up DB</a></li>
+                                <li><a href="#">Migrate Server</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-toggle="modal" href="#login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -48,7 +77,9 @@
 
     <div class="jumbotron" style="background-color:lightblue">
         <div class="container">
-
+            <div class="page-header">
+                <h1>Lager <small>your inventory solution.</small></h1>
+            </div>
         </div>
     </div>
 
@@ -68,10 +99,10 @@
             <div class="modal-content">
                 <div class="modal-header" style="background-color: lightblue">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Request ID</h4>
+                    <h4 class="modal-title">Thank You!</h4>
                 </div>
                 <div class="modal-body">
-                    <p>You have logged out.</p>
+                    <p>Logout successful!</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

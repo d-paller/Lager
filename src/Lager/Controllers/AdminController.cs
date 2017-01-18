@@ -16,6 +16,15 @@ namespace Lager.Controllers
             return View();
         }
 
+        public IActionResult Inventory()
+        {
+            return View();
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
 
     }
 
