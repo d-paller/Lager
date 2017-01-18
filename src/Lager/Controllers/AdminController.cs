@@ -16,9 +16,16 @@ namespace Lager.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public void AddItem()
+
+        public IActionResult Inventory()
         {
+            return View();
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         }
     }
