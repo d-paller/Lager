@@ -41,7 +41,13 @@ namespace Lager
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddTransient<IPasswordHasher<User>, SCryptPasswordHasher>();
-
+            services.AddCors(options => {
+                options.AddPolicy("CorsPolicy",
+            builder => builder.AllowAnyOrigin()
+                              .AllowAnyMethod()
+                              .AllowAnyHeader()
+                              .AllowCredentials());
+            });
             services.AddTransient<DataAccess>();
             services.AddMvc();
         }
@@ -53,7 +59,7 @@ namespace Lager
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
-
+            app.UseCors("CorsPolicy");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

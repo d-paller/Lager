@@ -2,40 +2,65 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Lager.Models;
 using System.Threading.Tasks;
+using MongoDB.Driver;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver.Linq;
+using MongoDB.Bson;
 
 namespace Lager.Services.Repositories
 {
-    public class PartRepository : IRepository<IPart>
+    public class PartRepository : IPartRepository
     {
-        public void Add(IPart itemToAdd)
+        private readonly PartContext _context = null;
+        public PartRepository(IOptions<Settings> settings)
         {
-            throw new NotImplementedException();
+            _context = new PartContext(settings);
+        }
+        //return everything in the database
+        public async Task<IEnumerable<Part>> GetAllPart()
+        {
+            return await _context.Parts.Find(_ => true).ToListAsync();
+        }
+        //Get all the same kind of parts
+        public async Task<IEnumerable<Part>> GetAllParts(string n)
+        {
+            var filter = Builders<Part>.Filter.Eq("Name",n);
+            return await _context.Parts.Find(filter).ToListAsync();
         }
 
-        public bool Contains(int key)
+        public async Task<Part> GetPart(string id)
         {
-            throw new NotImplementedException();
+            var filter = Builders<Part>.Filter.Eq("Id", id);
+            return await _context.Parts
+                                 .Find(filter)
+                                 .FirstOrDefaultAsync();
         }
 
-        public IPart Get(int key)
+        public async Task AddPart(Part item)
         {
-            throw new NotImplementedException();
+            await _context.Parts.InsertOneAsync(item);
         }
 
-        public IList<IPart> GetAll()
+        public async Task<DeleteResult> RemovePart(string id)
         {
-            throw new NotImplementedException();
+            return await _context.Parts.DeleteOneAsync(
+                         Builders<Part>.Filter.Eq("Id", id));
         }
 
-        public void Remove(IPart itemToRemove)
+        public async Task<ReplaceOneResult> UpdatePart(string id, Part item)
         {
-            throw new NotImplementedException();
+            return await _context.Parts
+                                 .ReplaceOneAsync(n => n.Id.Equals(id)
+                                                     , item
+                                                     , new UpdateOptions { IsUpsert = true });
         }
 
-        public void Replace(int keyOfItemToReplace, IPart newItem)
+        public async Task<DeleteResult> RemoveAllParts()
         {
-            throw new NotImplementedException();
+            return await _context.Parts.DeleteManyAsync(new BsonDocument());
         }
     }
 }
+

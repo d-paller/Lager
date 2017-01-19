@@ -6,6 +6,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lager.Models
 {
@@ -14,11 +15,13 @@ namespace Lager.Models
         /// <summary>
         /// uniquie id that mongo give to each document
         /// </summary>
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// Name of the part
         /// </summary>
+        [Required]
         [BsonElement("Name")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -37,6 +40,7 @@ namespace Lager.Models
         /// The date that the part was added
         /// </summary>
         [BsonElement("DateAdded")]
+        [DataType(DataType.Date)]
         public DateTime DateAdded { get; set; }
 
         /// <summary>
@@ -59,6 +63,7 @@ namespace Lager.Models
         [BsonElement("Description")]
         public string Description { get; set; }
 
+        [Url]
         [BsonElement("PurchaseUrl")]
         public string PurchaseUrl { get; set; }
 
