@@ -217,6 +217,7 @@ C:\Users\leois\Documents\GitHub\Lager\src\Lager\Controllers\LoginController.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Interfaces\IPart.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Interfaces\IPartRepository.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Interfaces\IUser.cs
+C:\Users\leois\Documents\GitHub\Lager\src\Lager\Interfaces\IUserRepository.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Models\DataAccess.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Models\Part.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Models\PartContext.cs

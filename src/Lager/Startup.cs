@@ -12,6 +12,7 @@ using Lager.Interfaces;
 using Scrypt;
 using Lager.Services;
 using Lager.Models;
+using Lager.Services.Repositories;
 
 namespace Lager
 {
@@ -48,8 +49,14 @@ namespace Lager
                               .AllowAnyHeader()
                               .AllowCredentials());
             });
-            services.AddTransient<DataAccess>();
+            services.AddTransient<IPartRepository, PartRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddMvc();
+            services.Configure<Settings>(options =>
+            {
+                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

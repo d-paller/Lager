@@ -24,6 +24,7 @@ namespace Lager.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
+        public string Category { get; set; }
         /// <summary>
         /// The ID of the part
         /// </summary>
@@ -41,7 +42,7 @@ namespace Lager.Models
         /// </summary>
         [BsonElement("DateAdded")]
         [DataType(DataType.Date)]
-        public DateTime DateAdded { get; set; }
+        public DateTime DateAdded { get; set; } = DateTime.Now;
 
         /// <summary>
         /// cost of the part
