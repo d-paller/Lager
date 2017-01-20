@@ -55,6 +55,9 @@ namespace Lager.Models
         [BsonElement("Vendor")]
         public String Vendor { get; set; }
 
+        [BsonElement("Holder")]
+        public string Holder { get; set; }
+
         /// <summary>
         /// A short description of the part
         /// </summary>
