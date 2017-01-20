@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 
 namespace Lager.Controllers
 {
+    //[Route ("")]
     public class AdminController : Controller
     {
         private UserRepository _userRepo;
@@ -27,7 +28,10 @@ namespace Lager.Controllers
         }
 
         private User user = new User() { IsActive = true, Name = "Test", Username = "TestUserName", Admin = true };
-
+        public AdminController(IPartRepository partRepository)
+        {
+            _PartRepository = partRepository;
+        }
         public IActionResult Index()
         {
             return View();
@@ -48,6 +52,7 @@ namespace Lager.Controllers
 
         public IActionResult Users()
         {
+            _PartRepository.AddPart(item);
             return View(new User());
         }
 
