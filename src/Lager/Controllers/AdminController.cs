@@ -10,19 +10,15 @@ using Lager.Interfaces;
 
 namespace Lager.Controllers
 {
+    //[Route ("")]
     public class AdminController : Controller
     {
-
-        // DataAccess partList = new DataAccess();
-        //IList<DataAccess> partInventory partList.GetParts();
-        //ViewData.Model = new ViewResult
-        //{ partInventory = partList; };
-        //return View(Part);
-
-        //private readonly IPartRepository partRepo;
-
+        private readonly IPartRepository _PartRepository;
         private User user = new User() { IsActive = true, Name = "Test", Username = "TestUserName", Admin = true };
-
+        public AdminController(IPartRepository partRepository)
+        {
+            _PartRepository = partRepository;
+        }
         public IActionResult Index()
         {
             
@@ -34,14 +30,10 @@ namespace Lager.Controllers
         {
             return View();
         }
-
-        public IActionResult Create()
+        [HttpPost]
+        public void AddItem(Part item)
         {
-            //how to post?
-            //_PartRepository.AddPart(item);
-            return View();
-        }
-
+            _PartRepository.AddPart(item);
         }
     }
 
