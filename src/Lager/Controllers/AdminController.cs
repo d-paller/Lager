@@ -14,19 +14,7 @@ namespace Lager.Controllers
     //[Route ("")]
     public class AdminController : Controller
     {
-        private UserRepository _userRepo;
-        // DataAccess partList = new DataAccess();
-        //IList<DataAccess> partInventory partList.GetParts();
-        //ViewData.Model = new ViewResult
-        //{ partInventory = partList; };
-        //return View(Part);
-
-        //private readonly IPartRepository partRepo;
-
-        public AdminController()
-        {
-        }
-
+        private readonly IPartRepository _PartRepository;
         private User user = new User() { IsActive = true, Name = "Test", Username = "TestUserName", Admin = true };
         public AdminController(IPartRepository partRepository)
         {
@@ -41,9 +29,8 @@ namespace Lager.Controllers
         {
             return View();
         }
-
         [HttpPost]
-        public IActionResult AddPart()
+        public void AddItem(Part item)
         {
             //how to post?
             //_PartRepository.AddPart(item);
