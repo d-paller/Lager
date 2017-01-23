@@ -31,9 +31,15 @@ namespace Lager.Controllers
             return View();
         }
         [HttpPost]
-        public void AddItem(Part item)
+        public async void AddItem(Part item)
         {
+            var count =await _PartRepository.GetAllParts(item.Name).Result;
+            item.Id = 3;
             _PartRepository.AddPart(item);
+        }
+        public void RemoveItem(string name, int id)
+        {
+
         }
     }
 
