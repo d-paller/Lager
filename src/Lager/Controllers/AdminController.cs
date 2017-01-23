@@ -14,12 +14,12 @@ namespace Lager.Controllers
 
         public IActionResult Index()
         {
-           // DataAccess partList = new DataAccess();
+            // DataAccess partList = new DataAccess();
             //IList<DataAccess> partInventory partList.GetParts();
             //ViewData.Model = new ViewResult
             //{ partInventory = partList; };
-
-            return View(Part);
+            //return View(Part);
+            return View();
         }
 
         public IActionResult Inventory()
