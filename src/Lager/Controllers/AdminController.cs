@@ -30,14 +30,7 @@ namespace Lager.Controllers
             return View();
         }
         [HttpPost]
-        public void AddItem(Part item)
-        {
-            //how to post?
-            //_PartRepository.AddPart(item);
-            return View();
-        }
-
-        public IActionResult Users()
+        public async void AddItem(Part item)
         {
             var count =await _PartRepository.GetAllParts(item.Name).Result;
             item.Id = 3;
