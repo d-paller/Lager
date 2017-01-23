@@ -1,0 +1,21 @@
+﻿@using Lager.Models
+@model Lager.Models.Part
+@{
+    Layout = "~/Views/Shared/_PlainLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] = Create</title>
+</head>
+<body>
+
+    <div class= "submit-form container-fluid min-height: 100%">
+        @Html.Partial("PartialViews/_partialCreate", Model)
+    </div>
+</body>
+</html>

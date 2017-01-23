@@ -78,8 +78,9 @@ namespace Lager
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Login}/{action=Login}");
-            });
+                    template: "{controller=Login}/{action=Login}");          
+        });
+
         }
     }
 }

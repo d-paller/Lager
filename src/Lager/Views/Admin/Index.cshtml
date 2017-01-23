@@ -1,13 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div><h1>Admin Home</h1></div>
-@Model Part
-<form asp-controller="AdminController" method="post" asp-action="">
-    <label>Name:</label><input type="text" /> <br />
-    <label>Cost: </label><input type="number" /> <br />
-    <label>Vendor: </label><input type="text" /> <br />
-    
+<div><h1>Administrator Dashboard</h1></div>
+<h2>Welcome Back!</h2>
 
-</form>
+<p>Server status: RUNNING</p>
+<p>Day(s) Up: #</p>
+<p>Total items in inventory: #</p>
+<p>Total items checked out: #</p>
+<p>Days since last login: #</p>
