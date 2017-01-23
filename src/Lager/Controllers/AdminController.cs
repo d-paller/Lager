@@ -52,6 +52,8 @@ namespace Lager.Controllers
 
         public IActionResult Users()
         {
+            var count =await _PartRepository.GetAllParts(item.Name).Result;
+            item.Id = 3;
             _PartRepository.AddPart(item);
             return View(new User());
         }
@@ -62,11 +64,11 @@ namespace Lager.Controllers
             _userRepo.Add(user);
             return View("UserAddSucess");
         }
-
-        public IActionResult Backup()
+        public void RemoveItem(string name, int id)
         {
-            return View();
+
         }
+    }
 
     }
 }
