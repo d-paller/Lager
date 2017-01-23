@@ -1,0 +1,61 @@
+@model Lager.Models.Part
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2>Create Part</h2>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true, "Submit failed, ensure all fields are completed.")
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Name)
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @type = "text", @placeholder = "Item Name" })
+            </div>
+
+			            <div class="form-group">
+                @Html.LabelFor(x => x.Description)
+                @Html.TextBoxFor(x => x.Description, new { @class = "form-control", @type = "text", @placeholder = "Category Name" })
+            </div>
+			
+			            <div class="form-group">
+                @Html.LabelFor(x => x.PartId)
+                @Html.TextBoxFor(x => x.PartId, new { @class = "form-control", @type = "text", @placeholder = "Part ID" })
+            </div>
+			
+			            <div class="form-group">
+                @Html.LabelFor(x => x.DateAdded)
+                @Html.TextBoxFor(x => x.DateAdded, new { @class = "form-control", @type = "date", @placeholder = "MM/DD/YYYY" })
+            </div>
+			
+			            <div class="form-group">
+                @Html.LabelFor(x => x.IsActive)
+                @Html.TextBoxFor(x => x.IsActive, new { @class = "form-control", @type = "boolean", @placeholder = "Functional? y/n" })
+            </div>
+			
+			            //<div class="form-group">
+                //@Html.LabelFor(x => x.dateDiscard)
+                //@Html.TextBoxFor(x => x.dateDiscard, new { @class = "form-control", @type = "date", @placeholder = "MM/DD/YYYY if applicable" })
+            //</div>
+			
+			            <div class="form-group">
+                @Html.LabelFor(x => x.Cost)
+                @Html.TextBoxFor(x => x.Cost, new { @class = "form-control", @type = "text", @placeholder = "Price" })
+            </div>
+			
+			            <div class="form-group">
+                @Html.LabelFor(x => x.Vendor)
+                @Html.TextBoxFor(x => x.Vendor, new { @class = "form-control", @type = "text", @placeholder = "Vendor Name" })
+            </div>
+			
+            <div class="form-group">
+                @Html.LabelFor(x => x.PurchaseUrl)
+                @Html.TextBoxFor(x => x.PurchaseUrl, null, new { @class = "form-control", @type = "url", @placeholder = "Enter URL" })
+            </div>
+
+            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-save-file"></span> Submit</button>
+        }
+    </div>
+</div>

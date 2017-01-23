@@ -1,9 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Add New";
-}
+﻿<!--
+
+//(at sign curly brace)
+//    ViewData["Title"] = "Add New";
+//}
 
 <div><h1>Add New Part</h1></div>
 <h2>Complete the form below to add a new part to the database.</h2>
+
 
 <div class="container">
     <form>
@@ -50,3 +53,35 @@
 
     </form>
 </div>
+-->
+
+@using Lager.Models
+@model Lager.Models.Part
+@{
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] = Create</title>
+</head>
+<body>
+
+
+    <div class="jumbotron" style="background-color:lightblue">
+        <div class="container">
+            <div class="page-header">
+                <h1>Lager <small>your inventory solution.</small></h1>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @Html.Partial("PartialViews/_partialCreate", Model)
+    </div>
+</body>
+</html>
