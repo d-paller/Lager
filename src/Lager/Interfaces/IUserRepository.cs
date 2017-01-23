@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Lager.Models;
 using System.Threading.Tasks;
 
 namespace Lager.Interfaces
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
-        //Task<IEnumerable<User>> GetAllUser();
-        Task Add(User user);
-        Task<bool> Contains(string uname);
-        Task<User> Get(string name);
+        Task<IUser> GetUserByUsername(string userName);
+
+        Task<IUser> GetUserById(int Id);
+
+        Task AddUser(IUser user);
+
+        Task<bool> UserExists(string userName);
+
+        Task<bool> UserExists(int userId);
     }
 }
