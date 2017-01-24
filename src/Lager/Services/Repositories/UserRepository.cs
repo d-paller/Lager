@@ -41,7 +41,7 @@ namespace Lager.Services.Repositories
                              .FirstOrDefaultAsync();
         }
 
-        public async Task<IList<User>> GetAll()
+        public async Task<bool> UserExists(int userId)
         {
             var filter = Builders<User>.Filter.Eq("Id", userId);
             return await _context.Users.Find(filter).FirstOrDefaultAsync() == null ? false : true;
