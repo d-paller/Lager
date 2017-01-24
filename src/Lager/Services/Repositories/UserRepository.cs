@@ -11,46 +11,42 @@ using MongoDB.Bson;
 namespace Lager.Services.Repositories
 {
 
-    public class UserRepository 
+    public class UserRepository :IUserRepository
     {
         private readonly PartContext _context = null;
         public UserRepository(IOptions<Settings> settings)
         {
             _context = new PartContext(settings);
         }
-        public async Task Add(User itemToAdd)
+
+        public async Task AddUser(User user)
         {
-            await _context.Users.InsertOneAsync(itemToAdd);
+            await _context.Users.InsertOneAsync(user);
         }
 
-        public async Task<bool> Contains(string uname)
+        public async Task<User> GetUserById(int Id)
         {
-            var filter = Builders<User>.Filter.Eq("Username", uname);
-            List<User> result = await _context.Users.Find(filter).ToListAsync();
-            if (result.Count == 0)
-                return false;
-            else
-                return true;
+            var filter = Builders<User>.Filter.Eq("Id", Id);
+            return await _context.Users.Find(filter).FirstOrDefaultAsync();
         }
 
-        public IUser Get(int key)
+        public async Task<User> GetUserByUsername(string userName)
         {
-            throw new NotImplementedException();
+            var filter = Builders<User>.Filter.Eq("UserName", userName);
+            return await _context.Users.Find(filter).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<User>> GetAll()
+        public async Task<bool> UserExists(int userId)
         {
-            return await _context.Users.Find(_ => true).ToListAsync();
+            var filter = Builders<User>.Filter.Eq("Id", userId);
+            return await _context.Users.Find(filter).FirstOrDefaultAsync() == null ? false : true;
         }
 
-        public void Remove(IUser itemToRemove)
+        public async Task<bool> UserExists(string userName)
         {
-            throw new NotImplementedException();
+            var filter = Builders<User>.Filter.Eq("UserName", userName);
+            return await _context.Users.Find(filter).FirstOrDefaultAsync() == null ? false : true;
         }
 
-        public void Replace(int keyOfItemToReplace, IUser newItem)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -19,11 +19,11 @@ namespace Lager.Models
                 _database = client.GetDatabase(settings.Value.Database);
         }
 
-        public IMongoCollection<Part> Parts
+        public IMongoCollection<IPart> Parts
         {
             get
             {
-                return _database.GetCollection<Part>("Parts");
+                return _database.GetCollection<IPart>("Parts");
             }
         }
         public IMongoCollection<User> Users
