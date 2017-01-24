@@ -8,11 +8,11 @@ namespace Lager.Interfaces
 {
     public interface IUserRepository
     {
-        Task<IUser> GetUserByUsername(string userName);
+        Task<User> GetUserByUsername(string userName);
 
-        Task<IUser> GetUserById(int Id);
+        Task<User> GetUserById(int Id);
 
-        Task AddUser(IUser user);
+        Task AddUser(User user);
 
         Task<bool> UserExists(string userName);
 

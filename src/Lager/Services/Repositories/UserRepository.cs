@@ -22,7 +22,8 @@ namespace Lager.Services.Repositories
         {
             _context = new DBContext(settings);
         }
-        public async Task Add(User user)
+
+        public async Task AddUser(User user)
         {
             await _context.Users.InsertOneAsync(user);
         }
@@ -33,12 +34,10 @@ namespace Lager.Services.Repositories
             return await _context.Users.Find(filter).FirstOrDefaultAsync();
         }
 
-        public async Task<User> Get(string name)
+        public async Task<User> GetUserByUsername(string userName)
         {
-            var filter = Builders<User>.Filter.Eq("Username", name);
-            return await _context.Users
-                             .Find(filter)
-                             .FirstOrDefaultAsync();
+            var filter = Builders<User>.Filter.Eq("UserName", userName);
+            return await _context.Users.Find(filter).FirstOrDefaultAsync();
         }
 
         public async Task<bool> UserExists(int userId)
