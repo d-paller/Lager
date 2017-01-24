@@ -33,13 +33,18 @@ namespace Lager.Controllers
         [HttpPost]
         public async void AddItem(Part item)
         {
-            var count =await _PartRepository.GetAllParts(item.Name).Result;
-            item.Id = 3;
-            _PartRepository.AddPart(item);
+            var count = _PartRepository.GetAllParts(item.Name).Result;
+
+            item.Id = "3";
+            await _PartRepository.AddPart(item);
         }
         public void RemoveItem(string name, int id)
         {
 
+        }
+        public IActionResult create()
+        {
+            return View();
         }
     }
 
