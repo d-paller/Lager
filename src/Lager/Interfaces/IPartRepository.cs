@@ -12,7 +12,7 @@ namespace Lager.Interfaces
         Task AddPart(Part item);
         Task<DeleteResult> RemovePart(string name, int id);
         Task<ReplaceOneResult> UpdatePart(string id, Part item);
-        Task<IList<Part>> GetAllParts(string n);
+        Task<List<Part>> GetAllParts(string n);
 
         // demo interface - full document update
         //Task<ReplaceOneResult> UpdatePartDocument(string id, Part item);
