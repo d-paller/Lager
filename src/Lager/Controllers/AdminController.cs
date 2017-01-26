@@ -35,12 +35,15 @@ namespace Lager.Controllers
         {
             var count = _PartRepository.GetAllParts(item.Name).Result;
 
-            item.Id = "3";
+            item.PartId = count.Count;
             await _PartRepository.AddPart(item);
+            Index();
         }
+        [HttpPost]
         public void RemoveItem(string name, int id)
         {
-
+            Part a = _PartRepository.GetPart(name, id).Result;
+            a.IsActive = false;
         }
         public IActionResult create()
         {
