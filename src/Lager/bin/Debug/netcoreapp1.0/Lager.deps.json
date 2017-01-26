@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "9da11f63ed66492d76ae68887ce82ee7fa21f1f6"
+    "signature": "30e88c486a2e3e663369582b1c0f504192e657a1"
   },
   "compilationOptions": {
     "defines": [
@@ -16,7 +16,7 @@
     ".NETCoreApp,Version=v1.0": {
       "Lager/1.0.0": {
         "dependencies": {
-          "mongocsharpdriver": "2.4.0",
+          "mongocsharpdriver": "2.4.1",
           "Microsoft.NETCore.App": "1.0.1",
           "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics": "1.0.0",
@@ -33,7 +33,8 @@
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "Scrypt.NET": "1.1.0",
-          "Microsoft.AspNetCore.Identity": "1.0.0"
+          "Microsoft.AspNetCore.Identity": "1.0.0",
+          "MongoDB.Driver": "2.4.1"
         },
         "runtime": {
           "Lager.dll": {}
@@ -1354,11 +1355,11 @@
           "lib/netstandard1.5/Microsoft.VisualStudio.Web.BrowserLink.Loader.dll": {}
         }
       },
-      "mongocsharpdriver/2.4.0": {
+      "mongocsharpdriver/2.4.1": {
         "dependencies": {
-          "MongoDB.Bson": "2.4.0",
-          "MongoDB.Driver": "2.4.0",
-          "MongoDB.Driver.Core": "2.4.0",
+          "MongoDB.Bson": "2.4.1",
+          "MongoDB.Driver": "2.4.1",
+          "MongoDB.Driver.Core": "2.4.1",
           "NETStandard.Library": "1.6.0"
         },
         "runtime": {
@@ -1368,7 +1369,7 @@
           "lib/netstandard1.5/MongoDB.Driver.Legacy.dll": {}
         }
       },
-      "MongoDB.Bson/2.4.0": {
+      "MongoDB.Bson/2.4.1": {
         "dependencies": {
           "NETStandard.Library": "1.6.0",
           "System.Collections.NonGeneric": "4.0.1",
@@ -1383,10 +1384,10 @@
           "lib/netstandard1.5/MongoDB.Bson.dll": {}
         }
       },
-      "MongoDB.Driver/2.4.0": {
+      "MongoDB.Driver/2.4.1": {
         "dependencies": {
-          "MongoDB.Bson": "2.4.0",
-          "MongoDB.Driver.Core": "2.4.0",
+          "MongoDB.Bson": "2.4.1",
+          "MongoDB.Driver.Core": "2.4.1",
           "NETStandard.Library": "1.6.0",
           "System.Linq.Queryable": "4.0.1"
         },
@@ -1397,9 +1398,9 @@
           "lib/netstandard1.5/MongoDB.Driver.dll": {}
         }
       },
-      "MongoDB.Driver.Core/2.4.0": {
+      "MongoDB.Driver.Core/2.4.1": {
         "dependencies": {
-          "MongoDB.Bson": "2.4.0",
+          "MongoDB.Bson": "2.4.1",
           "NETStandard.Library": "1.6.0",
           "System.Collections.Specialized": "4.0.1",
           "System.Diagnostics.TraceSource": "4.0.0",
@@ -3873,25 +3874,25 @@
       "serviceable": true,
       "sha512": "sha512-f01OAOfsctcN7gSa05qYK8AgU1E/BFeZizvszNJMXY3BMJbYSj+3+YqyLunkMSf7LN92kcl7gQsAY9FayEH3ag=="
     },
-    "mongocsharpdriver/2.4.0": {
+    "mongocsharpdriver/2.4.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JqcQPZbiCfB4hzdKJzkeZu9w+v3jtOs3N2G+QKOtfiQAA1bChDuQESLjxoX7ZLz9PWHCxQe8SCEkGRaomqEXnQ=="
+      "sha512": "sha512-DPSmNREbYTPluStCORqHkZjcBRQftMue4N3QEVsck78qTU1Xrf9GoJBlR9AOG/PbLQNzC8VippDBbHumd6Jotw=="
     },
-    "MongoDB.Bson/2.4.0": {
+    "MongoDB.Bson/2.4.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-qxDV2pyW6VwTf+YRQ12NarFkkX1tuD4paaNJ4zEeqX52h/n596lpSsaazJOI2Wi69xz8KLBRAeXKVw9q2sIjuQ=="
+      "sha512": "sha512-D6GBX2shpGGlQbIw8GIPYqvBsHvdtyFl/Gg16WmLUVXAUJnPYTivEsOoThs7vx0Uco425B/rr9pP7RHHz5xNQg=="
     },
-    "MongoDB.Driver/2.4.0": {
+    "MongoDB.Driver/2.4.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-k4fWKaw3v1ohbRqH7RPovx6KxnzCFv2W8tqnb/e4KL62ciOtUZtwvaGNExVD5HNpUSz+MQF6v/d0s18vnlDJ/w=="
+      "sha512": "sha512-xsp1BIr9WvvaGDIQFCQvty0ZAUl4WBj3DgvToleuljeYFa+W2d6nIMgAEKsUTuu2nC+3pNtVFbrKsryNU46+ag=="
     },
-    "MongoDB.Driver.Core/2.4.0": {
+    "MongoDB.Driver.Core/2.4.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sYO15KAnnhaGgJv6wKUPH8A90lfUglnF/s457T9CClK0FogDjO56qI+vGH0bvqRnZvRQoznkPcci6/UYNKgWXA=="
+      "sha512": "sha512-iJ020RGVzCm6h72qKF155XRQhx/D5xKOh9Z5MBTpFlr2ndGTSpskycPPCeNrjl/TSr1RBNg2+K03kzFD5xCu/Q=="
     },
     "Newtonsoft.Json/9.0.1": {
       "type": "package",

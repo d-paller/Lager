@@ -34,7 +34,7 @@ namespace Lager.Controllers
         {
             var count = _PartRepository.GetAllParts(item.Name).Result;
 
-            item.Id = "3";
+            item.PartId = count.Count;
             await _PartRepository.AddPart(item);
             var count =await _PartRepository.GetAllParts(item.Name).Result;
             item.Id = 3;
@@ -50,7 +50,8 @@ namespace Lager.Controllers
         }
         public void RemoveItem(string name, int id)
         {
-
+            Part a = _PartRepository.GetPart(name, id).Result;
+            a.IsActive = false;
         }
         public IActionResult create()
         {

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "mongocsharpdriver": "2.4.0",
+    "mongocsharpdriver": "2.4.1",
     "Microsoft.NETCore.App": {
       "version": "1.0.1",
       "type": "platform"
@@ -24,7 +24,8 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "Scrypt.NET": "1.1.0",
-    "Microsoft.AspNetCore.Identity": "1.0.0"
+    "Microsoft.AspNetCore.Identity": "1.0.0",
+    "MongoDB.Driver": "2.4.1"
   },
 
   "tools": {

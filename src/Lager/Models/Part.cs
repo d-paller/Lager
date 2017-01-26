@@ -15,7 +15,7 @@ namespace Lager.Models
         /// <summary>
         /// uniquie id that mongo give to each document
         /// </summary>
-        public string Id { get; set; }
+        public string Id { get; set; } 
         /// <summary>
         /// Name of the part
         /// </summary>
