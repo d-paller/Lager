@@ -25,7 +25,7 @@ namespace Lager.Controllers
 
         public IActionResult Index()
         {
-            
+
 
             return View();
         }
@@ -42,7 +42,7 @@ namespace Lager.Controllers
             return View();
         }
 
-        }
     }
-
 }
+
+
