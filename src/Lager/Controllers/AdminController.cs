@@ -32,7 +32,7 @@ namespace Lager.Controllers
         [HttpPost]
         public async void AddItem(Part item)
         {
-            var count = _PartRepository.GetAllParts(item.Name).Result;
+                var count = _PartRepository.GetAllParts(item.Name).Result;
 
             item.PartId = count.Count;
             await _PartRepository.AddPart(item);

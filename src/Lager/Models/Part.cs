@@ -15,7 +15,8 @@ namespace Lager.Models
         /// <summary>
         /// uniquie id that mongo give to each document
         /// </summary>
-        public string Id { get; set; } 
+        [BsonId]
+        public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
         /// <summary>
         /// Name of the part
         /// </summary>
@@ -24,6 +25,7 @@ namespace Lager.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
+        [BsonElement("Category")]
         public string Category { get; set; }
         /// <summary>
         /// The ID of the part
