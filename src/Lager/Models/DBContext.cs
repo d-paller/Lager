@@ -8,11 +8,11 @@ using Microsoft.Extensions.Options;
 
 namespace Lager.Models
 {
-    public class PartContext
+    public class DBContext
     {
         private readonly IMongoDatabase _database = null;
 
-        public PartContext(IOptions<Settings> settings)
+        public DBContext(IOptions<Settings> settings)
         {
             var client = new MongoClient(settings.Value.ConnectionString);
             if (client != null)

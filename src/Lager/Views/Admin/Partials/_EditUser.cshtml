@@ -1,0 +1,25 @@
+﻿
+@using Lager.Models
+@model User
+
+
+    <div class="panel-heading">
+        Edit User
+        <a id="close-float" href="#">Close</a>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("UpdateUser", "Admin", FormMethod.Post))
+        {
+
+            <div class="col-xs-5">
+                @Html.TextBoxFor(x => x.Name)
+            </div>
+            <div class="col-xs-5">
+                @Html.TextBoxFor(x => x.Username)
+            </div>
+            <div class="col-xs-2">
+                <input class="btn btn-success" type="submit" />
+            </div>
+        }
+    </div>
+

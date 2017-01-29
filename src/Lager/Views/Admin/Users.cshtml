@@ -1,0 +1,52 @@
+﻿
+@using Lager.Models
+
+@model IList<User>
+
+<div class="col-xs-6">
+    <h2>Active Users</h2>
+    <input id="name-of-user-to-edit" type="hidden" />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Last Active</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (User user in Model.Where(x => x.IsActive))
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.LastActive</td>
+                    <td>
+                        <button class="btn btn-danger deny-acces-btn">Deny Access</button>
+                        <button class="btn btn-primary edit-user-btn" data-users-name="@user.Name">Edit User</button>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+    <div class="panel panel-primary floating-form" style="display:none;">
+        @Html.Partial("~/Views/Admin/Partials/_EditUser.cshtml", Model.Where(x=>x.Name == ).FirstOrDefault())
+    </div>
+
+</div>
+
+<div class="col-xs-6">
+    @Html.Partial("~/Views/Admin/Partials/_AddUser.cshtml", new User())
+</div>
+
+<script>
+    $(".edit-user-btn").click(function () {
+        $('#name-of-user-to-edit').val() = $(".edit-user-btn").data();
+    });
+
+    $('#pswd2').focusout(function () {
+        $('#create-user-val-msg').fadeIn(500);
+        if($('#pswd2') !== "")
+            $('#pswd1').val() === $('#pswd2').val() ? @ViewBag.match = true : @ViewBag.match = false;
+    });
+</script>

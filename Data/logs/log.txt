@@ -1,0 +1,53 @@
+2017-01-28T16:49:33.225-0500 I CONTROL  [initandlisten] MongoDB starting : pid=14520 port=27017 dbpath=~\Data 64-bit host=DESKTOP-1B5HGAM
+2017-01-28T16:49:33.225-0500 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2017-01-28T16:49:33.225-0500 I CONTROL  [initandlisten] db version v3.4.1
+2017-01-28T16:49:33.226-0500 I CONTROL  [initandlisten] git version: 5e103c4f5583e2566a45d740225dc250baacfbd7
+2017-01-28T16:49:33.226-0500 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2017-01-28T16:49:33.226-0500 I CONTROL  [initandlisten] allocator: tcmalloc
+2017-01-28T16:49:33.226-0500 I CONTROL  [initandlisten] modules: none
+2017-01-28T16:49:33.226-0500 I CONTROL  [initandlisten] build environment:
+2017-01-28T16:49:33.228-0500 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2017-01-28T16:49:33.228-0500 I CONTROL  [initandlisten]     distarch: x86_64
+2017-01-28T16:49:33.228-0500 I CONTROL  [initandlisten]     target_arch: x86_64
+2017-01-28T16:49:33.228-0500 I CONTROL  [initandlisten] options: { config: "mongod.cfg", security: { authorization: "disabled" }, storage: { dbPath: "~\Data" }, systemLog: { destination: "file", logAppend: true, path: "C:\\Websites\\Capstone\\Lager\\Data\\logs\\log.txt" } }
+2017-01-28T16:49:33.228-0500 I STORAGE  [initandlisten] exception in initAndListen: 29 Data directory ~\Data not found., terminating
+2017-01-28T16:49:33.228-0500 I NETWORK  [initandlisten] shutdown: going to close listening sockets...
+2017-01-28T16:49:33.228-0500 I NETWORK  [initandlisten] shutdown: going to flush diaglog...
+2017-01-28T16:49:33.228-0500 I CONTROL  [initandlisten] now exiting
+2017-01-28T16:49:33.228-0500 I CONTROL  [initandlisten] shutting down with code:100
+2017-01-28T16:50:31.469-0500 I CONTROL  [main] ***** SERVER RESTARTED *****
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] MongoDB starting : pid=27596 port=27017 dbpath=~\Data 64-bit host=DESKTOP-1B5HGAM
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] db version v3.4.1
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] git version: 5e103c4f5583e2566a45d740225dc250baacfbd7
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] allocator: tcmalloc
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] modules: none
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] build environment:
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten]     distarch: x86_64
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten]     target_arch: x86_64
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] options: { config: "mongod.cfg", security: { authorization: "disabled" }, storage: { dbPath: "~\Data" }, systemLog: { destination: "file", logAppend: true, path: "C:\\Websites\\Capstone\\Lager\\Data\\logs\\log.txt" } }
+2017-01-28T16:50:31.871-0500 I STORAGE  [initandlisten] exception in initAndListen: 29 Data directory ~\Data not found., terminating
+2017-01-28T16:50:31.871-0500 I NETWORK  [initandlisten] shutdown: going to close listening sockets...
+2017-01-28T16:50:31.871-0500 I NETWORK  [initandlisten] shutdown: going to flush diaglog...
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] now exiting
+2017-01-28T16:50:31.871-0500 I CONTROL  [initandlisten] shutting down with code:100
+2017-01-28T16:51:42.944-0500 I CONTROL  [main] ***** SERVER RESTARTED *****
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten] MongoDB starting : pid=1968 port=27017 dbpath=~\Data 64-bit host=DESKTOP-1B5HGAM
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten] db version v3.4.1
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten] git version: 5e103c4f5583e2566a45d740225dc250baacfbd7
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten] allocator: tcmalloc
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten] modules: none
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten] build environment:
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten]     distarch: x86_64
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten]     target_arch: x86_64
+2017-01-28T16:51:43.377-0500 I CONTROL  [initandlisten] options: { config: "../mongod.cfg", security: { authorization: "disabled" }, storage: { dbPath: "~\Data" }, systemLog: { destination: "file", logAppend: true, path: "C:\\Websites\\Capstone\\Lager\\Data\\logs\\log.txt" } }
+2017-01-28T16:51:43.378-0500 I STORAGE  [initandlisten] exception in initAndListen: 29 Data directory ~\Data not found., terminating
+2017-01-28T16:51:43.378-0500 I NETWORK  [initandlisten] shutdown: going to close listening sockets...
+2017-01-28T16:51:43.378-0500 I NETWORK  [initandlisten] shutdown: going to flush diaglog...
+2017-01-28T16:51:43.378-0500 I CONTROL  [initandlisten] now exiting
+2017-01-28T16:51:43.378-0500 I CONTROL  [initandlisten] shutting down with code:100

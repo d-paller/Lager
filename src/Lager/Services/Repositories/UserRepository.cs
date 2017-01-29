@@ -13,10 +13,10 @@ namespace Lager.Services.Repositories
 
     public class UserRepository 
     {
-        private readonly PartContext _context = null;
+        private readonly DBContext _context = null;
         public UserRepository(IOptions<Settings> settings)
         {
-            _context = new PartContext(settings);
+            _context = new DBContext(settings);
         }
         public async Task Add(User itemToAdd)
         {
@@ -38,7 +38,7 @@ namespace Lager.Services.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<User>> GetAll()
+        public async Task<IList<User>> GetAll()
         {
             return await _context.Users.Find(_ => true).ToListAsync();
         }

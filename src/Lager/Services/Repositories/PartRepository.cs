@@ -13,10 +13,10 @@ namespace Lager.Services.Repositories
 {
     public class PartRepository : IPartRepository
     {
-        private readonly PartContext _context = null;
+        private readonly DBContext _context = null;
         public PartRepository(IOptions<Settings> settings)
         {
-            _context = new PartContext(settings);
+            _context = new DBContext(settings);
         }
         //return everything in the database
         public async Task<IEnumerable<Part>> GetAllPart()

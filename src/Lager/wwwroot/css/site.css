@@ -5,10 +5,12 @@
 }
 
 .footer{
-    bottom: 0px;
+    bottom: 1px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
     position: absolute;
     height: 40px;
-    width: 100%;
     border-top: 1px solid #cccccc;
     padding: 10px;
     margin: 0px;
@@ -18,4 +20,23 @@
     padding: 20px;
     margin: 0px;
     margin-bottom: 50px;
+}
+
+body{
+    margin-top: 55px;
+}
+
+.floating-form{
+    position:absolute;
+    width: 50vw;
+    margin:auto;
+    right: 0px;
+    left: 0px;
+    top: 100px;
+    margin:auto;
+    box-shadow: 0px 0px 20px black;
+    margin-top: 100px;
+}
+.floating-form > .panel-body{
+    padding: 50px;
 }
