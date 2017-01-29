@@ -30,28 +30,21 @@ namespace Lager.Controllers
             return View();
         }
         [HttpPost]
-        public async void AddItem(Part item)
+        public async Task<ActionResult> AddItem(Part item)
         {
                 var count = _PartRepository.GetAllParts(item.Name).Result;
 
-            item.PartId = count.Count;
-            await _PartRepository.AddPart(item);
-            var count =await _PartRepository.GetAllParts(item.Name).Result;
-            item.Id = 3;
-            _PartRepository.AddPart(item);
-            return View(new User());
+                item.PartId = count.Count;
+                await _PartRepository.AddPart(item);
+            return View("index");
         }
-
         [HttpPost]
-        public IActionResult AddUser(User user)
-        {
-            _userRepo.Add(user);
-            return View("UserAddSucess");
-        }
-        public void RemoveItem(string name, int id)
+        public async Task<ActionResult> RemoveItem(string name, int id)
         {
             Part a = _PartRepository.GetPart(name, id).Result;
             a.IsActive = false;
+            await _PartRepository.UpdatePart(a.Id, a);
+            return View();
         }
         public IActionResult create()
         {
