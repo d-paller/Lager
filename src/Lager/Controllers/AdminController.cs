@@ -46,27 +46,15 @@ namespace Lager.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Users()
+        public IActionResult Users()
         {
-            IList<User> users = new List<User>() {
-                new Models.User()
-                {
-                    Username = "test1",
-                    Name = "Billy Joe"
-            },
-                new User()
-                {
-                    Username = "test2",
-                    Name = "Dave"
-                }
-            }; //await _userRepo.GetAll();
-            return View(users);
+            return View(new User());
         }
 
         [HttpPost]
         public IActionResult AddUser(User user)
         {
-            return View();
+            return View("Users");
         }
 
         public IActionResult Backup()

@@ -1,48 +1,46 @@
 ﻿
 @using Lager.Models
+@{
+    ViewBag.match = false;
 
-@model IList<User>
+}
+@model User
 
-<div class="col-xs-6">
-    <h2>Active Users</h2>
-    <input id="name-of-user-to-edit" type="hidden" />
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <td>Name</td>
-                <td>Last Active</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (User user in Model.Where(x => x.IsActive))
+<h2>Add User</h2>
+<div class="form-group">
+    @using (Html.BeginForm("AddUser", "Admin", FormMethod.Post))
+    {
+        <div id="create-user-val-msg" style="display:none">
+            @if (ViewBag.match == true)
             {
-                <tr>
-                    <td>@user.Name</td>
-                    <td>@user.LastActive</td>
-                    <td>
-                        <button class="btn btn-danger deny-acces-btn">Deny Access</button>
-                        <button class="btn btn-primary edit-user-btn" data-users-name="@user.Name">Edit User</button>
-                    </td>
-                </tr>
+                <div class="alert alert-success">
+                    Passwords match!
+                </div>
             }
+            else
+            {
+                <div class="alert alert-danger">
+                    Passwords don't match.
+                </div>
+
+            }
+        </div>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Name" })
+
+        @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @placeholder = "Username" })
+
+        <input id="pswd1" class="form-control" type="password" placeholder="Password" />
+        <input id="pswd2" class="form-control" type="password" placeholder="Confirm Password" />
 
 
-        </tbody>
-    </table>
-    <div class="panel panel-primary floating-form" style="display:none;">
-        @Html.Partial("~/Views/Admin/Partials/_EditUser.cshtml", Model.Where(x=>x.Name == ).FirstOrDefault())
-    </div>
 
+        <div class="col-xs-6 pull-left">
+            <input class="btn btn-success @(ViewBag.match ? "" : "disabled")" type="submit" />
+            <input class="btn btn-warning" type="reset" />
+        </div>
+    }
 </div>
-
-<div class="col-xs-6">
-    @Html.Partial("~/Views/Admin/Partials/_AddUser.cshtml", new User())
-</div>
-
 <script>
-    $(".edit-user-btn").click(function () {
-        $('#name-of-user-to-edit').val() = $(".edit-user-btn").data();
-    });
 
     $('#pswd2').focusout(function () {
         $('#create-user-val-msg').fadeIn(500);
