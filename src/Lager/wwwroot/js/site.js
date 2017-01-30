@@ -7,4 +7,3 @@
 $('.close-float').click(function () {
     this.slideUp(1000).fadeOut(500);
 });
-

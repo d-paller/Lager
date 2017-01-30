@@ -54,7 +54,8 @@ namespace Lager.Controllers
         [HttpPost]
         public IActionResult AddUser(User user)
         {
-            return View("Users");
+            _userRepo.Add(user);
+            return View("UserAddSucess");
         }
 
         public IActionResult Backup()

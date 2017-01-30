@@ -40,3 +40,15 @@ body{
 .floating-form > .panel-body{
     padding: 50px;
 }
+
+.form-control{
+    margin-bottom: 10px;
+}
+
+.btn{
+    margin-bottom: 10px;
+}
+
+.no-padding{
+    padding: 0px;
+}
