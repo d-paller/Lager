@@ -217,6 +217,7 @@ C:\Websites\Lager\src\Lager\Controllers\LoginController.cs
 C:\Websites\Lager\src\Lager\Interfaces\IPart.cs
 C:\Websites\Lager\src\Lager\Interfaces\IPartRepository.cs
 C:\Websites\Lager\src\Lager\Interfaces\IUser.cs
+C:\Websites\Lager\src\Lager\Interfaces\IUserRepository.cs
 C:\Websites\Lager\src\Lager\Models\DataAccess.cs
 C:\Websites\Lager\src\Lager\Models\Part.cs
 C:\Websites\Lager\src\Lager\Models\PartContext.cs
