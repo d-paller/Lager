@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Lager.Models;
 using Lager.Services.Repositories;
 using Lager.Interfaces;
+using Microsoft.Extensions.Options;
 
 namespace Lager.Controllers
 {
     public class AdminController : Controller
     {
-
+        private UserRepository _userRepo;
         // DataAccess partList = new DataAccess();
         //IList<DataAccess> partInventory partList.GetParts();
         //ViewData.Model = new ViewResult
@@ -21,12 +22,14 @@ namespace Lager.Controllers
 
         //private readonly IPartRepository partRepo;
 
+        public AdminController()
+        {
+        }
+
         private User user = new User() { IsActive = true, Name = "Test", Username = "TestUserName", Admin = true };
 
         public IActionResult Index()
         {
-
-
             return View();
         }
 
@@ -35,10 +38,28 @@ namespace Lager.Controllers
             return View();
         }
 
-        public IActionResult Create()
+        [HttpPost]
+        public IActionResult AddPart()
         {
             //how to post?
             //_PartRepository.AddPart(item);
+            return View();
+        }
+
+        public IActionResult Users()
+        {
+            return View(new User());
+        }
+
+        [HttpPost]
+        public IActionResult AddUser(User user)
+        {
+            _userRepo.Add(user);
+            return View("UserAddSucess");
+        }
+
+        public IActionResult Backup()
+        {
             return View();
         }
 

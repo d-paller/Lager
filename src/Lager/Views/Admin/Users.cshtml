@@ -1,0 +1,33 @@
+﻿
+@using Lager.Models
+@model User
+
+<h2>Add User</h2>
+<div class="form-group">
+    @using (Html.BeginForm("AddUser", "Admin", FormMethod.Post))
+    {
+        
+        <div class="form-group">
+            <label for="Name">Name</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Name" })
+
+            <label for="Username">Username</label>
+            @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @placeholder = "Username" })
+
+            <label for="pswd1">Enter Password</label>
+            <input id="pswd1" class="form-control" type="password" placeholder="Password" />
+
+            <label for="pswd2">Enter your password again</label>
+            <input id="pswd2" class="form-control" type="password" placeholder="Confirm Password" />
+
+
+            <div class="col-xs-3 no-padding">
+                <input class="btn btn-success form-control" type="submit" />
+            </div>
+            <div class="col-xs-6"></div>
+            <div class="col-xs-3 no-padding">
+                <input class="btn btn-danger form-control" type="reset" />
+            </div>
+        </div>
+    }
+</div>

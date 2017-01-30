@@ -38,6 +38,11 @@ namespace Lager.Models
         public bool IsActive { get; set; } = true;
 
         /// <summary>
+        /// Date the user was last active on.  Is set on login.
+        /// </summary>
+        public DateTime LastActive { get; set; }
+
+        /// <summary>
         /// The Salt for the users password
         /// </summary>
         public string Salt { get; set; }
