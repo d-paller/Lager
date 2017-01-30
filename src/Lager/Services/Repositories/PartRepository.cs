@@ -26,7 +26,7 @@ namespace Lager.Services.Repositories
         //Get all the same kind of parts
         public async Task<List<Part>> GetAllParts(string n)
         {
-            var filter = Builders<Part>.Filter.Eq("Name",n);
+            var filter = Builders<IPart>.Filter.Eq("Name",n);
             return await _context.Parts.Find(filter).ToListAsync();
         }
 
@@ -38,7 +38,7 @@ namespace Lager.Services.Repositories
                                  .FirstOrDefaultAsync();
         }
 
-        public async Task AddPart(Part item)
+        public async Task AddPart(IPart item)
         {
             await _context.Parts.InsertOneAsync(item);
         }
@@ -49,7 +49,7 @@ namespace Lager.Services.Repositories
             return await _context.Parts.DeleteOneAsync(filter);
         }
 
-        public async Task<ReplaceOneResult> UpdatePart(string id, Part item)
+        public async Task<ReplaceOneResult> UpdatePart(string id, IPart item)
         {
             return await _context.Parts
                                  .ReplaceOneAsync(n => n.Id.Equals(id)
