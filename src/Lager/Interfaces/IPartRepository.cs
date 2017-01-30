@@ -7,11 +7,11 @@ namespace Lager.Interfaces
 {
     public interface IPartRepository
     {
-        Task<IEnumerable<Part>> GetAllPart();
-        Task<Part> GetPart(string id);
-        Task AddPart(Part item);
+        Task<IEnumerable<IPart>> GetAllPart();
+        Task<IPart> GetPart(string id);
+        Task AddPart(IPart item);
         Task<DeleteResult> RemovePart(string id);
-        Task<ReplaceOneResult> UpdatePart(string id, Part item);
+        Task<ReplaceOneResult> UpdatePart(string id, IPart item);
 
         // demo interface - full document update
         //Task<ReplaceOneResult> UpdatePartDocument(string id, Part item);
