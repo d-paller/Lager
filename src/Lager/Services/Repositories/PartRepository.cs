@@ -24,15 +24,15 @@ namespace Lager.Services.Repositories
             return await _context.Parts.Find(_ => true).ToListAsync();
         }
         //Get all the same kind of parts
-        public async Task<List<Part>> GetAllParts(string n)
+        public async Task<IEnumerable<IPart>> GetAllParts(string n)
         {
             var filter = Builders<IPart>.Filter.Eq("Name",n);
             return await _context.Parts.Find(filter).ToListAsync();
         }
 
-        public async Task<Part> GetPart(string name, int id)
+        public async Task<IPart> GetPart(string id)
         {
-            var filter = Builders<Part>.Filter.Eq("PartId", id)& Builders<Part>.Filter.Eq("Name", name);
+            var filter = Builders<IPart>.Filter.Eq("Id", id);
             return await _context.Parts
                                  .Find(filter)
                                  .FirstOrDefaultAsync();
