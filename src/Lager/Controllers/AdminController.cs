@@ -34,7 +34,7 @@ namespace Lager.Controllers
         {
                 var count = _PartRepository.GetAllParts(item.Name).Result;
 
-                item.PartId = count.Count;
+                item.PartId = count.Count+1;
                 await _PartRepository.AddPart(item);
             return View("index");
         }
