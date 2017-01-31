@@ -22,6 +22,7 @@ namespace Lager.Controllers
         }
         public IActionResult Index()
         {
+
             return View();
         }
 
@@ -48,11 +49,15 @@ namespace Lager.Controllers
         }
         public IActionResult create()
         {
+            Part a = _PartRepository.GetPart(name, id).Result;
+            a.IsActive = false;
+            await _PartRepository.UpdatePart(a.Id, a);
+            return View();
+        }
+        public IActionResult create()
+        {
             return View();
         }
     }
-
-    }
-}
 
 
