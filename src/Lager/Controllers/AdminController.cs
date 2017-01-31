@@ -11,25 +11,18 @@ using Microsoft.Extensions.Options;
 
 namespace Lager.Controllers
 {
+    //[Route ("")]
     public class AdminController : Controller
     {
-        private UserRepository _userRepo;
-        // DataAccess partList = new DataAccess();
-        //IList<DataAccess> partInventory partList.GetParts();
-        //ViewData.Model = new ViewResult
-        //{ partInventory = partList; };
-        //return View(Part);
-
-        //private readonly IPartRepository partRepo;
-
-        public AdminController()
-        {
-        }
-
+        private readonly IPartRepository _PartRepository;
         private User user = new User() { IsActive = true, Name = "Test", Username = "TestUserName", Admin = true };
-
+        public AdminController(IPartRepository partRepository)
+        {
+            _PartRepository = partRepository;
+        }
         public IActionResult Index()
         {
+
             return View();
         }
 
@@ -37,33 +30,34 @@ namespace Lager.Controllers
         {
             return View();
         }
-
         [HttpPost]
-        public IActionResult AddPart()
+        public async Task<ActionResult> AddItem(Part item)
         {
-            //how to post?
-            //_PartRepository.AddPart(item);
+                var count = _PartRepository.GetAllParts(item.Name).Result;
+
+                item.PartId = count.Count+1;
+                await _PartRepository.AddPart(item);
+            return View("index");
+        }
+        [HttpPost]
+        public async Task<ActionResult> RemoveItem(string name, int id)
+        {
+            Part a = _PartRepository.GetPart(name, id).Result;
+            a.IsActive = false;
+            await _PartRepository.UpdatePart(a.Id, a);
             return View();
         }
-
-        public IActionResult Users()
+        public IActionResult create()
         {
-            return View(new User());
+            Part a = _PartRepository.GetPart(name, id).Result;
+            a.IsActive = false;
+            await _PartRepository.UpdatePart(a.Id, a);
+            return View();
         }
-
-        [HttpPost]
-        public IActionResult AddUser(User user)
-        {
-            _userRepo.Add(user);
-            return View("UserAddSucess");
-        }
-
-        public IActionResult Backup()
+        public IActionResult create()
         {
             return View();
         }
-
     }
-}
 
 

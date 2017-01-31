@@ -24,15 +24,15 @@ namespace Lager.Services.Repositories
             return await _context.Parts.Find(_ => true).ToListAsync();
         }
         //Get all the same kind of parts
-        public async Task<IEnumerable<Part>> GetAllParts(string n)
+        public async Task<List<Part>> GetAllParts(string n)
         {
             var filter = Builders<Part>.Filter.Eq("Name",n);
             return await _context.Parts.Find(filter).ToListAsync();
         }
 
-        public async Task<Part> GetPart(string id)
+        public async Task<Part> GetPart(string name, int id)
         {
-            var filter = Builders<Part>.Filter.Eq("Id", id);
+            var filter = Builders<Part>.Filter.Eq("PartId", id)& Builders<Part>.Filter.Eq("Name", name);
             return await _context.Parts
                                  .Find(filter)
                                  .FirstOrDefaultAsync();
@@ -43,10 +43,10 @@ namespace Lager.Services.Repositories
             await _context.Parts.InsertOneAsync(item);
         }
 
-        public async Task<DeleteResult> RemovePart(string id)
+        public async Task<DeleteResult> RemovePart(string name, int id)
         {
-            return await _context.Parts.DeleteOneAsync(
-                         Builders<Part>.Filter.Eq("Id", id));
+            var filter = Builders<Part>.Filter.Eq("PartId", id) & Builders<Part>.Filter.Eq("Name", name);
+            return await _context.Parts.DeleteOneAsync(filter);
         }
 
         public async Task<ReplaceOneResult> UpdatePart(string id, Part item)

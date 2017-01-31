@@ -11,16 +11,16 @@ using MongoDB.Bson;
 namespace Lager.Services.Repositories
 {
 
-    public class UserRepository 
+    public class UserRepository:IUserRepository 
     {
         private readonly DBContext _context = null;
         public UserRepository(IOptions<Settings> settings)
         {
             _context = new DBContext(settings);
         }
-        public async Task Add(User itemToAdd)
+        public async Task Add(User user)
         {
-            await _context.Users.InsertOneAsync(itemToAdd);
+            await _context.Users.InsertOneAsync(user);
         }
 
         public async Task<bool> Contains(string uname)
@@ -33,9 +33,12 @@ namespace Lager.Services.Repositories
                 return true;
         }
 
-        public IUser Get(int key)
+        public async Task<User> Get(string name)
         {
-            throw new NotImplementedException();
+            var filter = Builders<User>.Filter.Eq("Username", name);
+            return await _context.Users
+                             .Find(filter)
+                             .FirstOrDefaultAsync();
         }
 
         public async Task<IList<User>> GetAll()

@@ -15,7 +15,8 @@ namespace Lager.Models
         /// <summary>
         /// uniquie id that mongo give to each document
         /// </summary>
-        public string Id { get; set; }
+        [BsonId]
+        public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
         /// <summary>
         /// Name of the part
         /// </summary>
@@ -24,6 +25,8 @@ namespace Lager.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
+        [BsonElement("Category")]
+        public string Category { get; set; }
         /// <summary>
         /// The ID of the part
         /// </summary>
@@ -41,7 +44,7 @@ namespace Lager.Models
         /// </summary>
         [BsonElement("DateAdded")]
         [DataType(DataType.Date)]
-        public DateTime DateAdded { get; set; }
+        public DateTime DateAdded { get; set; } = DateTime.Now;
 
         /// <summary>
         /// cost of the part
@@ -54,6 +57,9 @@ namespace Lager.Models
         /// </summary>
         [BsonElement("Vendor")]
         public String Vendor { get; set; }
+
+        [BsonElement("Holder")]
+        public string Holder { get; set; };
 
         /// <summary>
         /// A short description of the part
