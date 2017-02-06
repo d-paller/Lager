@@ -28,15 +28,16 @@ namespace Lager.Controllers
 
         public IActionResult Inventory()
         {
-            return View();
+            var a =  _PartRepository.GetAllPart().Result;
+            return View(a);
         }
         [HttpPost]
         public async Task<ActionResult> AddItem(Part item)
         {
-                var count = _PartRepository.GetAllParts(item.Name).Result;
+            var count = _PartRepository.GetAllParts(item.Name).Result;
 
-                item.PartId = count.Count+1;
-                await _PartRepository.AddPart(item);
+            item.PartId = count.Count + 1;
+            await _PartRepository.AddPart(item);
             return View("index");
         }
         [HttpPost]
@@ -49,15 +50,9 @@ namespace Lager.Controllers
         }
         public IActionResult create()
         {
-            Part a = _PartRepository.GetPart(name, id).Result;
-            a.IsActive = false;
-            await _PartRepository.UpdatePart(a.Id, a);
-            return View();
-        }
-        public IActionResult create()
-        {
             return View();
         }
     }
+}
 
 

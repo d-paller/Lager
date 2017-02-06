@@ -12,7 +12,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(x => x.Name)
-                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @type = "text", @placeholder = "Item Name" })
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @type = "text", @placeholder = "Item Name", required = "true" })
             </div>
 
 			            <div class="form-group">
@@ -22,7 +22,7 @@
 			
 			            <div class="form-group">
                 @Html.LabelFor(x => x.Category)
-                @Html.TextBoxFor(x => x.Category, new { @class = "form-control", @type = "text", @placeholder = "Category" })
+                @Html.TextBoxFor(x => x.Category, new { @class = "form-control", @type = "text", @placeholder = "Category", required = "true" })
             </div>
 			
 			            <div class="form-group">
@@ -37,17 +37,17 @@
 			
 			            <div class="form-group">
                 @Html.LabelFor(x => x.Cost)
-                @Html.TextBoxFor(x => x.Cost, new { @class = "form-control", @type = "text", @placeholder = "Price" })
+                @Html.TextBoxFor(x => x.Cost, new { @class = "form-control", @type = "text", @placeholder = "Price", required = "true" })
             </div>
 			
 			            <div class="form-group">
                 @Html.LabelFor(x => x.Vendor)
-                @Html.TextBoxFor(x => x.Vendor, new { @class = "form-control", @type = "text", @placeholder = "Vendor Name" })
+                @Html.TextBoxFor(x => x.Vendor, new { @class = "form-control", @type = "text", @placeholder = "Vendor Name", required = "true" })
             </div>
 			
             <div class="form-group">
                 @Html.LabelFor(x => x.PurchaseUrl)
-                @Html.TextBoxFor(x => x.PurchaseUrl, null, new { @class = "form-control", @type = "url", @placeholder = "Enter URL" })
+                @Html.TextBoxFor(x => x.PurchaseUrl, null, new { @class = "form-control", @type = "url", @placeholder = "Enter URL", required="true"})
             </div>
 
             <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-save-file"></span> Submit</button>

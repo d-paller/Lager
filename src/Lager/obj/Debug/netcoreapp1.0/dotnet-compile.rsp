@@ -218,8 +218,8 @@ C:\Users\leois\Documents\GitHub\Lager\src\Lager\Interfaces\IPart.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Interfaces\IPartRepository.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Interfaces\IUser.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Interfaces\IUserRepository.cs
+C:\Users\leois\Documents\GitHub\Lager\src\Lager\Models\DBContext.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Models\Part.cs
-C:\Users\leois\Documents\GitHub\Lager\src\Lager\Models\PartContext.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Models\Settings.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Models\User.cs
 C:\Users\leois\Documents\GitHub\Lager\src\Lager\Services\SCryptPasswordHasher.cs

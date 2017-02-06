@@ -20,12 +20,14 @@ namespace Lager.Models
         /// <summary>
         /// Name of the part
         /// </summary>
-        [Required]
+        
         [BsonElement("Name")]
+        [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
         [BsonElement("Category")]
+        [Required]
         public string Category { get; set; }
         /// <summary>
         /// The ID of the part
@@ -49,17 +51,21 @@ namespace Lager.Models
         /// <summary>
         /// cost of the part
         /// </summary>
+        [Required]
         [BsonElement("Cost")]
         public double Cost { get; set; }
 
         /// <summary>
         /// name of the vendor
         /// </summary>
+        [Required]
         [BsonElement("Vendor")]
         public String Vendor { get; set; }
 
+
+        [Required]
         [BsonElement("Holder")]
-        public string Holder { get; set; };
+        public string Holder { get; set; }
 
         /// <summary>
         /// A short description of the part
@@ -70,6 +76,7 @@ namespace Lager.Models
         public string Description { get; set; }
 
         [Url]
+        [Required]
         [BsonElement("PurchaseUrl")]
         public string PurchaseUrl { get; set; }
 
