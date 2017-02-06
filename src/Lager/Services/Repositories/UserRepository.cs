@@ -11,7 +11,7 @@ using MongoDB.Bson;
 namespace Lager.Services.Repositories
 {
 
-    public class UserRepository:IUserRepository 
+    public class UserRepository :IUserRepository
     {
         private readonly DBContext _context = null;
         public UserRepository(IOptions<Settings> settings)
