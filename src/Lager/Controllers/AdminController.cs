@@ -28,7 +28,8 @@ namespace Lager.Controllers
 
         public IActionResult Inventory()
         {
-            return View();
+            var a =  _PartRepository.GetAllPart().Result;
+            return View(a);
         }
         [HttpPost]
         public async Task<ActionResult> AddItem(Part item)
