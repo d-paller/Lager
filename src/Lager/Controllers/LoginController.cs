@@ -5,12 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Lager.Services.Repositories;
 using Lager.Models;
+using Lager.Services;
+using Lager.Interfaces;
 
 namespace LagerCore.Controllers
 {
     public class LoginController : Controller
     {
         // TODO: Add current user service to fetch and store the user in session
+        private UserLoginService _loginService;
+
+        public LoginController(IUserRepository userRepo)
+        {
+            _loginService = new UserLoginService(userRepo);
+        }
 
         [HttpGet]
         public IActionResult Login()
