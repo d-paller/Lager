@@ -39,15 +39,15 @@ namespace Lager.Services
         /// <param name="hashedPassword">The password from the DB</param>
         /// <param name="providedPassword">The password given by the user</param>
         /// <returns></returns>
-        public PasswordVerificationResult VerifyHashedPassword(User user, string hashedPassword, string providedPassword)
+        public bool VerifyHashedPassword(User user, string hashedPassword, string providedPassword)
         {
             if(_encoder.Compare(SaltPassword(user, providedPassword), hashedPassword))
             {
-                return PasswordVerificationResult.Success;
+                return true;
             }
             else
             {
-                return PasswordVerificationResult.Failed;
+                return false;
             }
         }
 
