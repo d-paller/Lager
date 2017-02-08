@@ -7,3 +7,7 @@
 $('.close-float').click(function () {
     this.slideUp(1000).fadeOut(500);
 });
+
+$("btn btn-info").click(function(){
+    var x =document.forms
+})
