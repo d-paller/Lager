@@ -14,6 +14,10 @@ namespace Lager.Services.Repositories
     public class UserRepository:IUserRepository 
     {
         private readonly DBContext _context = null;
+        public UserRepository()
+        {
+            _context = new DBContext();
+        }
         public UserRepository(IOptions<Settings> settings)
         {
             _context = new DBContext(settings);
