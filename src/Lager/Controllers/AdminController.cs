@@ -32,13 +32,22 @@ namespace Lager.Controllers
             return View(a);
         }
         [HttpPost]
-        public async Task<ActionResult> AddItem(Part item)
+        public async Task<ActionResult> AddItem(PartViewModel item)
         {
-            var count = _PartRepository.GetAllParts(item.Name).Result;
-
-            item.PartId = count.Count + 1;
-            await _PartRepository.AddPart(item);
-            return View("index");
+            if (ModelState.IsValid) { 
+            var count = _PartRepository.GetAllParts(item.Part.Name).Result;
+                if(item.Part.Holder == null){
+                    item.Part.Holder = "Repo";
+                }
+            item.Part.PartId = count.Count + 1;
+            await _PartRepository.AddPart(item.Part);
+            return View("Index");
+            }
+            else
+            {
+                item.isValid = false;
+                return View("create");
+            }
         }
         [HttpPost]
         public async Task<ActionResult> RemoveItem(string name, int id)
@@ -50,7 +59,8 @@ namespace Lager.Controllers
         }
         public IActionResult create()
         {
-            return View();
+            PartViewModel model = new PartViewModel();
+            return View(model);
         }
     }
 }

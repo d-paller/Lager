@@ -63,7 +63,6 @@ namespace Lager.Models
         public String Vendor { get; set; }
 
 
-        [Required]
         [BsonElement("Holder")]
         public string Holder { get; set; }
 

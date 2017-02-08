@@ -11,7 +11,10 @@ namespace Lager.Models
     public class DBContext
     {
         private readonly IMongoDatabase _database = null;
+        public DBContext()
+        {
 
+        }
         public DBContext(IOptions<Settings> settings)
         {
             var client = new MongoClient(settings.Value.ConnectionString);
