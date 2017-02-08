@@ -25,6 +25,8 @@ namespace Lager.Services.Repositories
 
         public async Task AddUser(User user)
         {
+            SCryptPasswordHasher hasher = new SCryptPasswordHasher();
+            user.Password = hasher.HashPassword(user, user.Password);
             await _context.Users.InsertOneAsync(user);
         }
 

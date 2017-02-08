@@ -1,0 +1,17 @@
+﻿@model Lager.Models.User
+
+<h2>Hash Password</h2>
+@using (Html.BeginForm("Test", "Admin", FormMethod.Post))
+{
+
+    @Html.TextBoxFor(x => x.Password);
+
+    <input type="submit" class="btn" placeholder="Submit" />
+
+}
+
+<p>Salt = @Model.Salt</p>
+
+<p>Hashed Password = @Model.Password</p>
+
+
