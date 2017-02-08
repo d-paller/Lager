@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions;
 using Microsoft.Extensions.Options;
 using Lager.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace Lager.Services
 {
@@ -23,7 +24,9 @@ namespace Lager.Services
         public async Task<bool> UserIsValid(User givenUser)
         {
             User DbUser = await _userRepo.GetUserByUsername(givenUser.Username);
-            return _hasher.VerifyHashedPassword(givenUser, DbUser.Password, givenUser.Password);
+            return _hasher
+                .VerifyHashedPassword(givenUser, DbUser.Password, givenUser.Password) == PasswordVerificationResult.Success 
+                ? true : false;
         }
 
     }

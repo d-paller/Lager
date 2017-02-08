@@ -22,11 +22,11 @@ namespace Lager.Models
                 _database = client.GetDatabase(settings.Value.Database);
         }
 
-        public IMongoCollection<IPart> Parts
+        public IMongoCollection<Part> Parts
         {
             get
             {
-                return _database.GetCollection<IPart>("Parts");
+                return _database.GetCollection<Part>("Parts");
             }
         }
         public IMongoCollection<User> Users
