@@ -30,7 +30,7 @@ namespace Lager.Services.Repositories
             return await _context.Parts.Find(filter).ToListAsync();
         }
 
-        public async Task<IPart> GetPart(string id)
+        public async Task<IPart> GetPart(string name, int id)
         {
             var filter = Builders<IPart>.Filter.Eq("Id", id);
             return await _context.Parts
