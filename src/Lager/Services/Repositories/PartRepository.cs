@@ -19,7 +19,7 @@ namespace Lager.Services.Repositories
             _context = new DBContext(settings);
         }
         //return everything in the database
-        public async Task<IEnumerable<Part>> GetAllPart()
+        public async Task<List<Part>> GetAllPart()
         {
             return await _context.Parts.Find(_ => true).ToListAsync();
         }
