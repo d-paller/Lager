@@ -26,7 +26,7 @@ namespace Lager.Models
         {
             get
             {
-                return _database.GetCollection<Part>("Part");
+                return _database.GetCollection<Part>("Parts");
             }
         }
         public IMongoCollection<User> Users

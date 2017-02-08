@@ -5,26 +5,27 @@
 
 }
 
-<!DOCTYPE html>
+<div class="panel panel-primary login-box">
+    <div class="panel-heading">
+        <h2>Login</h2>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true, "Login failed, check the login details.")
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewData["Title"] = Login</title>
-</head>
-<body>
-
-
-    <div class="jumbotron" style="background-color:lightblue">
-        <div class="container">
-            <div class="page-header">
-                <h1>Lager <small>your inventory solution.</small></h1>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Username)
+                @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @type = "text", @placeholder = "User Name" })
             </div>
-        </div>
-    </div>
 
-    <div class="login-box">
-        @Html.Partial("PartialViews/_Login", Model)
+            <div class="form-group">
+                @Html.LabelFor(x => x.Password)
+                @Html.TextBoxFor(x => x.Password, null, new { @class = "form-control", @type = "password", @placeholder = "Enter Password" })
+            </div>
+
+            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-log-out"></span> Login</button>
+        }
     </div>
-</body>
-</html>
+</div>
+

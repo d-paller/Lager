@@ -8,6 +8,7 @@ using Lager.Models;
 using Lager.Services.Repositories;
 using Lager.Interfaces;
 using Microsoft.Extensions.Options;
+using Lager.Services;
 
 namespace Lager.Controllers
 {
@@ -62,6 +63,23 @@ namespace Lager.Controllers
             PartViewModel model = new PartViewModel();
             return View(model);
         }
+
+        public IActionResult Test()
+        {
+            User newUser = new User();
+            return View(newUser);
+        }
+
+        [HttpPost]
+        public IActionResult Test(User user)
+        {
+            SCryptPasswordHasher hasher = new SCryptPasswordHasher();
+
+            user.Password = hasher.HashPassword(user, user.Password);
+            return View(user);
+        }
+
+
     }
 }
 
