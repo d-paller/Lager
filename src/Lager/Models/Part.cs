@@ -74,7 +74,7 @@ namespace Lager.Models
         [BsonElement("Description")]
         public string Description { get; set; }
 
-        [Url]
+
         [Required]
         [BsonElement("PurchaseUrl")]
         public string PurchaseUrl { get; set; }

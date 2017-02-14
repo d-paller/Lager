@@ -19,9 +19,9 @@ namespace Lager.Services.Repositories
             _context = new DBContext(settings);
         }
         //return everything in the database
-        public async Task<List<Part>> GetAllPart()
+        public IQueryable<Part> GetAllPart()
         {
-            return await _context.Parts.Find(_ => true).ToListAsync();
+            return _context.Parts.Find(_ => true).ToEnumerable().AsQueryable();
         }
         //Get all the same kind of parts
         public async Task<List<Part>> GetAllParts(string n)

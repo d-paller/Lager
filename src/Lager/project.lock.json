@@ -2056,6 +2056,15 @@
           "lib/netstandard1.0/NuGet.Versioning.dll": {}
         }
       },
+      "PagedList/1.17.0": {
+        "type": "package"
+      },
+      "PagedList.Mvc/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "PagedList": "1.17.0"
+        }
+      },
       "runtime.native.System/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -5714,6 +5723,29 @@
         "lib/net45/NuGet.Versioning.xml",
         "lib/netstandard1.0/NuGet.Versioning.dll",
         "lib/netstandard1.0/NuGet.Versioning.xml"
+      ]
+    },
+    "PagedList/1.17.0": {
+      "sha512": "Ou6F3WKXh49hOo0TxWM+SkIGuKllYPuPPvnSYOlQ1sTrtuEyuDUhYbSJd5Sdb06i/sWUJZTjiUecEs3Ht/Hx3g==",
+      "type": "package",
+      "path": "PagedList/1.17.0",
+      "files": [
+        "PagedList.1.17.0.nupkg.sha512",
+        "PagedList.nuspec",
+        "lib/net40/PagedList.dll",
+        "lib/net40/PagedList.xml"
+      ]
+    },
+    "PagedList.Mvc/4.5.0": {
+      "sha512": "D0M4qW2g4a9cwG8ozIKUnJheCrm5GpFTceqUl63AXWaAVnTgk+TysZYUOGMsBRuzid8aF+/E8b0bXM6+90jiEw==",
+      "type": "package",
+      "path": "PagedList.Mvc/4.5.0",
+      "files": [
+        "Content/Content/PagedList.css",
+        "PagedList.Mvc.4.5.0.nupkg.sha512",
+        "PagedList.Mvc.nuspec",
+        "lib/net40/PagedList.Mvc.XML",
+        "lib/net40/PagedList.Mvc.dll"
       ]
     },
     "runtime.native.System/4.0.0": {
@@ -10391,6 +10423,7 @@
       "Microsoft.NETCore.App >= 1.0.1",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0",
       "MongoDB.Driver >= 2.4.1",
+      "PagedList.Mvc >= 4.5.0",
       "Scrypt.NET >= 1.1.0",
       "mongocsharpdriver >= 2.4.1"
     ],

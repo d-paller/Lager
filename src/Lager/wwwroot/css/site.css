@@ -53,3 +53,8 @@ body{
 .no-padding{
     padding: 0px;
 }
+
+.table-header{
+    cursor: pointer;
+    font-weight: 600;
+}

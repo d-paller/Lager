@@ -1,25 +1,23 @@
-﻿@using Lager.Models
-    
-
-@{
+﻿@{
     ViewData["Title"] = "Inventory";
 }
+
+@model IEnumerable<Lager.Models.Part>
 
 <div><h1>Current Inventory</h1></div>
 <h2>Complete listing as of @DateTime.Now</h2>
 <div class="table-responsive">
     <table class="table table-striped table-bordered" >
         <tr>
-            <td>Category</td>
-            <td>Name</td>
-            <td>PartId</td>
-            <td>IsActive</td>
-            <td>DateAdded</td>
-            <td>Cost</td>
-            <td>Holder</td>
-            <td>Vendor</td>
+            <td class="table-header" data-sortby="Category">Category</td>
+            <td class="table-header" data-sortby="Name">Name</td>
+            <td  class="table-header" data-sortby="PartId">PartId</td>
+            <td  class="table-header" data-sortby="DateAdded">DateAdded</td>
+            <td class="table-header" data-sortby="Cost">Cost</td>
+            <td class="table-header" data-sortby="Holder">Holder</td>
+            <td class="table-header" data-sortby="Vendor">Vendor</td>
             <td>Description</td>
-            <td>Purchase Url</td>
+            <td class="table-header" data-sortby="PurchaseUrl">Purchase Url</td>
         </tr>
         @{foreach (var part in Model)
             {
@@ -27,7 +25,6 @@
                     <td>@part.Category</td>
                     <td>@part.Name</td>
                     <td>@part.PartId</td>
-                    <td>@part.IsActive</td>
                     <td>@part.DateAdded</td>
                     <td>@part.Cost</td>
                     <td>@part.Holder</td>

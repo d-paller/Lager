@@ -51,3 +51,45 @@
 2017-01-28T16:51:43.378-0500 I NETWORK  [initandlisten] shutdown: going to flush diaglog...
 2017-01-28T16:51:43.378-0500 I CONTROL  [initandlisten] now exiting
 2017-01-28T16:51:43.378-0500 I CONTROL  [initandlisten] shutting down with code:100
+2017-02-13T20:02:03.122-0500 I CONTROL  [main] ***** SERVER RESTARTED *****
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten] MongoDB starting : pid=6808 port=27017 dbpath=C:\Websites\Capstone\Lager\Data 64-bit host=DESKTOP-1B5HGAM
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten] db version v3.4.1
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten] git version: 5e103c4f5583e2566a45d740225dc250baacfbd7
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten] allocator: tcmalloc
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten] modules: none
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten] build environment:
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten]     distarch: x86_64
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten]     target_arch: x86_64
+2017-02-13T20:02:03.506-0500 I CONTROL  [initandlisten] options: { config: "mongodDavid.cfg", security: { authorization: "enabled" }, storage: { dbPath: "C:\Websites\Capstone\Lager\Data" }, systemLog: { destination: "file", logAppend: true, path: "C:\Websites\Capstone\Lager\Data\logs\log.txt" } }
+2017-02-13T20:02:03.515-0500 I -        [initandlisten] Detected data files in C:\Websites\Capstone\Lager\Data created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2017-02-13T20:02:03.517-0500 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3569M,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2017-02-13T20:02:03.539-0500 I -        [initandlisten] Assertion: 28595:2: No such file or directory src\mongo\db\storage\wiredtiger\wiredtiger_kv_engine.cpp 267
+2017-02-13T20:02:03.542-0500 I STORAGE  [initandlisten] exception in initAndListen: 28595 2: No such file or directory, terminating
+2017-02-13T20:02:03.542-0500 I NETWORK  [initandlisten] shutdown: going to close listening sockets...
+2017-02-13T20:02:03.542-0500 I NETWORK  [initandlisten] shutdown: going to flush diaglog...
+2017-02-13T20:02:03.542-0500 I CONTROL  [initandlisten] now exiting
+2017-02-13T20:02:03.542-0500 I CONTROL  [initandlisten] shutting down with code:100
+2017-02-13T20:08:53.636-0500 I CONTROL  [main] ***** SERVER RESTARTED *****
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten] MongoDB starting : pid=14612 port=27017 dbpath=C:\Websites\Capstone\Lager\Data 64-bit host=DESKTOP-1B5HGAM
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten] db version v3.4.1
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten] git version: 5e103c4f5583e2566a45d740225dc250baacfbd7
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten] allocator: tcmalloc
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten] modules: none
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten] build environment:
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten]     distarch: x86_64
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten]     target_arch: x86_64
+2017-02-13T20:08:54.035-0500 I CONTROL  [initandlisten] options: { config: "C:\Websites\Capstone\Lager\mongodDavid.cfg", security: { authorization: "enabled" }, storage: { dbPath: "C:\Websites\Capstone\Lager\Data" }, systemLog: { destination: "file", logAppend: true, path: "C:\Websites\Capstone\Lager\Data\logs\log.txt" } }
+2017-02-13T20:08:54.036-0500 I -        [initandlisten] Detected data files in C:\Websites\Capstone\Lager\Data created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2017-02-13T20:08:54.036-0500 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3569M,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2017-02-13T20:08:54.046-0500 I -        [initandlisten] Assertion: 28595:2: No such file or directory src\mongo\db\storage\wiredtiger\wiredtiger_kv_engine.cpp 267
+2017-02-13T20:08:54.046-0500 I STORAGE  [initandlisten] exception in initAndListen: 28595 2: No such file or directory, terminating
+2017-02-13T20:08:54.046-0500 I NETWORK  [initandlisten] shutdown: going to close listening sockets...
+2017-02-13T20:08:54.046-0500 I NETWORK  [initandlisten] shutdown: going to flush diaglog...
+2017-02-13T20:08:54.046-0500 I CONTROL  [initandlisten] now exiting
+2017-02-13T20:08:54.046-0500 I CONTROL  [initandlisten] shutting down with code:100

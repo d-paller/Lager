@@ -9,6 +9,7 @@ using Lager.Services.Repositories;
 using Lager.Interfaces;
 using Microsoft.Extensions.Options;
 using Lager.Services;
+using MongoDB.Driver.Linq;
 
 namespace Lager.Controllers
 {
@@ -27,13 +28,58 @@ namespace Lager.Controllers
             return View();
         }
 
-        public IActionResult Inventory()
+        public IActionResult Inventory(bool desc = true, string sortByField = "DateAdded")
         {
-            var a =  _PartRepository.GetAllPart().Result;
-            return View(a);
+            IQueryable<Part> query = _PartRepository.GetAllPart();
+            
+            switch (sortByField)
+            {
+                case "Category":
+                    query = desc ?
+                        query.OrderByDescending(x => x.Category) :
+                        query.OrderBy(x => x.Category);
+                    break;
+                case "Name":
+                    query = desc ?
+                        query.OrderByDescending(x => x.Name) :
+                        query.OrderBy(x => x.Name);
+                    break;
+                case "PartId":
+                    query = desc ?
+                        query.OrderByDescending(x => x.PartId) :
+                        query.OrderBy(x => x.PartId);
+                    break;
+                case "Cost":
+                    query = desc ?
+                        query.OrderByDescending(x => x.Cost) :
+                        query.OrderBy(x => x.Cost);
+                    break;
+                case "Holder":
+                    query = desc ?
+                        query.OrderByDescending(x => x.Holder) :
+                        query.OrderBy(x => x.Holder);
+                    break;
+                case "Vendor":
+                    query = desc ?
+                        query.OrderByDescending(x => x.Vendor) :
+                        query.OrderBy(x => x.Vendor);
+                    break;
+                case "PurchaseUrl":
+                    query = desc ?
+                        query.OrderByDescending(x => x.PurchaseUrl) :
+                        query.OrderBy(x => x.PurchaseUrl);
+                    break;
+
+                default:
+                    query = desc ?
+                        query.OrderByDescending(x => x.DateAdded) :
+                        query.OrderBy(x => x.DateAdded);
+                    break;
+            }
+            return View(query.ToList());
         }
         [HttpPost]
-        public async Task<ActionResult> AddItem(PartViewModel item)
+        public async Task<IActionResult> AddItem(PartViewModel item)
         {
             if (ModelState.IsValid) { 
             var count = _PartRepository.GetAllParts(item.Part.Name).Result;
@@ -42,7 +88,7 @@ namespace Lager.Controllers
                 }
             item.Part.PartId = count.Count + 1;
             await _PartRepository.AddPart(item.Part);
-            return View("Index");
+            return Inventory(true);
             }
             else
             {
