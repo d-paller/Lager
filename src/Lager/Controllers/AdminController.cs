@@ -10,6 +10,7 @@ using Lager.Interfaces;
 using Microsoft.Extensions.Options;
 using Lager.Services;
 using MongoDB.Driver.Linq;
+using Lager.Models.ViewModels;
 
 namespace Lager.Controllers
 {
@@ -28,50 +29,74 @@ namespace Lager.Controllers
             return View();
         }
 
-        public IActionResult Inventory(bool desc = true, string sortByField = "DateAdded")
+        public IActionResult Inventory()
+        {
+            InventoryViewModel model = new InventoryViewModel();
+            PagingInfo pagingInfo = new PagingInfo();
+
+            pagingInfo.SortDesc = true;
+            pagingInfo.PageSize = 20;
+            pagingInfo.PageCount = Convert.ToInt32(Math.Ceiling((double)(_PartRepository.GetAllPart().Count() / pagingInfo.PageSize)));
+            pagingInfo.CurrentPageIndex = 0;
+            pagingInfo.SortField = "DateAdded";
+
+            model.PagingInfo = pagingInfo;
+            model.Parts = _PartRepository.GetAllPart();
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Inventory(PagingInfo pagingInfo)
         {
             IQueryable<Part> query = _PartRepository.GetAllPart();
-            
-            switch (sortByField)
+
+            pagingInfo.SortDesc = true;
+            pagingInfo.PageSize = 20;
+            pagingInfo.PageCount = Convert.ToInt32(Math.Ceiling((double)(_PartRepository.GetAllPart().Count() / pagingInfo.PageSize)));
+            pagingInfo.CurrentPageIndex = 0;
+
+            switch (pagingInfo.SortField)
             {
                 case "Category":
-                    query = desc ?
+                    query = pagingInfo.SortDesc?
                         query.OrderByDescending(x => x.Category) :
                         query.OrderBy(x => x.Category);
                     break;
                 case "Name":
-                    query = desc ?
+                    query = pagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Name) :
                         query.OrderBy(x => x.Name);
                     break;
                 case "PartId":
-                    query = desc ?
+                    query = pagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.PartId) :
                         query.OrderBy(x => x.PartId);
                     break;
                 case "Cost":
-                    query = desc ?
+                    query = pagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Cost) :
                         query.OrderBy(x => x.Cost);
                     break;
                 case "Holder":
-                    query = desc ?
+                    query = pagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Holder) :
                         query.OrderBy(x => x.Holder);
                     break;
                 case "Vendor":
-                    query = desc ?
+                    query = pagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Vendor) :
                         query.OrderBy(x => x.Vendor);
                     break;
                 case "PurchaseUrl":
-                    query = desc ?
+                    query = pagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.PurchaseUrl) :
                         query.OrderBy(x => x.PurchaseUrl);
                     break;
 
                 default:
-                    query = desc ?
+                    query = pagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.DateAdded) :
                         query.OrderBy(x => x.DateAdded);
                     break;
