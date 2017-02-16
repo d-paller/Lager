@@ -219,10 +219,12 @@ C:\Websites\Capstone\Lager\src\Lager\Interfaces\IPartRepository.cs
 C:\Websites\Capstone\Lager\src\Lager\Interfaces\IUser.cs
 C:\Websites\Capstone\Lager\src\Lager\Interfaces\IUserRepository.cs
 C:\Websites\Capstone\Lager\src\Lager\Models\DBContext.cs
+C:\Websites\Capstone\Lager\src\Lager\Models\PagingInfo.cs
 C:\Websites\Capstone\Lager\src\Lager\Models\Part.cs
-C:\Websites\Capstone\Lager\src\Lager\Models\PartViewModel.cs
 C:\Websites\Capstone\Lager\src\Lager\Models\Settings.cs
 C:\Websites\Capstone\Lager\src\Lager\Models\User.cs
+C:\Websites\Capstone\Lager\src\Lager\Models\ViewModels\InventoryViewModel.cs
+C:\Websites\Capstone\Lager\src\Lager\Models\ViewModels\PartViewModel.cs
 C:\Websites\Capstone\Lager\src\Lager\Services\SCryptPasswordHasher.cs
 C:\Websites\Capstone\Lager\src\Lager\Services\UserLoginService.cs
 C:\Websites\Capstone\Lager\src\Lager\Services\Repositories\PartRepository.cs

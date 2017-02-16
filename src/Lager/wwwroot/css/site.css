@@ -54,7 +54,12 @@ body{
     padding: 0px;
 }
 
+.page-nav-btn{
+    cursor: pointer;
+}
+
 .table-header{
     cursor: pointer;
     font-weight: 600;
 }
+

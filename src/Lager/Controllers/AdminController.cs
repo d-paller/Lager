@@ -35,73 +35,73 @@ namespace Lager.Controllers
             PagingInfo pagingInfo = new PagingInfo();
 
             pagingInfo.SortDesc = true;
-            pagingInfo.PageSize = 20;
+            pagingInfo.PageSize = 2;
             pagingInfo.PageCount = Convert.ToInt32(Math.Ceiling((double)(_PartRepository.GetAllPart().Count() / pagingInfo.PageSize)));
             pagingInfo.CurrentPageIndex = 0;
             pagingInfo.SortField = "DateAdded";
 
             model.PagingInfo = pagingInfo;
-            model.Parts = _PartRepository.GetAllPart();
+            model.Parts = _PartRepository.GetAllPart().Take(pagingInfo.PageSize);
 
-            return View();
+            return View(model);
         }
 
 
         [HttpPost]
-        public IActionResult Inventory(PagingInfo pagingInfo)
+        public IActionResult Inventory(InventoryViewModel model)
         {
             IQueryable<Part> query = _PartRepository.GetAllPart();
 
-            pagingInfo.SortDesc = true;
-            pagingInfo.PageSize = 20;
-            pagingInfo.PageCount = Convert.ToInt32(Math.Ceiling((double)(_PartRepository.GetAllPart().Count() / pagingInfo.PageSize)));
-            pagingInfo.CurrentPageIndex = 0;
-
-            switch (pagingInfo.SortField)
+            switch (model.PagingInfo.SortField)
             {
                 case "Category":
-                    query = pagingInfo.SortDesc?
+                    query = model.PagingInfo.SortDesc?
                         query.OrderByDescending(x => x.Category) :
                         query.OrderBy(x => x.Category);
                     break;
                 case "Name":
-                    query = pagingInfo.SortDesc ?
+                    query = model.PagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Name) :
                         query.OrderBy(x => x.Name);
                     break;
                 case "PartId":
-                    query = pagingInfo.SortDesc ?
+                    query = model.PagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.PartId) :
                         query.OrderBy(x => x.PartId);
                     break;
                 case "Cost":
-                    query = pagingInfo.SortDesc ?
+                    query = model.PagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Cost) :
                         query.OrderBy(x => x.Cost);
                     break;
                 case "Holder":
-                    query = pagingInfo.SortDesc ?
+                    query = model.PagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Holder) :
                         query.OrderBy(x => x.Holder);
                     break;
                 case "Vendor":
-                    query = pagingInfo.SortDesc ?
+                    query = model.PagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Vendor) :
                         query.OrderBy(x => x.Vendor);
                     break;
                 case "PurchaseUrl":
-                    query = pagingInfo.SortDesc ?
+                    query = model.PagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.PurchaseUrl) :
                         query.OrderBy(x => x.PurchaseUrl);
                     break;
 
                 default:
-                    query = pagingInfo.SortDesc ?
+                    query = model.PagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.DateAdded) :
                         query.OrderBy(x => x.DateAdded);
                     break;
             }
-            return View(query.ToList());
+
+            query = query.Skip(model.PagingInfo.CurrentPageIndex * model.PagingInfo.PageSize)
+                .Take(model.PagingInfo.PageSize);
+
+            model.Parts = query.ToList();
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> AddItem(PartViewModel item)
@@ -113,7 +113,7 @@ namespace Lager.Controllers
                 }
             item.Part.PartId = count.Count + 1;
             await _PartRepository.AddPart(item.Part);
-            return Inventory(true);
+            return Inventory();
             }
             else
             {
