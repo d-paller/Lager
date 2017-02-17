@@ -35,8 +35,13 @@ namespace Lager.Controllers
             PagingInfo pagingInfo = new PagingInfo();
 
             pagingInfo.SortDesc = true;
-            pagingInfo.PageSize = 2;
-            pagingInfo.PageCount = Convert.ToInt32(Math.Ceiling((double)(_PartRepository.GetAllPart().Count() / pagingInfo.PageSize)));
+            pagingInfo.PageSize = 10;
+
+            var DbCount = _PartRepository.GetAllPart().Count();
+            pagingInfo.PageCount = DbCount % pagingInfo.PageSize >0 ? 
+                DbCount / pagingInfo.PageSize + 1 :
+                DbCount / pagingInfo.PageSize;
+
             pagingInfo.CurrentPageIndex = 0;
             pagingInfo.SortField = "DateAdded";
 
@@ -113,12 +118,12 @@ namespace Lager.Controllers
                 }
             item.Part.PartId = count.Count + 1;
             await _PartRepository.AddPart(item.Part);
-            return Inventory();
+            return RedirectToAction("Inventory");
             }
             else
             {
                 item.isValid = false;
-                return View("create");
+                return View("Create");
             }
         }
         [HttpPost]

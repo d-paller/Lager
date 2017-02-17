@@ -36,7 +36,7 @@
             $("#PagingInfo_CurrentPageIndex").val(currentPage + 1);
         }
         else if (pageindex == "last") {
-            $("#PagingInfo_CurrentPageIndex").val(lastpage);
+            $("#PagingInfo_CurrentPageIndex").val(lastpage-1);
         }
         else {
             $("#PagingInfo_CurrentPageIndex").val(pageindex);

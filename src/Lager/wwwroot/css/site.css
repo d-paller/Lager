@@ -53,6 +53,9 @@ body{
 .no-padding{
     padding: 0px;
 }
+.no-margin{
+    margin: 0px;
+}
 
 .page-nav-btn{
     cursor: pointer;
@@ -63,3 +66,21 @@ body{
     font-weight: 600;
 }
 
+.incative-header > span{
+    background-size: 10px;
+}
+
+#inventory-nav-btns{
+    position: absolute;
+    width: 100vw;
+    background: white;
+    bottom: 1px;
+    left: 0px;
+    right: 0px;
+    padding-top: 25px;
+    padding-bottom: 15px;
+}
+
+.inventory-header{
+    padding: 20px;
+}
