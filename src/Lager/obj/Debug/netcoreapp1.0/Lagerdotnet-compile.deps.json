@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0/",
-    "signature": "b4eb317e50a12a41819f9785b3f9d388e6e274d0"
+    "signature": "bc856b77560f787c3d5feadb30f0940b098b5cbf"
   },
   "compilationOptions": {
     "defines": [
@@ -34,10 +34,21 @@
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "Scrypt.NET": "1.1.0",
           "Microsoft.AspNetCore.Identity": "1.0.0",
-          "MongoDB.Driver": "2.4.1"
+          "MongoDB.Driver": "2.4.1",
+          "CsvHelper": "2.16.3"
         },
         "compile": {
           "Lager.dll": {}
+        }
+      },
+      "CsvHelper/2.16.3": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1",
+          "NETStandard.Library": "1.6.0",
+          "System.Reflection.TypeExtensions": "4.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/CsvHelper.dll": {}
         }
       },
       "Libuv/1.9.0": {
@@ -2789,10 +2800,21 @@
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "Scrypt.NET": "1.1.0",
           "Microsoft.AspNetCore.Identity": "1.0.0",
-          "MongoDB.Driver": "2.4.1"
+          "MongoDB.Driver": "2.4.1",
+          "CsvHelper": "2.16.3"
         },
         "runtime": {
           "Lager.dll": {}
+        }
+      },
+      "CsvHelper/2.16.3": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1",
+          "NETStandard.Library": "1.6.0",
+          "System.Reflection.TypeExtensions": "4.1.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/CsvHelper.dll": {}
         }
       },
       "Libuv/1.9.0": {
@@ -5421,6 +5443,11 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "CsvHelper/2.16.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RTxNM9Q6MDg3WpGorrK7E9eXsjGhtDLYx5dBuHol5kHDpu7kND2NveHDVCFQgGxowuDB57ettaOEn3EJqiJ1oQ=="
     },
     "Libuv/1.9.0": {
       "type": "package",
