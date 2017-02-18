@@ -30,8 +30,26 @@ namespace Lager.Services
             {
                 var csvReader = new CsvReader(reader);
                 csvReader.Configuration.RegisterClassMap<StudentCsvMap>();
+                List<Student> list = new List<Student>();
+                while (csvReader.Read())
+                {
+                    Student s = new Student();
+                    string temp = "";
+                    int tempint = 0;
 
-                await _studentRepo.AddAll(csvReader.GetRecords<Student>().ToList());
+                    if (csvReader.TryGetField<string>("Student", out temp))
+                        s.Name = temp;
+                    if (csvReader.TryGetField("ID", out tempint))
+                        s.Id = tempint;
+                    if (csvReader.TryGetField("SIS Login ID", out temp))
+                        s.SisLoginId = temp;
+                    if (csvReader.TryGetField("Section", out temp))
+                        s.Section = temp;
+
+                    list.Add(s);
+                }
+
+                await _studentRepo.AddAllAsync(list);
             }
 
             

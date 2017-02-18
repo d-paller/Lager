@@ -1,4 +1,5 @@
 ﻿using Lager.Interfaces;
+using Lager.Models.ViewModels;
 using Lager.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,10 +23,24 @@ namespace Lager.Controllers
             _studentRepo = studentRepo;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            RosterViewModel model = new RosterViewModel();
+            model.ListBySections = await _studentRepo.GetAllBySectionNumberAsync();
+            model.Section = model.ListBySections.OrderByDescending(x => x.FirstOrDefault().Section)
+                .FirstOrDefault()
+                .FirstOrDefault()
+                .Section;
 
-            return View();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(RosterViewModel model)
+        {
+            model.ListBySections = await _studentRepo.GetAllBySectionNumberAsync();
+            
+            return View(model);
         }
 
         public IActionResult UploadFile()

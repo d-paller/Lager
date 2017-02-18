@@ -226,6 +226,7 @@
 "C:\Websites\Capstone\Lager\src\Lager\Models\CSVMappings\StudentCsvMap.cs"
 "C:\Websites\Capstone\Lager\src\Lager\Models\ViewModels\InventoryViewModel.cs"
 "C:\Websites\Capstone\Lager\src\Lager\Models\ViewModels\PartViewModel.cs"
+"C:\Websites\Capstone\Lager\src\Lager\Models\ViewModels\RosterViewModel.cs"
 "C:\Websites\Capstone\Lager\src\Lager\Services\SCryptPasswordHasher.cs"
 "C:\Websites\Capstone\Lager\src\Lager\Services\StudentRoster.cs"
 "C:\Websites\Capstone\Lager\src\Lager\Services\UserLoginService.cs"

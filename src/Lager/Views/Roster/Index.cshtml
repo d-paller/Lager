@@ -1,15 +1,53 @@
 ﻿
-@model IEnumerable<Lager.Models.Student>
+@model Lager.Models.ViewModels.RosterViewModel
 
 <div class="row">
     <div class="col-xs-6">
-        <h1>Most Recent Roster</h1>
+        <h1>Student Rosters</h1>
     </div>
     <div class="col-xs-2 pull-right">
         <a class="btn btn-primary no-margin" href="UploadFile"><span class="glyphicon glyphicon-cloud-upload"></span> Add New Roster</a>
     </div>
 </div>
 
-<div>
-    
-</div>
+@using (Html.BeginForm("Index", "Roster", FormMethod.Post, new { @id="select-roster-form"}))
+{
+    @Html.HiddenFor(x=>x.Section)
+
+    <div class="side-nav col-xs-3">
+        <h3>Sections</h3>
+        <div class="list-group">
+            @{var sectionList = Model.ListBySections.Select(x => x.FirstOrDefault().Section).Distinct();}
+            @foreach (var item in sectionList)
+            {
+                <a href="#" class="roster-select list-group-item @(Model.Section == item ? "active" : "")" data-section="@item">@item</a>
+            }
+        </div>
+
+    </div>
+
+        <table class="table table-striped col-xs-9" style="width:75%">
+            <thead>
+                <tr>
+                    <th class="col-xs-2">Student Name</th>
+                    <th class="col-xs-2">ID</th>
+                    <th class="col-xs-1">SIS Login ID</th>
+                    <th class="col-xs-2">Section</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListBySections.Where(x => x.FirstOrDefault().Section == Model.Section).FirstOrDefault())
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Id</td>
+                        <td>@item.SisLoginId</td>
+                        <td>@item.Section</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+}
+

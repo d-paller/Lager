@@ -8,6 +8,8 @@ namespace Lager.Interfaces
 {
     public interface IStudentRepository
     {
-        Task AddAll(IEnumerable<Student> students);
+        Task AddAllAsync(IEnumerable<Student> students);
+
+        Task<IEnumerable<IEnumerable<Student>>> GetAllBySectionNumberAsync();
     }
 }
