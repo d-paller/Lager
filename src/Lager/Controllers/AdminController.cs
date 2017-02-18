@@ -35,7 +35,7 @@ namespace Lager.Controllers
             PagingInfo pagingInfo = new PagingInfo();
 
             pagingInfo.SortDesc = true;
-            pagingInfo.PageSize = 10;
+            pagingInfo.PageSize = 20;
 
             var DbCount = _PartRepository.GetAllPart().Count();
             pagingInfo.PageCount = DbCount % pagingInfo.PageSize >0 ? 
