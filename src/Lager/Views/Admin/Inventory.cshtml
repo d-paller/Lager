@@ -1,48 +1,155 @@
-﻿@using Lager.Models
-    
-
-@{
+﻿@{
     ViewData["Title"] = "Inventory";
 }
 
-<div><h1>Current Inventory</h1></div>
-<h2>Complete listing as of @DateTime.Now</h2>
-<div class="table-responsive">
-    <table class="table table-striped table-bordered" >
-        <tr>
-            <td>Category</td>
-            <td>Name</td>
-            <td>PartId</td>
-            <td>IsActive</td>
-            <td>DateAdded</td>
-            <td>Cost</td>
-            <td>Holder</td>
-            <td>Vendor</td>
-            <td>Description</td>
-            <td>Purchase Url</td>
-        </tr>
-        @{foreach (var part in Model)
-            {
-                <tr>
-                    <td>@part.Category</td>
-                    <td>@part.Name</td>
-                    <td>@part.PartId</td>
-                    <td>@part.IsActive</td>
-                    <td>@part.DateAdded</td>
-                    <td>@part.Cost</td>
-                    <td>@part.Holder</td>
-                    <td>@part.Vendor</td>
-                    <td>@part.Description</td>
-                    <td>@part.PurchaseUrl</td>
+@model Lager.Models.ViewModels.InventoryViewModel
 
+<div class="row inventory-header">
+    <div class="col-xs-6 no-padding">
+        <h1 class="no-padding">Current Inventory</h1>
+    </div>
+    <div class="col-xs-6 no-padding">
+        <a href="Create" class="btn btn-lg btn-primary pull-right no-margin"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    @using (Html.BeginForm("Inventory", "Admin", FormMethod.Post, new { @id = "inventory-table" }))
+    {
+        @Html.HiddenFor(x => x.PagingInfo.CurrentPageIndex)
+        @Html.HiddenFor(x => x.PagingInfo.PageCount)
+        @Html.HiddenFor(x => x.PagingInfo.PageSize)
+        @Html.HiddenFor(x => x.PagingInfo.SortDesc)
+        @Html.HiddenFor(x => x.PagingInfo.SortField)
+
+        <div id="inventory-table">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th class="table-header" data-sortby="Category">
+                        Category
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "Category" ?
+                                        (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </th>
+
+                    <th class="table-header @(Model.PagingInfo.SortField == "Name"? "" : "inactive-header")" data-sortby="Name">
+                        Name
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "Name" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </th>
+
+                    <th class="table-header @(Model.PagingInfo.SortField == "PartId"? "" : "inactive-header")" data-sortby="PartId">
+                        Part Id
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "PartId" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </th>
+
+                    <th class="table-header @(Model.PagingInfo.SortField == "DateAdded"? "" : "inactive-header")" data-sortby="DateAdded">
+                        Date Added
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "DateAdded" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </th>
+
+                    <th class="table-header @(Model.PagingInfo.SortField == "Cost"? "" : "inactive-header")" data-sortby="Cost">
+                        Cost
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "Cost" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </th>
+
+                    <th class="table-header @(Model.PagingInfo.SortField == "Holder"? "" : "inactive-header")" data-sortby="Holder">
+                        Current Holder
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "Holder" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </th>
+
+                    <th class="table-header @(Model.PagingInfo.SortField == "Vendor"? "" : "inactive-header")" data-sortby="Vendor">
+                        Vendor
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "Vendor" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </th>
+
+
+                    <th>Description</th>
+
+                    <th class="table-header @(Model.PagingInfo.SortField == "PurchaseUrl"? "" : "inactive-header")" data-sortby="PurchaseUrl">
+                        Purchase URL
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "Category" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </th>
                 </tr>
 
-            }
-        }
+                @foreach (var part in Model.Parts)
+                {
+                    <tr>
+                        <td>
+                            @part.Category
+                        </td>
 
-    </table>
+                        <td>
+                            @part.Name
+                        </td>
+
+                        <td>
+                            @part.PartId
+                        </td>
+
+                        <td>
+                            @part.DateAdded
+                        </td>
+
+                        <td>
+                            @part.Cost
+                        </td>
+
+                        <td>
+                            @part.Holder
+                        </td>
+
+                        <td>
+                            @part.Vendor
+                        </td>
+
+                        <td>@part.Description</td>
+
+                        <td>
+                            @part.PurchaseUrl
+                        </td>
+
+                    </tr>
+
+                }
+
+            </table>
+        </div>
+
+            <div id="inventory-nav-btns" class="text-center">
+                <ul class="pagination pagination-lg">
+                    <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == 0? "disabled":"")"
+                        data-page-nav="first"><span class="glyphicon glyphicon glyphicon-step-backward"></span></li>
+
+                    <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == 0? "disabled":"")"
+                        data-page-nav="previous"><span class="glyphicon glyphicon glyphicon-menu-left"></span></li>
+                </ul>
+
+                <ul class="pagination pagination-lg">
+
+                    @for (int i = 0; i < Model.PagingInfo.PageCount; i++)
+                    {
+                        <li class="@(i==Model.PagingInfo.CurrentPageIndex?"active":"page-nav-btn")"
+                            data-page-nav="@i"><span>@(i + 1)</span></li>
+                    }
+                </ul>
+
+                <ul class="pagination pagination-lg">
+                    <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == Model.PagingInfo.PageCount -1? "disabled":"")"
+                        data-page-nav="next"><span class="glyphicon glyphicon glyphicon-menu-right"></span></li>
+
+                    <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == Model.PagingInfo.PageCount -1? "disabled":"")"
+                        data-page-nav="last"><span class="glyphicon glyphicon glyphicon-step-forward"></span></li>
+                </ul>
+            </div>
+
+    }
+
 </div>
-<p>
-<a href="Create" class="btn btn-info"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a>
-</p>
+
 

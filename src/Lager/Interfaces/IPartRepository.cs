@@ -2,12 +2,13 @@
 using Lager.Models;
 using System.Threading.Tasks;
 using MongoDB.Driver;
+using System.Linq;
 
 namespace Lager.Interfaces
 {
     public interface IPartRepository
     {
-        Task<List<Part>> GetAllPart();
+        IQueryable<Part> GetAllPart();
         Task<Part> GetPart(string name, int id);
         Task AddPart(Part item);
         Task<DeleteResult> RemovePart(string name, int id);
