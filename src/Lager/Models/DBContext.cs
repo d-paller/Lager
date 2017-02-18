@@ -36,5 +36,13 @@ namespace Lager.Models
                 return _database.GetCollection<User>("Users");
             }
         }
+
+        public IMongoCollection<Student> Students
+        {
+            get
+            {
+                return _database.GetCollection<Student>("Students");
+            }
+        }
     }
 }

@@ -49,8 +49,13 @@ namespace Lager
                               .AllowAnyHeader()
                               .AllowCredentials());
             });
+
+            // Repository DI Mappings -----------------------------------------------
             services.AddTransient<IPartRepository, PartRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
+            // ----------------------------------------------------------------------
+
             services.AddMvc();
             services.Configure<Settings>(options =>
             {
