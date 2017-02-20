@@ -55,6 +55,11 @@
                     </div>
 
                     <div class="form-group">
+                        @Html.LabelFor(x => x.Part.VendorID)
+                        @Html.TextBoxFor(x => x.Part.VendorID, new { @class = "form-control", @type = "text", @placeholder = "Vendor ID", required = "true" })
+                    </div>
+
+                    <div class="form-group">
                         @Html.LabelFor(x => x.Part.PurchaseUrl)
                         @Html.TextBoxFor(x => x.Part.PurchaseUrl, null, new { @class = "form-control", @type = "url", @placeholder = "Enter URL" })
                     </div>
