@@ -49,6 +49,20 @@ namespace Lager.Models
         public DateTime DateAdded { get; set; } = DateTime.Now;
 
         /// <summary>
+        /// The date that the part was purchased
+        /// </summary>
+        [BsonElement("DatePurchased")]
+        [DataType(DataType.Date)]
+        public DateTime DatePurchased { get; set; }
+
+        /// <summary>
+        /// The date that the part was checked out
+        /// </summary>
+        [BsonElement("DateCheckedOut")]
+        [DataType(DataType.Date)]
+        public DateTime DateCheckedOut { get; set; }
+
+        /// <summary>
         /// cost of the part
         /// </summary>
         [Required]
@@ -61,6 +75,13 @@ namespace Lager.Models
         [Required]
         [BsonElement("Vendor")]
         public String Vendor { get; set; }
+
+        /// <summary>
+        /// ID of the vendor
+        /// </summary>
+        [Required]
+        [BsonElement("VendorID")]
+        public String VendorID { get; set; }
 
 
         [BsonElement("Holder")]

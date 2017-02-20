@@ -67,6 +67,11 @@
             (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
                     </th>
 
+                    <th class="table-header @(Model.PagingInfo.SortField == "VendorID"? "" : "inactive-header")" data-sortby="VendorID">
+                        Vendor
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "VendorID" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </th>
 
                     <th>Description</th>
 
@@ -106,6 +111,10 @@
 
                         <td>
                             @part.Vendor
+                        </td>
+
+                        <td>
+                            @part.VendorID
                         </td>
 
                         <td>@part.Description</td>
