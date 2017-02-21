@@ -50,6 +50,52 @@ namespace Lager.Controllers
 
             return View(model);
         }
+        [HttpPost]
+        public async Task<IActionResult> search(Search a)
+        {
+            List<Part> l = await _PartRepository.GetAllPartIn();
+            List<Part> fin = new List<Part>();
+            if (ModelState.IsValid) {
+                switch (a.field)
+                {
+                    case "Category":
+                        foreach(Part p in l)
+                        {
+                            if (p.Category.Equals(a.value))
+                                fin.Add(p);
+                        }
+                        return View(fin);
+                    case "Name":
+                        foreach (Part p in l)
+                        {
+                            if (p.Name.Equals(a.value))
+                                fin.Add(p);
+                        }
+                        return View(fin);
+                    case "Holder":
+                        foreach (Part p in l)
+                        {
+                            if (p.Holder.Equals(a.value))
+                                fin.Add(p);
+                        }
+
+                        return View(fin);
+                    case "Vendor":
+                        foreach (Part p in l)
+                        {
+                            if (p.Vendor.Equals(a.value))
+                                fin.Add(p);
+                        }
+                        return View(fin);
+
+                    default:
+                        return View(l);
+                }
+            }
+            else
+                return View();
+
+        }
 
 
         [HttpPost]
