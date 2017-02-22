@@ -45,8 +45,18 @@
                     </div>
 
                     <div class="form-group">
+                        @Html.LabelFor(x => x.Part.DateCheckedOut)
+                        @Html.TextBoxFor(x => x.Part.DateCheckedOut, new { @class = "form-control", @type = "date", @placeholder = "Date Checked Out" })
+                    </div>
+
+                    <div class="form-group">
                         @Html.LabelFor(x => x.Part.Cost)
                         @Html.TextBoxFor(x => x.Part.Cost, new { @class = "form-control", @type = "text", @placeholder = "Price", required = "true" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Part.DatePurchased)
+                        @Html.TextBoxFor(x => x.Part.DatePurchased, new { @class = "form-control", @type = "date", @placeholder = "Date Purchased" })
                     </div>
 
                     <div class="form-group">
