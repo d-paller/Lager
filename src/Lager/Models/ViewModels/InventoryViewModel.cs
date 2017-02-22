@@ -12,5 +12,7 @@ namespace Lager.Models.ViewModels
         public IEnumerable<Part> Parts { get; set; }
 
         public Search search { get; set; }
+
+        public string Id { get; set; }
     }
 }
