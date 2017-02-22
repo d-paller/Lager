@@ -24,11 +24,11 @@
         @Html.HiddenFor(x => x.PagingInfo.SortDesc)
         @Html.HiddenFor(x => x.PagingInfo.SortField)
         <div class="input-group">
-            @Html.LabelFor(x => x.search.field)
+            @Html.LabelFor(x => x.search.field): 
             @Html.DropDownListFor(x => x.search.field, new SelectList(new List<string> { " ","Category", "Name", "Holder", "Vendor" }))
         </div>
         <div class="form-group">
-            @Html.LabelFor(x => x.search.value)
+            @Html.LabelFor(x => x.search.value): 
             @Html.TextBoxFor(x => x.search.value, new { @class = "form-control", @type = "list", @placeholder = "value", required = "true" })
         </div>
         <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-save-file"></span> Submit</button>
