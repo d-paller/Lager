@@ -28,9 +28,29 @@ namespace Lager.Services.Repositories
             return _context.Parts.Find(_ => true).ToEnumerable().AsQueryable();
         }
         //Get all the same kind of parts
-        public async Task<List<Part>> GetAllParts(string n)
+        public IQueryable<Part> GetAllPartsByName(string n)
         {
             var filter = Builders<Part>.Filter.Eq("Name",n);
+            return _context.Parts.Find(filter).ToEnumerable().AsQueryable();
+        }
+        public  IQueryable<Part> GetAllPartsByCategory(string n)
+        {
+            var filter = Builders<Part>.Filter.Eq("Category", n);
+            return _context.Parts.Find(filter).ToEnumerable().AsQueryable();
+        }
+        public  IQueryable<Part> GetAllPartsByVendor(string n)
+        {
+            var filter = Builders<Part>.Filter.Eq("Vendor", n);
+            return _context.Parts.Find(filter).ToEnumerable().AsQueryable();
+        }
+        public IQueryable<Part> GetAllPartsByHolder(string n)
+        {
+            var filter = Builders<Part>.Filter.Eq("Holder", n);
+            return _context.Parts.Find(filter).ToEnumerable().AsQueryable();
+        }
+        public async Task<List<Part>> GetAllParts(string n)
+        {
+            var filter = Builders<Part>.Filter.Eq("Name", n);
             return await _context.Parts.Find(filter).ToListAsync();
         }
 

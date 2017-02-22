@@ -38,7 +38,7 @@ namespace Lager.Controllers
             pagingInfo.PageSize = 20;
 
             var DbCount = _PartRepository.GetAllPart().Count();
-            pagingInfo.PageCount = DbCount % pagingInfo.PageSize >0 ? 
+            pagingInfo.PageCount = DbCount % pagingInfo.PageSize > 0 ?
                 DbCount / pagingInfo.PageSize + 1 :
                 DbCount / pagingInfo.PageSize;
 
@@ -50,63 +50,47 @@ namespace Lager.Controllers
 
             return View(model);
         }
-        [HttpPost]
-        public async Task<IActionResult> search(InventoryViewModel a)
-        {
-            List<Part> l = await _PartRepository.GetAllPartIn();
-            List<Part> fin = new List<Part>();
-            if (ModelState.IsValid) {
-                switch (a.search.field)
-                {
-                    case "Category":
-                        foreach(Part p in l)
-                        {
-                            if (p.Category==a.search.value)
-                                fin.Add(p);
-                        }
-                        return View(fin);
-                    case "Name":
-                        foreach (Part p in l)
-                        {
-                            if (p.Name==a.search.value)
-                                fin.Add(p);
-                        }
-                        return View(fin);
-                    case "Holder":
-                        foreach (Part p in l)
-                        {
-                            if (p.Holder==a.search.value)
-                                fin.Add(p);
-                        }
-
-                        return View(fin);
-                    case "Vendor":
-                        foreach (Part p in l)
-                        {
-                            if (p.Vendor==a.search.value)
-                                fin.Add(p);
-                        }
-                        return View(fin);
-
-                    default:
-                        return View(l);
-                }
-            }
-            else
-                return View();
-
-        }
 
 
         [HttpPost]
         public IActionResult Inventory(InventoryViewModel model)
         {
-            IQueryable<Part> query = _PartRepository.GetAllPart();
+            IQueryable<Part> query;
 
+
+            if (model.search != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    switch (model.search.field)
+                    {
+                        case "Category":
+                            query = _PartRepository.GetAllPartsByCategory(model.search.value);
+                            break;
+                        case "Name":
+                            query = _PartRepository.GetAllPartsByName(model.search.value);
+                            break;
+                        case "Holder":
+                            query = _PartRepository.GetAllPartsByHolder(model.search.value);
+                            break;
+                        case "Vendor":
+                            query = _PartRepository.GetAllPartsByVendor(model.search.value);
+                            break;
+
+                        default:
+                            query = _PartRepository.GetAllPart();
+                            break;
+                    }
+                }
+                else
+                    query = _PartRepository.GetAllPart();
+            }
+            else
+                query = _PartRepository.GetAllPart();
             switch (model.PagingInfo.SortField)
             {
                 case "Category":
-                    query = model.PagingInfo.SortDesc?
+                    query = model.PagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Category) :
                         query.OrderBy(x => x.Category);
                     break;
@@ -154,17 +138,24 @@ namespace Lager.Controllers
             model.Parts = query.ToList();
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> AddItem(PartViewModel item)
         {
-            if (ModelState.IsValid) { 
-            var count = _PartRepository.GetAllParts(item.Part.Name).Result;
-                if(item.Part.Holder == null){
-                    item.Part.Holder = "Repo";
+            if (ModelState.IsValid)
+            {
+                var count = _PartRepository.GetAllParts(item.Part.Name).Result;
+                if (item.Part.Holder == null)
+                {
+                    item.Part.Holder = "repo";
                 }
-            item.Part.PartId = count.Count + 1;
-            await _PartRepository.AddPart(item.Part);
-            return RedirectToAction("Inventory");
+                item.Part.PartId = count.Count + 1;
+                item.Part.Category=item.Part.Category.ToLower();
+                item.Part.Name = item.Part.Name.ToLower();
+                item.Part.Vendor = item.Part.Vendor.ToLower();
+                item.Part.Holder = item.Part.Holder.ToLower();
+                await _PartRepository.AddPart(item.Part);
+                return RedirectToAction("Inventory");
             }
             else
             {
