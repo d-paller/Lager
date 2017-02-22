@@ -14,6 +14,11 @@ namespace Lager.Interfaces
         Task<DeleteResult> RemovePart(string name, int id);
         Task<ReplaceOneResult> UpdatePart(string id, Part item);
         Task<List<Part>> GetAllParts(string n);
+        IQueryable<Part> GetAllPartsByName(string n);
+        Task<List<Part>> GetAllPartIn();
+        IQueryable<Part> GetAllPartsByCategory(string n);
+        IQueryable<Part> GetAllPartsByVendor(string n);
+        IQueryable<Part> GetAllPartsByHolder(string n);
 
         // demo interface - full document update
         //Task<ReplaceOneResult> UpdatePartDocument(string id, Part item);
