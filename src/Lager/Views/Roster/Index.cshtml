@@ -6,7 +6,9 @@
         <h1>Student Rosters</h1>
     </div>
     <div class="col-xs-2 pull-right">
-        <a class="btn btn-primary no-margin" href="UploadFile"><span class="glyphicon glyphicon-cloud-upload"></span> Add New Roster</a>
+        <button class="btn btn-primary no-margin" data-toggle="modal" data-target="#upload-file">
+            <span class="glyphicon glyphicon-cloud-upload"></span> Add New Roster
+        </button>
     </div>
 </div>
 
@@ -50,4 +52,22 @@
 
 
 }
+
+<div id="upload-file" class="modal fade " role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Upload Roster</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("UploadFile")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+            </div>
+        </div>
+</div>
 

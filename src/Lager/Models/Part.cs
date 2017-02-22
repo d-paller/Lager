@@ -62,6 +62,9 @@ namespace Lager.Models
         [BsonElement("Vendor")]
         public String Vendor { get; set; }
 
+        [BsonElement("VendorID")]
+        public int VendorID { get; set; }
+
 
         [BsonElement("Holder")]
         public string Holder { get; set; }
@@ -79,7 +82,11 @@ namespace Lager.Models
         [BsonElement("PurchaseUrl")]
         public string PurchaseUrl { get; set; }
 
+        [BsonElement("DatePurchased")]
+        public DateTime DatePurchased { get; set; }
 
+        [BsonElement("DateCheckedOut")]
+        public DateTime DateCheckedOut { get; set; }
 
     }
 }

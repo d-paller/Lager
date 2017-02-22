@@ -122,7 +122,7 @@
         </div>
 
             <div id="inventory-nav-btns" class="text-center">
-                <ul class="pagination pagination-lg">
+                <ul class="pagination">
                     <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == 0? "disabled":"")"
                         data-page-nav="first"><span class="glyphicon glyphicon glyphicon-step-backward"></span></li>
 
@@ -130,7 +130,7 @@
                         data-page-nav="previous"><span class="glyphicon glyphicon glyphicon-menu-left"></span></li>
                 </ul>
 
-                <ul class="pagination pagination-lg">
+                <ul class="pagination">
 
                     @for (int i = 0; i < Model.PagingInfo.PageCount; i++)
                     {
@@ -139,7 +139,7 @@
                     }
                 </ul>
 
-                <ul class="pagination pagination-lg">
+                <ul class="pagination">
                     <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == Model.PagingInfo.PageCount -1? "disabled":"")"
                         data-page-nav="next"><span class="glyphicon glyphicon glyphicon-menu-right"></span></li>
 
