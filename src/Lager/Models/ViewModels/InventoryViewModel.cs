@@ -10,5 +10,7 @@ namespace Lager.Models.ViewModels
         public PagingInfo PagingInfo { get; set; }
 
         public IEnumerable<Part> Parts { get; set; }
+
+        public Search search { get; set; }
     }
 }
