@@ -13,6 +13,24 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-sm-2" style="background-color:lightgray;">
+        <div class="btn-group">
+            @foreach (var part in Model.Parts.Select(x => x.Category).Distinct())
+            {
+                <table class="table">
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-primary">@part</button>
+                        </td>
+                    </tr>
+                </table>
+
+            }
+        </div>
+    </div>
+
+<div class="col-sm-10">
 <div class="table-responsive">
     @using (Html.BeginForm("Inventory", "Admin", FormMethod.Post, new { @id = "inventory-table" }))
     {
@@ -25,6 +43,8 @@
         <div id="inventory-table">
             <table class="table table-striped table-bordered">
                 <tr>
+                    <th>Actions</th>
+
                     <th class="table-header" data-sortby="Category">
                         Category
                         <span class="glyphicon @(Model.PagingInfo.SortField == "Category" ?
@@ -55,13 +75,23 @@
             (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
                     </th>
 
-                    <th class="table-header @(Model.PagingInfo.SortField == "Holder"? "" : "inactive-header")" data-sortby="Holder">
+                    <th class="table-header @(Model.PagingInfo.SortField == "DatePurchased"? "" : "inactive-header")" data-sortby="DatePurchased">
+                        Date Added
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "DatePurchased" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+
+<th class="table-header @(Model.PagingInfo.SortField == "Holder"? "" : "inactive-header")" data-sortby="Holder">
                         Current Holder
                         <span class="glyphicon @(Model.PagingInfo.SortField == "Holder" ?
             (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
                     </th>
 
-                    <th class="table-header @(Model.PagingInfo.SortField == "Vendor"? "" : "inactive-header")" data-sortby="Vendor">
+                    <th class="table-header @(Model.PagingInfo.SortField == "DateCheckedOut"? "" : "inactive-header")" data-sortby="DateCheckedOut">
+                        Date Added
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "DateCheckedOut" ?
+            (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+
+<th class="table-header @(Model.PagingInfo.SortField == "Vendor"? "" : "inactive-header")" data-sortby="Vendor">
                         Vendor
                         <span class="glyphicon @(Model.PagingInfo.SortField == "Vendor" ?
             (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
@@ -86,6 +116,11 @@
                 {
                     <tr>
                         <td>
+                            <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                            <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                        </td>
+
+                        <td>
                             @part.Category
                         </td>
 
@@ -106,7 +141,15 @@
                         </td>
 
                         <td>
+                            @part.DatePurchased
+                        </td>
+
+                        <td>
                             @part.Holder
+                        </td>
+
+                        <td>
+                            @part.DateCheckedOut
                         </td>
 
                         <td>
@@ -117,7 +160,9 @@
                             @part.VendorID
                         </td>
 
-                        <td>@part.Description</td>
+                        <td>
+                            @part.Description
+                        </td>
 
                         <td>
                             @part.PurchaseUrl
@@ -160,5 +205,7 @@
     }
 
 </div>
+</div>
+ </div>
 
 
