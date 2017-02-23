@@ -56,8 +56,6 @@ namespace Lager.Controllers
         public IActionResult Inventory(InventoryViewModel model)
         {
             IQueryable<Part> query;
-
-
             if (model.search != null)
             {
                 if (ModelState.IsValid)
