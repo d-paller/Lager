@@ -6,31 +6,30 @@
 
 
 <div class="row inventory-header">
-    <div class="col-xs-6 no-padding">
-        <h1 class="no-padding">Current Inventory</h1>
-    </div>
-
-    <div class="col-xs-6 no-padding">
+    
+    <h1>
+        Current Inventory
         <a href="Create" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a>
-    </div>
+    </h1>
+   
 </div>
 
 
 <div class="row">
     <div class="col-sm-2">
 
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#">Category</a></li> 
+        <div class="list-group">
+            <a href="#" class="list-group-item active text-center disabled">Categories</a> 
             @foreach (var part in Model.Parts.Select(x => x.Category).Distinct())
             {
-                <li data-sortby="Category"><a href="#">
+                <a href="#" class="list-group-item text-center" data-sortby="Category">
                     @part
                                                <span class="glyphicon @(Model.PagingInfo.SortField == "Category" ?
                                         (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
-                </a></li>
+                </a>
             }
     
-        </ul>
+        </div>
 
       </div>
 
@@ -198,7 +197,7 @@
         </div>
 
             <div id="inventory-nav-btns" class="text-center">
-                <ul class="pagination">
+                <ul class="pagination pagination-sm">
                     <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == 0? "disabled":"")"
                         data-page-nav="first"><span class="glyphicon glyphicon glyphicon-step-backward"></span></li>
 
@@ -206,7 +205,7 @@
                         data-page-nav="previous"><span class="glyphicon glyphicon glyphicon-menu-left"></span></li>
                 </ul>
 
-                <ul class="pagination">
+                <ul class="pagination pagination-sm">
 
                     @for (int i = 0; i < Model.PagingInfo.PageCount; i++)
                     {
@@ -215,7 +214,7 @@
                     }
                 </ul>
 
-                <ul class="pagination">
+                <ul class="pagination pagination-sm">
                     <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == Model.PagingInfo.PageCount -1? "disabled":"")"
                         data-page-nav="next"><span class="glyphicon glyphicon glyphicon-menu-right"></span></li>
 

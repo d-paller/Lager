@@ -22,7 +22,7 @@
             <div class="panel-body">
                 @using (Html.BeginForm("EditItem", "Admin", Model))
                 {
-                    @Html.ValidationSummary(true, "Submit failed, ensure all fields are completed.")
+                    @Html.ValidationSummary(true, "Submit failed, ensure all fields are updated.")
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.Part.Name)
