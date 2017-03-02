@@ -9,28 +9,30 @@
         <h1 class="no-padding">Current Inventory</h1>
     </div>
     <div class="col-xs-6 no-padding">
-        <a href="Create" class="btn btn-lg btn-primary pull-right no-margin"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a>
+        <a href="Create" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a>
     </div>
 </div>
 
+
 <div class="row">
-    <div class="col-sm-1" style="background-color:lightblue;">
-        <div class="btn-group">
+    <div class="col-sm-2">
+
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#">Category</a></li> 
             @foreach (var part in Model.Parts.Select(x => x.Category).Distinct())
             {
-                <table class="table">
-                    <tr>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-primary">@part</button>
-                        </td>
-                    </tr>
-                </table>
-
+                <li data-sortby="Category"><a href="#">
+                    @part
+                                               <span class="glyphicon @(Model.PagingInfo.SortField == "Category" ?
+                                        (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                </a></li>
             }
-        </div>
-    </div>
+    
+        </ul>
 
-<div class="col-sm-12">
+      </div>
+
+<div class="col-sm-10">
 <div class="table-responsive">
     @using (Html.BeginForm("Inventory", "Admin", FormMethod.Post, new { @id = "inventory-table" }))
     {
@@ -43,7 +45,7 @@
         <div id="inventory-table">
             <table class="table table-striped table-bordered">
                 <tr>
-                    <th>Actions</th>
+                    <th>Edit|Delete</th>
 
                     <th class="table-header" data-sortby="Category">
                         Category
@@ -76,7 +78,7 @@
                     </th>
 
                     <th class="table-header @(Model.PagingInfo.SortField == "DatePurchased"? "" : "inactive-header")" data-sortby="DatePurchased">
-                        Date Added
+                        Date Purchased
                         <span class="glyphicon @(Model.PagingInfo.SortField == "DatePurchased" ?
             (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
 
@@ -87,7 +89,7 @@
                     </th>
 
                     <th class="table-header @(Model.PagingInfo.SortField == "DateCheckedOut"? "" : "inactive-header")" data-sortby="DateCheckedOut">
-                        Date Added
+                        Date Checked Out
                         <span class="glyphicon @(Model.PagingInfo.SortField == "DateCheckedOut" ?
             (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
 
@@ -98,7 +100,7 @@
                     </th>
 
                     <th class="table-header @(Model.PagingInfo.SortField == "VendorID"? "" : "inactive-header")" data-sortby="VendorID">
-                        Vendor
+                        Vendor ID
                         <span class="glyphicon @(Model.PagingInfo.SortField == "VendorID" ?
             (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
                     </th>
@@ -115,11 +117,11 @@
                 @foreach (var part in Model.Parts)
                 {
                     <tr>
-                        <td>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</button>
-                            </div>
+                        <td>                        
+                                <div class="btn-group">
+                                    <button type="button" class="btn-xs btn-success"><a href="Edit"><span class="glyphicon glyphicon-edit"></span></a> </button>
+                                    <button type="button" class="btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> </button>
+                                </div>                         
                         </td>
 
                         <td>
