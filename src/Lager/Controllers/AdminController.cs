@@ -153,7 +153,7 @@ namespace Lager.Controllers
         public IActionResult edit()
         {
             PartViewModel model = new PartViewModel();
-            return View("Edit");
+            return View(model);
         }
 
         public IActionResult Test()
