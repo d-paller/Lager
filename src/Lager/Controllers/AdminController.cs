@@ -162,6 +162,16 @@ namespace Lager.Controllers
             }
         }
         [HttpPost]
+
+        public async Task<IActionResult> EditItem(string name, int id)
+        {
+            Part a = _PartRepository.GetPart(name, id).Result;
+            await _PartRepository.UpdatePart(a.Id, a);
+            return RedirectToAction("Inventory");
+
+        }
+        [HttpPost]
+
         public async Task<ActionResult> RemoveItem(string name, int id)
         {
             Part a = _PartRepository.GetPart(name, id).Result;
@@ -173,6 +183,12 @@ namespace Lager.Controllers
         {
             PartViewModel model = new PartViewModel();
             return View(model);
+        }
+
+        public IActionResult edit()
+        {
+            PartViewModel model = new PartViewModel();
+            return View("Edit");
         }
 
         public IActionResult Test()
