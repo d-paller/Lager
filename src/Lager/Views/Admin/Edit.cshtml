@@ -10,19 +10,19 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewData["Title"] = Create</title>
+    <title>@ViewData["Title"] = Edit</title>
 </head>
 <body>
     <div class= "submit-form container-fluid min-height: 100%">
         <div class="panel panel-primary submit-form container-fluid min-height: 100%">
             @*<div class="alert alert-danger" style="@(Model.isValid?"": "display:none")" id="empty">Please fill out the form</div>*@
             <div class="panel-heading">
-                <h2>Create Part</h2>
+                <h2>Edit Part</h2>
             </div>
             <div class="panel-body">
-                @using (Html.BeginForm("AddItem", "Admin", Model))
+                @using (Html.BeginForm("EditItem", "Admin", Model))
                 {
-                    @Html.ValidationSummary(true, "Submit failed, ensure all fields are completed.")
+                    @Html.ValidationSummary(true, "Submit failed, ensure all fields are updated.")
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.Part.Name)
@@ -71,7 +71,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.Part.PurchaseUrl)
-                        @Html.TextBoxFor(x => x.Part.PurchaseUrl, null, new { @class = "form-control", @type = "url", @placeholder = "Enter URL" })
+                        @Html.TextBoxFor(x => x.Part.PurchaseUrl, null, new { @class = "form-control", @type = "url", @placeholder = "Enter URL", required = "true" })
                     </div>
 
                     <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-save-file"></span> Submit</button>
