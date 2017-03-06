@@ -84,7 +84,6 @@ namespace Lager.Models
         public String VendorID { get; set; }
 
 
-
         [BsonElement("Holder")]
         public string Holder { get; set; }
 
