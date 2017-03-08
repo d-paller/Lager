@@ -26,7 +26,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.Part.Name)
-                        @Html.TextBoxFor(x => x.Part.Name, new { @class = "form-control", @type = "text", @placeholder = "Item Name", required = "true" })
+                        @Html.TextBoxFor(x => x.Part.Name, new { @class = "form-control", @type = "text", @placeholder = "Item Name", required = "true", value = Model.Part.Name })
                     </div>
 
                     <div class="form-group">

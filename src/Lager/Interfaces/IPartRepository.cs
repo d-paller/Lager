@@ -9,7 +9,7 @@ namespace Lager.Interfaces
     public interface IPartRepository
     {
         IQueryable<Part> GetAllPart();
-        Task<Part> GetPart(string name, int id);
+        Task<Part> GetPart(string id);
         Task AddPart(Part item);
         Task<DeleteResult> RemovePart(string name, int id);
         Task<ReplaceOneResult> UpdatePart(string id, Part item);
