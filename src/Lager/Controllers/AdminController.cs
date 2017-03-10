@@ -181,12 +181,16 @@ namespace Lager.Controllers
             Part a = _PartRepository.GetPart(id).Result;
             a.IsActive = false;
             await _PartRepository.UpdatePart(a.Id, a);
-            return View();
+            return RedirectToAction("Inventory");
         }
         public IActionResult create()
         {
             PartViewModel model = new PartViewModel();
             return View(model);
+        }
+        public string lame(string a)
+        {
+            return a;
         }
 
         public IActionResult edit()

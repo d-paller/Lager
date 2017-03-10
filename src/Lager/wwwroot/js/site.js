@@ -11,16 +11,24 @@ $("btn btn-info").click(function(){
     var x =document.forms
 })
 
-$(".btn-xs btn-success").click(function () {
+$(".edit-Btn").click(function () {
+    $.post("/Admin/lame", {
+        a: "hello", function(data) {
+            alert(data);
+        }
+    })
+});
+
+$(".btn-danger").click(function () {
     $.ajax({
-        type:"POST",
-        url: "/Admin/findItem",
-        data: { id: $(this).val },
+        url: '/',
+        type: "POST",
+        data: { id: $(this).data("partid") },
         success: function (result) {
             alert(result.name);
         },
         error: function () {
-            alert("error");
+            alert("error" + window.u);
         }
     })
 })
