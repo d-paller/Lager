@@ -15,17 +15,18 @@ $(".edit-Btn").click(function () {
     $.post("/Admin/lame", {
         a: "hello", function(data) {
             alert(data);
+
         }
     })
 });
 
 $(".btn-danger").click(function () {
     $.ajax({
-        url: '/',
+        url: "/Admin/RemoveItem",
         type: "POST",
         data: { id: $(this).data("partid") },
-        success: function (result) {
-            alert(result.name);
+        success: function () {
+            alert("success");
         },
         error: function () {
             alert("error" + window.u);
