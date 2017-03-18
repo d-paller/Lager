@@ -1,0 +1,166 @@
+﻿@{
+    ViewData["Title"] = "Inventory";
+    Layout = "~/Views/Shared/_InventoryLayout.cshtml";
+}
+
+@model Lager.Models.ViewModels.InventoryViewModel
+
+
+<div class="row inventory-header">
+    <h1>
+        Current Inventory
+        <a href="Create" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a>
+    </h1>
+
+</div>
+
+
+<div class="row">
+    <div class="col-sm-2">
+        <div class="container-fluid">
+            <div class="list-group">
+                <a href="#" class="list-group-item active text-center disabled">Categories</a>
+                @foreach (var part in Model.Parts.Select(x => x.Category).Distinct())
+            {
+                    <a href="#" class="list-group-item text-center" data-sortby="Category">
+                        @part
+                        <span class="glyphicon @(Model.PagingInfo.SortField == "Category" ?
+                    (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                    </a>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-10">
+        <div class="table-responsive">
+            @using (Html.BeginForm("Inventory", "Admin", FormMethod.Post, new { @id = "inventory-table" }))
+            {
+                @Html.HiddenFor(x => x.PagingInfo.CurrentPageIndex)
+                @Html.HiddenFor(x => x.PagingInfo.PageCount)
+                @Html.HiddenFor(x => x.PagingInfo.PageSize)
+                @Html.HiddenFor(x => x.PagingInfo.SortDesc)
+                @Html.HiddenFor(x => x.PagingInfo.SortField)
+
+
+                <div class="input-group">
+                    @Html.DropDownListFor(x => x.search.field,
+                new SelectList(new List<string> { " ", "Category", "Name", "Holder", "Vendor" }),
+                new { @class = "form-conrol" })
+                </div>
+                <div class="input-group">
+
+                    @Html.TextBoxFor(x => x.search.value, new { @class = "form-control", @type = "list", @placeholder = "Search", required = "true" })
+
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span> Search</button>
+                    </div>
+                </div>
+
+                <div id="inventory-table">
+                    <table class="table table-striped">
+                        <tr>
+                            <th class="col-xs-1">Edit|Delete</th>
+
+                            <th class="table-header @(Model.PagingInfo.SortField == "Category" ? "" : "inactive-header")"
+                                data-sortby="Category">
+                                Category
+                                <span class="col-xs-2 glyphicon @(Model.PagingInfo.SortField == "Category" ?
+                                (Model.PagingInfo.SortDesc ? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                            </th>
+
+                            <th class="col-xs-3 table-header @(Model.PagingInfo.SortField == "Name" ? "" : "inactive-header")"
+                                data-sortby="Name">
+                                Name
+                                <span class="glyphicon @(Model.PagingInfo.SortField == "Name" ?
+                                (Model.PagingInfo.SortDesc ? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                            </th>
+
+                            <th class="col-xs-2 table-header @(Model.PagingInfo.SortField == "DateCheckedOut"? "" : "inactive-header")"
+                                data-sortby="DateCheckedOut">
+                                Date Checked Out
+                                <span class="glyphicon @(Model.PagingInfo.SortField == "DateCheckedOut" ?
+                                (Model.PagingInfo.SortDesc? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                            </th>
+
+                            <th class="col-xs-2 table-header @(Model.PagingInfo.SortField == "Vendor"? "" : "inactive-header")"
+                                data-sortby="Vendor">
+                                Vendor
+                                <span class="glyphicon @(Model.PagingInfo.SortField == "Vendor" ?
+                                (Model.PagingInfo.SortDesc ? "glyphicon-arrow-down" : "glyphicon-arrow-up") : "glyphicon-sort")"></span>
+                            </th>
+
+                            <th class="clickable col-xs-1"><span class="glyphicon glyphicon-menu-down"></span>More Info</th>
+
+                        </tr>
+
+
+                        @foreach (var part in Model.Parts)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> </button>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    @part.Category
+                                </td>
+
+                                <td>
+                                    @part.Name
+                                </td>
+
+                                <td>
+                                    @part.DateCheckedOut
+                                </td>
+
+                                <td>
+                                    @part.Vendor
+                                </td>
+                            </tr>
+
+                            <tr id="extra-info-@part.PartId" style="display:none">
+                                @Html.PartialAsync("_ExtraTableInfo", part)
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+
+
+                <div id="inventory-nav-btns" class="text-center">
+                    <ul class="pagination pagination-sm">
+                        <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == 0? "disabled":"")"
+                            data-page-nav="first"><span class="glyphicon glyphicon glyphicon-step-backward"></span></li>
+
+                        <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == 0 ? "disabled" : "")"
+                            data-page-nav="previous"><span class="glyphicon glyphicon glyphicon-menu-left"></span></li>
+                    </ul>
+
+                    <ul class="pagination pagination-sm">
+
+                        @for (int i = 0; i < Model.PagingInfo.PageCount; i++)
+                        {
+                            <li class="@(i == Model.PagingInfo.CurrentPageIndex ? "active" : "page-nav-btn")"
+                                data-page-nav="@i"><span>@(i + 1)</span></li>
+                        }
+                    </ul>
+
+                    <ul class="pagination pagination-sm">
+                        <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == Model.PagingInfo.PageCount -1? "disabled":"")"
+                            data-page-nav="next"><span class="glyphicon glyphicon glyphicon-menu-right"></span></li>
+
+                        <li class="page-nav-btn @(Model.PagingInfo.CurrentPageIndex == Model.PagingInfo.PageCount - 1 ? "disabled" : "")"
+                            data-page-nav="last"><span class="glyphicon glyphicon glyphicon-step-forward"></span></li>
+                    </ul>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>

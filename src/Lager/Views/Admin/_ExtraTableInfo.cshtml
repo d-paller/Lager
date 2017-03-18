@@ -4,35 +4,74 @@
 @{
 }
 @model Lager.Models.Part
-
 <td>
-    @Model.PartId
-</td>
+    <div class="row">
 
-<td>
-    @Model.DateAdded
-</td>
+        <div class="col-xs-1">
+            Part ID
+        </div>
 
-<td>
-    @Model.Cost
-</td>
+        <div class="col-xs-1">
+            Date Added
+        </div>
 
-<td>
-    @Model.DatePurchased
-</td>
+        <div class="col-xs-1">
+            Cost
+        </div>
 
-<td>
-    @Model.Holder
-</td>
-<td>
-    @Model.VendorID
-</td>
+        <div class="col-xs-1">
+            Date Purchased
+        </div>
 
-<td>
-    @Model.Description
-</td>
+        <div class="col-xs-2">
+            Holder
+        </div>
 
-<td>
-    @Model.PurchaseUrl
-</td>
+        <div class="col-xs-1">
+            Vendor ID
+        </div>
 
+        <div class="col-xs-3">
+            Description
+        </div>
+
+        <div class="col-xs-2">
+            Purchase Url
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-1">
+            @Model.PartId
+        </div>
+
+        <div class="col-xs-1">
+            @Model.DateAdded
+        </div>
+
+        <div class="col-xs-1">
+            @Model.Cost
+        </div>
+
+        <div class="col-xs-1">
+            @Model.DatePurchased
+        </div>
+
+        <div class="col-xs-2">
+            @Model.Holder
+        </div>
+
+        <div class="col-xs-1">
+            @Model.VendorID
+        </div>
+
+        <div class="col-xs-3">
+            @Model.Description
+        </div>
+
+        <div class="col-xs-2">
+            @Model.PurchaseUrl
+        </div>
+    </div>
+</td>
