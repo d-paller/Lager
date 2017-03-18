@@ -135,9 +135,11 @@
                     <tr>
                         <td>                        
                                 <div class="btn-group">
-                                    <button type="button" class="btn-xs btn-success edit-Btn" data-partid="@part.Id"><span class="glyphicon glyphicon-edit"></span> </button>
+                                    <!--<button type="button" class="btn-xs btn-success edit-Btn" data-partid="@part.Id"><span class="glyphicon glyphicon-edit"></span> </button>-->
                                         <button type="button" class="btn-xs btn-danger" data-partid="@part.Id"><span class="glyphicon glyphicon-remove"></span> </button>
-                                </div>                         
+                                        <!--<a href="Edit" class="btn-xs btn-danger" data-partid="@part.Id", name="@part.Id"><span class="glyphicon glyphicon-edit"></span></a>-->
+                                    @Html.ActionLink("Edit", "edit","Admin",new { id = @part.Id }, new { @class = "btn-xs btn-success edit-Btn" })
+                                 </div>                         
                         </td>
 
                         <td>

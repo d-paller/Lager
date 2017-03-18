@@ -11,15 +11,13 @@ $("btn btn-info").click(function(){
     var x =document.forms
 })
 
-$(".edit-Btn").click(function () {
-    $.post("/Admin/lame", {
-        a: "hello", function(data) {
-            alert(data);
-
-        }
-    })
+/*$(".edit-Btn").click(function () {
+    $.ajax({
+        url: "/Admin/edit",
+        data: { id: $(this).data("partid") }
+    });
 });
-
+*/
 $(".btn-danger").click(function () {
     $.ajax({
         url: "/Admin/RemoveItem",

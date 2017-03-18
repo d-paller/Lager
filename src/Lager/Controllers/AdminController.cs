@@ -175,6 +175,7 @@ namespace Lager.Controllers
             return RedirectToAction("Inventory");
 
         }
+        
         [HttpPost]
         public async Task<ActionResult> RemoveItem(string id)
         {
@@ -188,14 +189,11 @@ namespace Lager.Controllers
             PartViewModel model = new PartViewModel();
             return View(model);
         }
-        public string lame(string a)
-        {
-            return a;
-        }
 
-        public IActionResult edit()
+        public IActionResult edit(string id)
         {
             PartViewModel model = new PartViewModel();
+            model.Part= _PartRepository.GetPart(id).Result;
             return View(model);
         }
 

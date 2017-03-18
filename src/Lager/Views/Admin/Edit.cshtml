@@ -23,7 +23,7 @@
                 @using (Html.BeginForm("EditItem", "Admin", Model))
                 {
                     @Html.ValidationSummary(true, "Submit failed, ensure all fields are updated.")
-
+                    @Html.HiddenFor(x => x.Part.Id = Model.Part.Id);
                     <div class="form-group">
                         @Html.LabelFor(x => x.Part.Name)
                         @Html.TextBoxFor(x => x.Part.Name, new { @class = "form-control", @type = "text", @placeholder = "Item Name", required = "true", value = Model.Part.Name })
@@ -31,17 +31,17 @@
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.Part.Description)
-                        @Html.TextBoxFor(x => x.Part.Description, new { @class = "form-control", @type = "text", @placeholder = "Description" })
+                        @Html.TextBoxFor(x => x.Part.Description, new { @class = "form-control", @type = "text", @placeholder = "Description", value = Model.Part.Description })
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.Part.Category)
-                        @Html.TextBoxFor(x => x.Part.Category, new { @class = "form-control", @type = "text", @placeholder = "Category", required = "true" })
+                        @Html.TextBoxFor(x => x.Part.Category, new { @class = "form-control", @type = "text", @placeholder = "Category", required = "true", Value = Model.Part.Category })
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.Part.Holder)
-                        @Html.TextBoxFor(x => x.Part.Holder, new { @class = "form-control", @type = "text", @placeholder = "Holder" })
+                        @Html.TextBoxFor(x => x.Part.Holder, new { @class = "form-control", @type = "text", @placeholder = "Holder", value = Model.Part.Holder })
                     </div>
 
                     <div class="form-group">
