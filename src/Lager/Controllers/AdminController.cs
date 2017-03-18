@@ -189,12 +189,12 @@ namespace Lager.Controllers
             PartViewModel model = new PartViewModel();
             return View(model);
         }
-
-        public IActionResult edit(string id)
+        [HttpPost]
+        public async Task<ActionResult> edit(string id)
         {
             PartViewModel model = new PartViewModel();
             model.Part= _PartRepository.GetPart(id).Result;
-            return View(model);
+            return View("Edit", model);
         }
 
         public IActionResult Test()
