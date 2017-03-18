@@ -186,18 +186,21 @@ namespace Lager.Controllers
             await _PartRepository.UpdatePart(a.Id, a);
             return RedirectToAction("Inventory");
         }
+
         public IActionResult create()
         {
             PartViewModel model = new PartViewModel();
             return View(model);
         }
+
         [HttpPost]
-        public async Task<ActionResult> edit(string id)
+        public async Task<ActionResult> Edit(string id)
         {
             PartViewModel model = new PartViewModel();
-            model.Part= _PartRepository.GetPart(id).Result;
-            return View("Edit", model);
+            model.Part = await _PartRepository.GetPart(id);
+            return View(model);
         }
+
 
         public IActionResult Test()
         {

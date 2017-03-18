@@ -12,24 +12,16 @@ $("btn btn-info").click(function(){
 })
 
 $(".edit-Btn").click(function () {
-    $.ajax({
-        url: "/Admin/edit",
-        type: "POST",
-        data: { id: $(this).data("partid") },
-        success: function () {
-            alert ("success");
-        },
-        error: function() {
-            alert("error");
-        }
-    })
-})
+    var id = $(this).data("part-id")
+    $.post("/Admin/Edit", {id: id})
+});
+
 
 $(".btn-danger").click(function () {
     $.ajax({
         url: "/Admin/RemoveItem",
         type: "POST",
-        data: { id: $(this).data("partid") },
+        data: { id: $(this).data("part-id") },
         success: function () {
             alert("success");
         },

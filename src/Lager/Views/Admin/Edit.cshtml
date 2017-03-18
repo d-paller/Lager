@@ -1,5 +1,4 @@
-﻿@using Lager.Models
-@model Lager.Models.PartViewModel
+﻿@model Lager.Models.PartViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -23,7 +22,6 @@
                 @using (Html.BeginForm("EditItem", "Admin", Model))
                 {
                     @Html.ValidationSummary(true, "Submit failed, ensure all fields are updated.")
-                    @Html.HiddenFor(x => x.Part.Id = Model.Part.Id);
                     <div class="form-group">
                         @Html.LabelFor(x => x.Part.Name)
                         @Html.TextBoxFor(x => x.Part.Name, new { @class = "form-control", @type = "text", @placeholder = "Item Name", required = "true", value = Model.Part.Name })
