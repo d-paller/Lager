@@ -11,6 +11,8 @@ using Microsoft.Extensions.Options;
 using Lager.Services;
 using MongoDB.Driver.Linq;
 using Lager.Models.ViewModels;
+using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Lager.Controllers
 {
@@ -210,6 +212,17 @@ namespace Lager.Controllers
 
             user.Password = hasher.HashPassword(user, user.Password);
             return View(user);
+        }
+        [HttpGet]
+        [Produces("text/csv")]
+        public IActionResult GenerateReport(string name)
+        {
+            return Ok(GenerateReportOfName(name));
+        }
+        public IEnumerable<Part> GenerateReportOfName(string name)
+        {      
+            List<Part> Parts = _PartRepository.GetAllPartsByHolder(name).ToList();
+            return Parts;
         }
 
 
