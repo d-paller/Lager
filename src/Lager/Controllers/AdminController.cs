@@ -29,7 +29,7 @@ namespace Lager.Controllers
             return View();
         }
 
-        public IActionResult Inventory()
+        public async Task<IActionResult> Inventory()
         {
             InventoryViewModel model = new InventoryViewModel();
             PagingInfo pagingInfo = new PagingInfo();
@@ -37,7 +37,8 @@ namespace Lager.Controllers
             pagingInfo.SortDesc = true;
             pagingInfo.PageSize = 20;
 
-            var DbCount = _PartRepository.GetAllPart().Count();
+            var Db = await _PartRepository.GetAllPart();
+            var DbCount = Db.Count();
             pagingInfo.PageCount = DbCount % pagingInfo.PageSize > 0 ?
                 DbCount / pagingInfo.PageSize + 1 :
                 DbCount / pagingInfo.PageSize;
@@ -46,45 +47,18 @@ namespace Lager.Controllers
             pagingInfo.SortField = "DateAdded";
 
             model.PagingInfo = pagingInfo;
-            model.Parts = _PartRepository.GetAllPart().Take(pagingInfo.PageSize);
+            model.Parts = Db.Take(pagingInfo.PageSize);
 
             return View(model);
         }
 
 
         [HttpPost]
-        public IActionResult Inventory(InventoryViewModel model)
+        public async Task<IActionResult> Inventory(InventoryViewModel model)
         {
             IQueryable<Part> query;
-            if (model.search != null)
-            {
-                if (ModelState.IsValid)
-                {
-                    switch (model.search.field)
-                    {
-                        case "Category":
-                            query = _PartRepository.GetAllPartsByCategory(model.search.value);
-                            break;
-                        case "Name":
-                            query = _PartRepository.GetAllPartsByName(model.search.value);
-                            break;
-                        case "Holder":
-                            query = _PartRepository.GetAllPartsByHolder(model.search.value);
-                            break;
-                        case "Vendor":
-                            query = _PartRepository.GetAllPartsByVendor(model.search.value);
-                            break;
-
-                        default:
-                            query = _PartRepository.GetAllPart();
-                            break;
-                    }
-                }
-                else
-                    query = _PartRepository.GetAllPart();
-            }
-            else
-                query = _PartRepository.GetAllPart();
+            
+                query = await _PartRepository.GetAllPart();
             switch (model.PagingInfo.SortField)
             {
                 case "Category":
@@ -129,6 +103,11 @@ namespace Lager.Controllers
                         query.OrderBy(x => x.DateAdded);
                     break;
             }
+
+            var count = model.Parts.Count();
+            model.PagingInfo.PageCount = count % model.PagingInfo.PageSize > 0 ?
+                count / model.PagingInfo.PageSize + 1 :
+                count / model.PagingInfo.PageSize;
 
             query = query.Skip(model.PagingInfo.CurrentPageIndex * model.PagingInfo.PageSize)
                 .Take(model.PagingInfo.PageSize);
@@ -190,6 +169,35 @@ namespace Lager.Controllers
             PartViewModel model = new PartViewModel();
             return View(model);
         }
+
+
+        public async Task<IActionResult> Search(string query, InventoryViewModel model)
+        {
+            var db = await _PartRepository.GetAllPart();
+            var list = new List<Part>();
+
+            foreach (var record in db)
+            {
+                if (record.ToString().Contains(query))
+                {
+                    list.Add(record);
+                }
+            }
+            model.Parts = list;
+            return RedirectToAction("Inventory", model);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
         public IActionResult Test()
         {

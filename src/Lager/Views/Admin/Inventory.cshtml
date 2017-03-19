@@ -5,13 +5,40 @@
 @model Lager.Models.ViewModels.InventoryViewModel
 
 
-<div class="row inventory-header">
-    <h1>
-        Current Inventory
-        <a href="Create" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a>
-    </h1>
+<div class="row inventory-header page-header">
 
+    <div class="col-xs-4">
+        <h2>Current Inventory</h2>
+    </div>
+
+    <div class="col-xs-4">
+
+        @using (Html.BeginForm("Search", "Admin", FormMethod.Post, new { @id = "search" }))
+        {
+            @Html.HiddenFor(x => x.PagingInfo.CurrentPageIndex, 0)
+            @Html.HiddenFor(x => x.PagingInfo.PageCount)
+            @Html.HiddenFor(x => x.PagingInfo.PageSize)
+            @Html.HiddenFor(x => x.PagingInfo.SortDesc)
+            @Html.HiddenFor(x => x.PagingInfo.SortField)
+
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Search</button>
+                </span>
+            </div>
+
+        }
+
+
+    </div>
+
+    <div class="col-xs-4">
+        <a href="Create" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add New</a>
+    </div>
 </div>
+
+
 
 @using (Html.BeginForm("Inventory", "Admin", FormMethod.Post, new { @id = "inventory-table" }))
 {
@@ -38,7 +65,7 @@
                 <tr>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></button>
                             <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                         </div>
                     </td>

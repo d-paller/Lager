@@ -16,4 +16,14 @@ $("btn btn-info").click(function(){
 $(".expand-btn").click(function () {
     var id = $(this).data("item-id");
     $("#row-for-" + id).slideToggle();
+    if ($(this).find("span").hasClass("glyphicon glyphicon-menu-down"))
+    {
+        $(this).find("span").removeClass("glyphicon glyphicon-menu-down").addClass("glyphicon glyphicon-menu-up");
+    }
+    else
+    {
+        $(this).find("span").removeClass("glyphicon glyphicon-menu-up").addClass("glyphicon glyphicon-menu-down");
+    }
+    
+
 });
