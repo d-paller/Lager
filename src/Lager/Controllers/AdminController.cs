@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using Lager.Services;
 using MongoDB.Driver.Linq;
 using Lager.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lager.Controllers
 {
@@ -38,7 +39,9 @@ namespace Lager.Controllers
             pagingInfo.PageSize = 20;
 
             var Db = await _PartRepository.GetAllPart();
-            var DbCount = Db.Count();
+            var DbList = Db.ToList();
+            var DbCount = DbList.Count();
+
             pagingInfo.PageCount = DbCount % pagingInfo.PageSize > 0 ?
                 DbCount / pagingInfo.PageSize + 1 :
                 DbCount / pagingInfo.PageSize;
@@ -47,7 +50,7 @@ namespace Lager.Controllers
             pagingInfo.SortField = "DateAdded";
 
             model.PagingInfo = pagingInfo;
-            model.Parts = Db.Take(pagingInfo.PageSize);
+            model.Parts = DbList.Take(pagingInfo.PageSize);
 
             return View(model);
         }
@@ -57,8 +60,65 @@ namespace Lager.Controllers
         public async Task<IActionResult> Inventory(InventoryViewModel model)
         {
             IQueryable<Part> query;
-            
-                query = await _PartRepository.GetAllPart();
+
+            query = await _PartRepository.GetAllPart();
+            switch (model.PagingInfo.SortField)
+            {
+                case "Category":
+                    query = model.PagingInfo.SortDesc ?
+                        query.OrderByDescending(x => x.Category) :
+                        query.OrderBy(x => x.Category);
+                    break;
+                case "Name":
+                    query = model.PagingInfo.SortDesc ?
+                        query.OrderByDescending(x => x.Name) :
+                        query.OrderBy(x => x.Name);
+                    break;
+                case "PartId":
+                    query = model.PagingInfo.SortDesc ?
+                        query.OrderByDescending(x => x.PartId) :
+                        query.OrderBy(x => x.PartId);
+                    break;
+                case "Cost":
+                    query = model.PagingInfo.SortDesc ?
+                        query.OrderByDescending(x => x.Cost) :
+                        query.OrderBy(x => x.Cost);
+                    break;
+                case "Holder":
+                    query = model.PagingInfo.SortDesc ?
+                        query.OrderByDescending(x => x.Holder) :
+                        query.OrderBy(x => x.Holder);
+                    break;
+                case "Vendor":
+                    query = model.PagingInfo.SortDesc ?
+                        query.OrderByDescending(x => x.Vendor) :
+                        query.OrderBy(x => x.Vendor);
+                    break;
+                case "PurchaseUrl":
+                    query = model.PagingInfo.SortDesc ?
+                        query.OrderByDescending(x => x.PurchaseUrl) :
+                        query.OrderBy(x => x.PurchaseUrl);
+                    break;
+
+                default:
+                    query = model.PagingInfo.SortDesc ?
+                        query.OrderByDescending(x => x.DateAdded) :
+                        query.OrderBy(x => x.DateAdded);
+                    break;
+            }
+
+            query = query.Skip(model.PagingInfo.CurrentPageIndex * model.PagingInfo.PageSize)
+                .Take(model.PagingInfo.PageSize);
+
+            model.Parts = query.ToList();
+            return View(model);
+        }
+
+
+        public IActionResult InventorySearch(InventoryViewModel model)
+        {
+            IQueryable<Part> query = model.Parts.AsQueryable();
+
             switch (model.PagingInfo.SortField)
             {
                 case "Category":
@@ -106,15 +166,17 @@ namespace Lager.Controllers
 
             var count = model.Parts.Count();
             model.PagingInfo.PageCount = count % model.PagingInfo.PageSize > 0 ?
-                count / model.PagingInfo.PageSize + 1 :
-                count / model.PagingInfo.PageSize;
+                    count / model.PagingInfo.PageSize + 1 :
+                    count / model.PagingInfo.PageSize;
 
             query = query.Skip(model.PagingInfo.CurrentPageIndex * model.PagingInfo.PageSize)
                 .Take(model.PagingInfo.PageSize);
 
             model.Parts = query.ToList();
-            return View(model);
+            return View("Inventory", model);
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> AddItem(PartViewModel item)
@@ -127,7 +189,7 @@ namespace Lager.Controllers
                     item.Part.Holder = "repo";
                 }
                 item.Part.PartId = count.Count + 1;
-                item.Part.Category=item.Part.Category.ToLower();
+                item.Part.Category = item.Part.Category.ToLower();
                 item.Part.Name = item.Part.Name.ToLower();
                 item.Part.Vendor = item.Part.Vendor.ToLower();
                 item.Part.Holder = item.Part.Holder.ToLower();
@@ -149,8 +211,8 @@ namespace Lager.Controllers
             return RedirectToAction("Inventory");
 
         }
-        [HttpPost]
 
+        [HttpPost]
         public async Task<ActionResult> RemoveItem(string name, int id)
         {
             Part a = _PartRepository.GetPart(name, id).Result;
@@ -158,6 +220,7 @@ namespace Lager.Controllers
             await _PartRepository.UpdatePart(a.Id, a);
             return View();
         }
+
         public IActionResult create()
         {
             PartViewModel model = new PartViewModel();
@@ -170,7 +233,7 @@ namespace Lager.Controllers
             return View(model);
         }
 
-
+        [HttpPost]
         public async Task<IActionResult> Search(string query, InventoryViewModel model)
         {
             var db = await _PartRepository.GetAllPart();
@@ -178,13 +241,13 @@ namespace Lager.Controllers
 
             foreach (var record in db)
             {
-                if (record.ToString().Contains(query))
+                if (record.ToString().ToLower().Contains(query.ToLower()))
                 {
                     list.Add(record);
                 }
             }
             model.Parts = list;
-            return RedirectToAction("Inventory", model);
+            return InventorySearch(model);
         }
 
 
