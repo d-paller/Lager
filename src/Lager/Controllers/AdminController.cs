@@ -119,60 +119,63 @@ namespace Lager.Controllers
         {
             IQueryable<Part> query = model.Parts.AsQueryable();
 
-            switch (model.PagingInfo.SortField)
+            if (model.Parts.Count() != 0)
             {
-                case "Category":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.Category) :
-                        query.OrderBy(x => x.Category);
-                    break;
-                case "Name":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.Name) :
-                        query.OrderBy(x => x.Name);
-                    break;
-                case "PartId":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.PartId) :
-                        query.OrderBy(x => x.PartId);
-                    break;
-                case "Cost":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.Cost) :
-                        query.OrderBy(x => x.Cost);
-                    break;
-                case "Holder":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.Holder) :
-                        query.OrderBy(x => x.Holder);
-                    break;
-                case "Vendor":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.Vendor) :
-                        query.OrderBy(x => x.Vendor);
-                    break;
-                case "PurchaseUrl":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.PurchaseUrl) :
-                        query.OrderBy(x => x.PurchaseUrl);
-                    break;
+                switch (model.PagingInfo.SortField)
+                {
+                    case "Category":
+                        query = model.PagingInfo.SortDesc ?
+                            query.OrderByDescending(x => x.Category) :
+                            query.OrderBy(x => x.Category);
+                        break;
+                    case "Name":
+                        query = model.PagingInfo.SortDesc ?
+                            query.OrderByDescending(x => x.Name) :
+                            query.OrderBy(x => x.Name);
+                        break;
+                    case "PartId":
+                        query = model.PagingInfo.SortDesc ?
+                            query.OrderByDescending(x => x.PartId) :
+                            query.OrderBy(x => x.PartId);
+                        break;
+                    case "Cost":
+                        query = model.PagingInfo.SortDesc ?
+                            query.OrderByDescending(x => x.Cost) :
+                            query.OrderBy(x => x.Cost);
+                        break;
+                    case "Holder":
+                        query = model.PagingInfo.SortDesc ?
+                            query.OrderByDescending(x => x.Holder) :
+                            query.OrderBy(x => x.Holder);
+                        break;
+                    case "Vendor":
+                        query = model.PagingInfo.SortDesc ?
+                            query.OrderByDescending(x => x.Vendor) :
+                            query.OrderBy(x => x.Vendor);
+                        break;
+                    case "PurchaseUrl":
+                        query = model.PagingInfo.SortDesc ?
+                            query.OrderByDescending(x => x.PurchaseUrl) :
+                            query.OrderBy(x => x.PurchaseUrl);
+                        break;
 
-                default:
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.DateAdded) :
-                        query.OrderBy(x => x.DateAdded);
-                    break;
+                    default:
+                        query = model.PagingInfo.SortDesc ?
+                            query.OrderByDescending(x => x.DateAdded) :
+                            query.OrderBy(x => x.DateAdded);
+                        break;
+                }
+
+                var count = model.Parts.Count();
+                model.PagingInfo.PageCount = count % model.PagingInfo.PageSize > 0 ?
+                        count / model.PagingInfo.PageSize + 1 :
+                        count / model.PagingInfo.PageSize;
+
+                query = query.Skip(model.PagingInfo.CurrentPageIndex * model.PagingInfo.PageSize)
+                    .Take(model.PagingInfo.PageSize);
+
+                model.Parts = query.ToList();
             }
-
-            var count = model.Parts.Count();
-            model.PagingInfo.PageCount = count % model.PagingInfo.PageSize > 0 ?
-                    count / model.PagingInfo.PageSize + 1 :
-                    count / model.PagingInfo.PageSize;
-
-            query = query.Skip(model.PagingInfo.CurrentPageIndex * model.PagingInfo.PageSize)
-                .Take(model.PagingInfo.PageSize);
-
-            model.Parts = query.ToList();
             return View("Inventory", model);
         }
 
@@ -238,15 +241,20 @@ namespace Lager.Controllers
         {
             var db = await _PartRepository.GetAllPart();
             var list = new List<Part>();
-
-            foreach (var record in db)
+            if (!string.IsNullOrWhiteSpace(query))
             {
-                if (record.ToString().ToLower().Contains(query.ToLower()))
+                foreach (var record in db)
                 {
-                    list.Add(record);
+                    if (record.ToString().ToLower().Contains(query.ToLower()))
+                    {
+                        list.Add(record);
+                    }
                 }
+                
             }
-            model.Parts = list;
+
+            model.Parts = model.Parts ?? await _PartRepository.GetAllPart();
+            model.Parts = model.Parts.ToList();
             return InventorySearch(model);
         }
 

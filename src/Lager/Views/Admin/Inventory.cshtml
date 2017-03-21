@@ -38,6 +38,16 @@
     </div>
 </div>
 
+@if (Model.Parts.Count() == 0)
+            {
+    <tr>
+        <td colspan="2">
+            <div class="alert alert-warning">
+                <strong>Sorry!</strong> No items were found
+            </div>
+        </td>
+    </tr>
+}
 
 
 @using (Html.BeginForm("Inventory", "Admin", FormMethod.Post, new { @id = "inventory-table" }))
@@ -60,30 +70,35 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Parts)
+
+
+            @if(Model.Parts.Count() != 0)
             {
-                <tr>
-                    <td>
-                        <div class="btn-group">
-                            <button class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></button>
-                            <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                        </div>
-                    </td>
-                    <td>@item.Category</td>
-                    <td>@item.Name</td>
-                    <td>@item.DateCheckedOut</td>
-                    <td>@item.Vendor</td>
-                    <td class="text-center">
-                        <div class="btn btn-default expand-btn" data-item-id="@item.Id">
-                            <span class="glyphicon glyphicon-menu-down"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr id="row-for-@item.Id" style="display:none">
+                @foreach (var item in Model.Parts)
+                {
+                    <tr>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></button>
+                                <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                            </div>
+                        </td>
+                        <td>@item.Category</td>
+                        <td>@item.Name</td>
+                        <td>@item.DateCheckedOut</td>
+                        <td>@item.Vendor</td>
+                        <td class="text-center">
+                            <div class="btn btn-default expand-btn" data-item-id="@item.Id">
+                                <span class="glyphicon glyphicon-menu-down"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="row-for-@item.Id" style="display:none">
 
-                    @Html.Partial("_ExtraTableInfo", item)
+                        @Html.Partial("_ExtraTableInfo", item)
 
-                </tr>
+                    </tr>
+                }
             }
         </tbody>
     </table>
