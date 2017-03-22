@@ -100,7 +100,6 @@ namespace Lager.Models
         [BsonElement("PurchaseUrl")]
         public string PurchaseUrl { get; set; }
 
-
         public override string ToString()
         {
             return Name + Category + PartId.ToString() + DateAdded.ToString() + DatePurchased.ToString() + DateCheckedOut.ToString() +

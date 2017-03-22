@@ -1,9 +1,11 @@
-﻿@{
+﻿
+@using Lager.Models.ViewModels
+@model InventoryViewModel
+@{
+    var itemModel = new ItemViewModel();
+    itemModel.StudentSelectList = Model.StudentSelectList;
     ViewData["Title"] = "Inventory";
 }
-
-@model Lager.Models.ViewModels.InventoryViewModel
-
 
 <div class="row inventory-header page-header">
 
@@ -124,8 +126,8 @@
                         </td>
                     </tr>
                     <tr id="row-for-@item.Id" style="display:none">
-
-                        @Html.Partial("_ExtraTableInfo", item)
+                        @(itemModel.Part=item)
+                        @Html.Partial("_ExtraTableInfo", itemModel)
 
                     </tr>
                 }
@@ -167,7 +169,7 @@
 
 
 
-@* MODAL *@
+@* MODAL FOR ADDING ITEM *@
 
 <div id="add-item-modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -184,3 +186,4 @@
 
     </div>
 </div>
+

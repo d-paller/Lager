@@ -12,17 +12,25 @@ using Lager.Services;
 using MongoDB.Driver.Linq;
 using Lager.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lager.Controllers
 {
-    //[Route ("")]
     public class AdminController : Controller
     {
         private readonly IPartRepository _PartRepository;
+        private readonly IStudentRepository _studentRepo;
+
+        private IEnumerable<Student> _studentList;
+
         private User user = new User() { IsActive = true, Name = "Test", Username = "TestUserName", Admin = true };
-        public AdminController(IPartRepository partRepository)
+
+        public AdminController(IPartRepository partRepository, IStudentRepository studentRepo)
         {
             _PartRepository = partRepository;
+            _studentRepo = studentRepo;
+
+            _studentList = Task.Run(() => _studentRepo.GetStudents()).Result;
         }
         public IActionResult Index()
         {
@@ -53,6 +61,8 @@ namespace Lager.Controllers
 
             model.PagingInfo = pagingInfo;
             model.Parts = DbList.Take(pagingInfo.PageSize);
+
+            model.StudentSelectList = _studentList;
 
             return View(model);
         }
@@ -96,6 +106,8 @@ namespace Lager.Controllers
 
             query = query.Skip(model.PagingInfo.CurrentPageIndex * model.PagingInfo.PageSize)
                 .Take(model.PagingInfo.PageSize);
+
+            model.StudentSelectList = _studentList;
 
             model.Parts = query.ToList();
             return View(model);
@@ -160,6 +172,8 @@ namespace Lager.Controllers
 
                 query = query.Skip(model.PagingInfo.CurrentPageIndex * model.PagingInfo.PageSize)
                     .Take(model.PagingInfo.PageSize);
+
+                model.StudentSelectList = _studentList;
 
                 model.Parts = query.ToList();
             }

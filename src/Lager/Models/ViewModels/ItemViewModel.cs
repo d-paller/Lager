@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lager.Models.ViewModels
 {
-    public class InventoryViewModel
+    public class ItemViewModel
     {
-        public PagingInfo PagingInfo { get; set; }
-
-        public IEnumerable<Part> Parts { get; set; }
-
-        public string Id { get; set; }
-
-        public PartViewModel PartViewModel { get; set; }
+        public Part Part { get; set; }
 
         public IEnumerable<Student> StudentSelectList { get; set; }
     }

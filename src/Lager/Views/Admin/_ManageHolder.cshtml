@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Lager.Models.Student>
+
+<div class="col-xs-6"><button type="button" class="btn btn-primary btn-lg">Check In</button></div>
+<div class="col-xs-6">
+    <h3>Check Out</h3>
+    <h4>Select Student</h4>
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            <a class="list-group-item student-in-list" data-student-name="@item.Name">@item.Name</a>
+        }
+    </div>
+</div>

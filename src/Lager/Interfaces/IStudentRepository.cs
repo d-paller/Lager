@@ -1,4 +1,5 @@
 ﻿using Lager.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Lager.Interfaces
         Task AddAllAsync(IEnumerable<Student> students);
 
         Task<IEnumerable<IEnumerable<Student>>> GetAllBySectionNumberAsync();
+
+        Task<IEnumerable<Student>> GetStudents();
     }
 }

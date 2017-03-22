@@ -7,6 +7,7 @@ using Lager.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System.Collections;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lager.Services.Repositories
 {
@@ -41,6 +42,23 @@ namespace Lager.Services.Repositories
             return list;
         }
 
+
+        public async Task<IEnumerable<Student>> GetStudents()
+        {
+            string section = await GetLatestSectionNumber();
+            var filter = Builders<Student>.Filter.Eq("Section", section);
+            var newList = await _context.Students.Find(filter).ToListAsync();
+
+            return newList;
+        }
+
+
+        private async Task<string> GetLatestSectionNumber()
+        {
+            var all = await GetAllBySectionNumberAsync();
+            var list = all.OrderByDescending(x=>x.FirstOrDefault().Section).ToList();
+            return list.FirstOrDefault().FirstOrDefault().Section;
+        }
         
     }
 }
