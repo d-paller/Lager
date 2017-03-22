@@ -125,10 +125,11 @@
                             </div>
                         </td>
                     </tr>
-                    <tr id="row-for-@item.Id" style="display:none">
-                        @(itemModel.Part=item)
-                        @Html.Partial("_ExtraTableInfo", itemModel)
-
+                    <tr>
+                        <td  id="row-for-@item.Id" style="display:none" colspan="6">
+                            @{itemModel.Part = item;}
+                            @Html.Partial("_ExtraTableInfo", itemModel)
+                        </td>
                     </tr>
                 }
             }

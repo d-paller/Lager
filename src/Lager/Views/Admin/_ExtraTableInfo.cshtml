@@ -1,13 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-    
-*@
-@using System
-@{
+﻿@model Lager.Models.ViewModels.ItemViewModel
 
-}
-@model Lager.Models.ViewModels.ItemViewModel
-<td colspan="6">
     <div class="row text-info">
 
         <div class="col-xs-1">
@@ -43,7 +35,8 @@
         </div>
 
     </div>
-    <hr />
+    <hr class="no-margin" />
+    <br />
     <div class="row">
         <div class="col-xs-1">
             @Model.Part.PartId
@@ -77,8 +70,6 @@
             @Model.Part.PurchaseUrl
         </div>
     </div>
-</td>
-
 
 @* MODEL FOR CHECKING PARTS OUT *@
 <div id="manage-part" class="modal fade" role="dialog">
