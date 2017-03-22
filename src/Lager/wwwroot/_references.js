@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="js/inventory.js" />
 /// <reference path="js/roster.js" />
 /// <reference path="js/site.js" />
 /// <reference path="js/sorting.js" />
