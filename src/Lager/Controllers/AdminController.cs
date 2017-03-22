@@ -54,6 +54,12 @@ namespace Lager.Controllers
 
             model.PagingInfo = pagingInfo;
             model.Parts = DbList.Take(pagingInfo.PageSize);
+            
+            //model.ListByCategory = await _PartRepository.GetAllByCategoryAsync();
+            //model.Category = model.ListByCategory.OrderByDescending(x => x.FirstOrDefault().Category)
+              //  .FirstOrDefault()
+                //.FirstOrDefault()
+                //.Category;
 
             return View(model);
         }
