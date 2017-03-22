@@ -21,3 +21,33 @@ $(".expand-btn").click(function () {
     
 
 });
+
+// Manage parts students checked out
+$(".student-in-list").click(function () {
+
+    $(this).parent().find('a').each(function () {
+        $(this).removeClass("active");
+    });
+
+    $(this).addClass("active");
+
+});
+
+$("#check-in").click(function () {
+    var data = JSON.stringify({
+        'name': $(this).data("part-name"),
+        'id': $(this).data("part-id")
+    });
+    $.ajax({
+        type: "POST",
+        data: data,
+        url: "/Admin/CheckIn",
+        success: function () {
+            alert("Success");
+            $(".close").click();
+        },
+        error: function () {
+            alert("error");
+        }
+    })
+});

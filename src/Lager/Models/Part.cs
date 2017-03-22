@@ -6,7 +6,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace Lager.Models
 {

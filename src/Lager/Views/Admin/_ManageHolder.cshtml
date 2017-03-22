@@ -1,11 +1,14 @@
-﻿@model IEnumerable<Lager.Models.Student>
+﻿@model Lager.Models.ViewModels.ItemViewModel
 
-<div class="col-xs-6"><button type="button" class="btn btn-primary btn-lg">Check In</button></div>
+<div class="col-xs-6">
+    <button type="button" id="check-in" data-part-id="@Model.Part.PartId" data-part-name="@Model.Part.Name" 
+            class="btn btn-primary btn-lg">Check In</button>
+</div>
 <div class="col-xs-6">
     <h3>Check Out</h3>
     <h4>Select Student</h4>
     <div class="list-group">
-        @foreach (var item in Model)
+        @foreach (var item in Model.StudentSelectList)
         {
             <a class="list-group-item student-in-list" data-student-name="@item.Name">@item.Name</a>
         }

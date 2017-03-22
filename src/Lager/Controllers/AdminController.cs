@@ -249,12 +249,17 @@ namespace Lager.Controllers
                 model.Parts = model.Parts ?? await _PartRepository.GetAllPart();
                 model.Parts = model.Parts.ToList();
             }
-
-
             return InventorySearch(model);
         }
 
+        public async Task CheckIn(string name, int id)
+        {
+            var part = await _PartRepository.GetPart(name, id);
+            part.Holder = null;
+            part.DateCheckedOut = DateTime.MinValue;
 
+            await _PartRepository.UpdatePart(id.ToString(), part);
+        }
 
 
 
