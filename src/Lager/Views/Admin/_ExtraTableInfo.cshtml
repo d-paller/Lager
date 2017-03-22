@@ -1,0 +1,80 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+    
+*@
+@using System
+@{
+
+}
+@model Lager.Models.Part
+<td colspan="6">
+    <div class="row text-info">
+
+        <div class="col-xs-1">
+            Part ID
+        </div>
+
+        <div class="col-xs-2">
+            Date Added
+        </div>
+
+        <div class="col-xs-1">
+            Cost
+        </div>
+
+        <div class="col-xs-2">
+            Date Purchased
+        </div>
+
+        <div class="col-xs-1">
+            Holder
+        </div>
+
+        <div class="col-xs-1">
+            Vendor ID
+        </div>
+
+        <div class="col-xs-2">
+            Description
+        </div>
+
+        <div class="col-xs-2">
+            Purchase Url
+        </div>
+
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-xs-1">
+            @Model.PartId
+        </div>
+
+        <div class="col-xs-2">
+            @Model.DateAdded.ToString("MM/dd/yyyy")
+        </div>
+
+        <div class="col-xs-1">
+            @Model.Cost
+        </div>
+
+        <div class="col-xs-2">
+            @Model.DatePurchased.ToString("MM/dd/yyyy")
+        </div>
+
+        <div class="col-xs-1">
+            @Model.Holder
+        </div>
+
+        <div class="col-xs-1">
+            @Model.VendorID
+        </div>
+
+        <div class="col-xs-2">
+            @Model.Description
+        </div>
+
+        <div class="col-xs-2">
+            @Model.PurchaseUrl
+        </div>
+    </div>
+</td>

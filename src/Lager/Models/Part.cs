@@ -74,7 +74,7 @@ namespace Lager.Models
         /// </summary>
         [Required]
         [BsonElement("Vendor")]
-        public String Vendor { get; set; }
+        public string Vendor { get; set; }
 
         /// <summary>
         /// ID of the vendor
@@ -100,5 +100,11 @@ namespace Lager.Models
         [BsonElement("PurchaseUrl")]
         public string PurchaseUrl { get; set; }
 
+
+        public override string ToString()
+        {
+            return Name + Category + PartId.ToString() + DateAdded.ToString() + DatePurchased.ToString() + DateCheckedOut.ToString() +
+                Cost.ToString() + Vendor + VendorID.ToString() + Holder + Description;
+        }
     }
 }

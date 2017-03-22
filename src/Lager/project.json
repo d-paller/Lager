@@ -26,7 +26,9 @@
     "Scrypt.NET": "1.1.0",
     "Microsoft.AspNetCore.Identity": "1.0.0",
     "MongoDB.Driver": "2.4.1",
-    "CsvHelper": "2.16.3"  },
+    "CsvHelper": "2.16.3",
+    "Microsoft.EntityFrameworkCore": "1.0.1",
+    "System.Linq": "4.3.0"  },
 
   "tools": {
     "BundlerMinifier.Core": "2.0.238",
