@@ -168,12 +168,12 @@ namespace Lager.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> RemoveItem(string id)
+        public async Task<IActionResult> RemoveItem(string id)
         {
             Part a = _PartRepository.GetPart(id).Result;
             a.IsActive = false;
             await _PartRepository.UpdatePart(a.Id, a);
-            return RedirectToAction("Inventory");
+            return await Inventory();
         }
 
         public IActionResult edit()

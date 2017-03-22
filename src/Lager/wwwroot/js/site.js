@@ -26,9 +26,6 @@ $(".btn-danger").click(function () {
         success: function () {
             alert("success");
         },
-        error: function () {
-            alert("error" + window.u);
-        }
     })
 })
 
