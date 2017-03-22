@@ -7,13 +7,6 @@ $(".edit-Btn").click(function () {
         url: "/Admin/Edit",
         type: "GET",
         data: { id: $(this).data("part-id") },
-        success: function () {
-            alert("success");
-            $(location).attr('href', "/Admin/Edit", $(this).data("part-id"))
-        },
-        error: function () {
-            alert("error" + window.u);
-        }
     })
 });
 

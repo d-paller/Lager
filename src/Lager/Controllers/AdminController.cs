@@ -160,12 +160,14 @@ namespace Lager.Controllers
         }
         
         [HttpPost]
-        public async Task<ActionResult> Edit(string id)
+        public IActionResult Edit(string id)
         {
             Part a = _PartRepository.GetPart(id).Result;
-            await _PartRepository.UpdatePart(a.Id, a);
-            //to be implemented
-            return View();
+            return View() ;
+        }
+        public IActionResult editPage()
+        {
+
         }
         [HttpPost]
         public async Task<IActionResult> RemoveItem(string id)
