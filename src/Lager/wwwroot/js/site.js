@@ -12,8 +12,18 @@ $("btn btn-info").click(function(){
 })
 
 $(".edit-Btn").click(function () {
-    var id = $(this).data("part-id")
-    $.post("/Admin/Edit", {id: id})
+    $.ajax({
+        url: "/Admin/Edit",
+        type: "GET",
+        data: { id: $(this).data("part-id") },
+        success: function () {
+            alert("success");
+            $(location).attr('href', "/Admin/Edit",$(this).data("part-id"))
+        },
+        error: function () {
+            alert("error" + window.u);
+        }
+    })
 });
 
 

@@ -193,7 +193,7 @@ namespace Lager.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<ActionResult> Edit(string id)
         {
             PartViewModel model = new PartViewModel();
