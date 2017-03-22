@@ -152,22 +152,28 @@ namespace Lager.Controllers
             }
         }
         [HttpPost]
-
-        public async Task<IActionResult> EditItem(string name, int id)
+        public async Task<IActionResult> EditItem(PartViewModel p)
         {
-            Part a = _PartRepository.GetPart(name, id).Result;
-            await _PartRepository.UpdatePart(a.Id, a);
+            await _PartRepository.UpdatePart(p.Part.Id, p.Part);
             return RedirectToAction("Inventory");
 
         }
-
+        
         [HttpPost]
-        public async Task<ActionResult> RemoveItem(string name, int id)
+        public async Task<ActionResult> Edit(string id)
         {
-            Part a = _PartRepository.GetPart(name, id).Result;
+            Part a = _PartRepository.GetPart(id).Result;
+            await _PartRepository.UpdatePart(a.Id, a);
+            //to be implemented
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> RemoveItem(string id)
+        {
+            Part a = _PartRepository.GetPart(id).Result;
             a.IsActive = false;
             await _PartRepository.UpdatePart(a.Id, a);
-            return View();
+            return await Inventory();
         }
 
         public IActionResult edit()
