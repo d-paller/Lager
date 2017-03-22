@@ -25,5 +25,8 @@ namespace Lager.Interfaces
 
         // should be used with high cautious, only in relation with demo setup
         Task<DeleteResult> RemoveAllParts();
+
+        //For sidebar navigation
+        //Task<IEnumerable<IEnumerable<Part>>> GetAllByCategoryAsync();
     }
 }
