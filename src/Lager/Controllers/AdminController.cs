@@ -198,7 +198,7 @@ namespace Lager.Controllers
         {
             PartViewModel model = new PartViewModel();
             model.Part = await _PartRepository.GetPart(id);
-            return View(model);
+            return View("Edit",model);
         }
 
 
