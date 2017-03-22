@@ -30,13 +30,15 @@ namespace Lager.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Inventory()
         {
+
             InventoryViewModel model = new InventoryViewModel();
             PagingInfo pagingInfo = new PagingInfo();
 
             pagingInfo.SortDesc = true;
-            pagingInfo.PageSize = 20;
+            pagingInfo.PageSize = 10;
 
             var Db = await _PartRepository.GetAllPart();
             var DbList = Db.ToList();
@@ -47,7 +49,7 @@ namespace Lager.Controllers
                 DbCount / pagingInfo.PageSize;
 
             pagingInfo.CurrentPageIndex = 0;
-            pagingInfo.SortField = "DateAdded";
+            pagingInfo.SortField = "Category";
 
             model.PagingInfo = pagingInfo;
             model.Parts = DbList.Take(pagingInfo.PageSize);
@@ -74,36 +76,21 @@ namespace Lager.Controllers
                         query.OrderByDescending(x => x.Name) :
                         query.OrderBy(x => x.Name);
                     break;
-                case "PartId":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.PartId) :
-                        query.OrderBy(x => x.PartId);
-                    break;
-                case "Cost":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.Cost) :
-                        query.OrderBy(x => x.Cost);
-                    break;
-                case "Holder":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.Holder) :
-                        query.OrderBy(x => x.Holder);
-                    break;
                 case "Vendor":
                     query = model.PagingInfo.SortDesc ?
                         query.OrderByDescending(x => x.Vendor) :
                         query.OrderBy(x => x.Vendor);
                     break;
-                case "PurchaseUrl":
-                    query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.PurchaseUrl) :
-                        query.OrderBy(x => x.PurchaseUrl);
-                    break;
 
+                case "DateCheckedOut":
+                    query = model.PagingInfo.SortDesc ?
+                        query.OrderByDescending(x => x.DateCheckedOut) :
+                        query.OrderBy(x => x.DateCheckedOut);
+                    break;
                 default:
                     query = model.PagingInfo.SortDesc ?
-                        query.OrderByDescending(x => x.DateAdded) :
-                        query.OrderBy(x => x.DateAdded);
+                        query.OrderByDescending(x => x.Category) :
+                        query.OrderBy(x => x.Category);
                     break;
             }
 
@@ -186,23 +173,20 @@ namespace Lager.Controllers
         {
             if (ModelState.IsValid)
             {
-                var count = _PartRepository.GetAllParts(item.Part.Name).Result;
-                if (item.Part.Holder == null)
-                {
-                    item.Part.Holder = "repo";
-                }
+                var count = await _PartRepository.GetAllParts(item.Part.Name);
+
                 item.Part.PartId = count.Count + 1;
                 item.Part.Category = item.Part.Category.ToLower();
                 item.Part.Name = item.Part.Name.ToLower();
                 item.Part.Vendor = item.Part.Vendor.ToLower();
-                item.Part.Holder = item.Part.Holder.ToLower();
+
                 await _PartRepository.AddPart(item.Part);
                 return RedirectToAction("Inventory");
             }
             else
             {
                 item.isValid = false;
-                return View("Create");
+                return await Inventory();
             }
         }
         [HttpPost]
@@ -222,12 +206,6 @@ namespace Lager.Controllers
             a.IsActive = false;
             await _PartRepository.UpdatePart(a.Id, a);
             return View();
-        }
-
-        public IActionResult create()
-        {
-            PartViewModel model = new PartViewModel();
-            return View(model);
         }
 
         public IActionResult edit()
@@ -250,20 +228,17 @@ namespace Lager.Controllers
                         list.Add(record);
                     }
                 }
-                
+                model.Parts = list;
+            }
+            if(model.Parts == null)
+            {
+                model.Parts = model.Parts ?? await _PartRepository.GetAllPart();
+                model.Parts = model.Parts.ToList();
             }
 
-            model.Parts = model.Parts ?? await _PartRepository.GetAllPart();
-            model.Parts = model.Parts.ToList();
+
             return InventorySearch(model);
         }
-
-
-
-
-
-
-
 
 
 

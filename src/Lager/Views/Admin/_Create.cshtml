@@ -1,0 +1,55 @@
+﻿@model Lager.Models.PartViewModel
+
+
+@using (Html.BeginForm("AddItem", "Admin", Model))
+{
+    <div class="modal-body">
+        @Html.ValidationSummary(true, "Submit failed, ensure all fields are completed.")
+
+        <div class="form-group col-xs-6">
+            @Html.LabelFor(x => x.Part.Name)
+            @Html.TextBoxFor(x => x.Part.Name, new { @class = "form-control", @type = "text", @placeholder = "Item Name", required = "true" })
+        </div>
+        
+        <div class="form-group col-xs-6">
+            @Html.LabelFor(x => x.Part.Category)
+            @Html.TextBoxFor(x => x.Part.Category, new { @class = "form-control", @type = "text", @placeholder = "Category", required = "true" })
+        </div>
+
+        <div class="form-group col-xs-12">
+            @Html.LabelFor(x => x.Part.Description)
+            @Html.TextAreaFor(x => x.Part.Description, new { @class = "form-control", @type = "text", @placeholder = "Description" })
+        </div>
+
+        <div class="form-group col-xs-6">
+            @Html.LabelFor(x => x.Part.Cost)
+            @Html.TextBoxFor(x => x.Part.Cost, new { @class = "form-control", @type = "text", @placeholder = "Price", required = "true" })
+        </div>
+
+        <div class="form-group col-xs-6">
+            @Html.LabelFor(x => x.Part.DatePurchased)
+            @Html.TextBoxFor(x => x.Part.DatePurchased, new { @class = "form-control", @type = "date", @placeholder = "Date Purchased" })
+        </div>
+
+        <div class="form-group col-xs-6">
+            @Html.LabelFor(x => x.Part.Vendor)
+            @Html.TextBoxFor(x => x.Part.Vendor, new { @class = "form-control", @type = "text", @placeholder = "Vendor Name", required = "true" })
+        </div>
+
+        <div class="form-group col-xs-6">
+            @Html.LabelFor(x => x.Part.VendorID)
+            @Html.TextBoxFor(x => x.Part.VendorID, new { @class = "form-control", @type = "text", @placeholder = "Vendor ID", required = "true" })
+        </div>
+
+        <div class="form-group col-xs-12">
+            @Html.LabelFor(x => x.Part.PurchaseUrl)
+            @Html.TextBoxFor(x => x.Part.PurchaseUrl, null, new { @class = "form-control", @type = "url", @placeholder = "Enter URL" })
+        </div>
+
+    </div>
+    <div class="modal-footer" style="border-top:none">
+        <button type="button" class="btn btn-danger no-margin" data-dismiss="modal">Cancel</button>
+
+        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> Submit</button>
+    </div>
+}

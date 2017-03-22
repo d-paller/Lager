@@ -19,9 +19,8 @@
         $("#inventory-table").submit();
     });
 
-
     // Paging
-    $(".page-nav-btn").click(function (evt) {
+    $(".page-nav-btn").click(function () {
         var pageindex = $(this).data("page-nav");
         var currentPage = $("#PagingInfo_CurrentPageIndex").val();
         var lastpage = $("#PagingInfo_PageCount").val();
@@ -36,13 +35,24 @@
             $("#PagingInfo_CurrentPageIndex").val(currentPage + 1);
         }
         else if (pageindex == "last") {
-            $("#PagingInfo_CurrentPageIndex").val(lastpage-1);
+            $("#PagingInfo_CurrentPageIndex").val(lastpage - 1);
         }
         else {
             $("#PagingInfo_CurrentPageIndex").val(pageindex);
         }
-
-        evt.preventDefault();
         $("#inventory-table").submit();
     });
+
+    var currentPageIndex = $("#PagingInfo_CurrentPageIndex").val();
+    var lastpage = $("#PagingInfo_PageCount").val();
+
+    if (currentPageIndex == 0) {
+        $("#pging-first").removeClass("page-nav-btn").addClass("disabled").unbind("click");
+        $("#pging-previous").removeClass("page-nav-btn").addClass("disabled").unbind("click");
+    }
+
+    if (currentPageIndex == lastpage-1) {
+        $("#pging-last").removeClass("page-nav-btn").addClass("disabled").unbind("click");
+        $("#pging-next").removeClass("page-nav-btn").addClass("disabled").unbind("click");
+    }
 });
