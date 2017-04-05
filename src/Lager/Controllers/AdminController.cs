@@ -141,6 +141,13 @@ namespace Lager.Controllers
                 item.Part.Category = item.Part.Category.ToLower();
                 item.Part.Name = item.Part.Name.ToLower();
                 item.Part.Vendor = item.Part.Vendor.ToLower();
+                if(item.Part.Holder ==null){
+                    item.Part.Holder = "Lab";
+                }
+                else
+                {
+                    item.Part.Holder = item.Part.Holder.ToLower();
+                }
 
                 await _PartRepository.AddPart(item.Part);
                 return RedirectToAction("Inventory");

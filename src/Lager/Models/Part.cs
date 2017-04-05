@@ -80,7 +80,7 @@ namespace Lager.Models
         /// </summary>
         [Required]
         [BsonElement("VendorID")]
-        public string VendorID { get; set; }
+        public int VendorID { get; set; }
 
 
         [BsonElement("Holder")]
