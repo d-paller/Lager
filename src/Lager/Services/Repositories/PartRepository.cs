@@ -20,42 +20,44 @@ namespace Lager.Services.Repositories
         }
         public Task<List<Part>> GetAllPartIn()
         {
+            
             return _context.Parts.Find(_ => true).ToListAsync();
         }
-        //return everything in the database
+        //return everything in the database that is active
         public async Task<IQueryable<Part>> GetAllPart()
         {
-            var all = await _context.Parts.FindAsync(_ => true);
+            var filter = Builders<Part>.Filter.Eq("IsActive", true);
+            var all = await _context.Parts.FindAsync(filter);
             return all.ToEnumerable().AsQueryable();
         }
         //Get all the same kind of parts
         public IQueryable<Part> GetAllPartsByName(string n)
         {
-            var filter = Builders<Part>.Filter.Eq("Name",n);
+            var filter = Builders<Part>.Filter.Eq("Name",n) & Builders<Part>.Filter.Eq("IsActive", true);
             return _context.Parts.Find(filter).ToEnumerable().AsQueryable();
         }
         public  IQueryable<Part> GetAllPartsByCategory(string n)
         {
-            var filter = Builders<Part>.Filter.Eq("Category", n);
+            var filter = Builders<Part>.Filter.Eq("Category", n) & Builders<Part>.Filter.Eq("IsActive", true);
             return _context.Parts.Find(filter).ToEnumerable().AsQueryable();
         }
         public  IQueryable<Part> GetAllPartsByVendor(string n)
         {
-            var filter = Builders<Part>.Filter.Eq("Vendor", n);
+            var filter = Builders<Part>.Filter.Eq("Vendor", n) & Builders<Part>.Filter.Eq("IsActive", true);
             return _context.Parts.Find(filter).ToEnumerable().AsQueryable();
         }
         public IQueryable<Part> GetAllPartsByHolder(string n)
         {
-            var filter = Builders<Part>.Filter.Eq("Holder", n);
+            var filter = Builders<Part>.Filter.Eq("Holder", n) & Builders<Part>.Filter.Eq("IsActive", true);
             return _context.Parts.Find(filter).ToEnumerable().AsQueryable();
         }
         public async Task<List<Part>> GetAllParts(string n)
         {
-            var filter = Builders<Part>.Filter.Eq("Name", n);
+            var filter = Builders<Part>.Filter.Eq("Name", n) & Builders<Part>.Filter.Eq("IsActive", true);
             return await _context.Parts.Find(filter).ToListAsync();
         }
 
-        public async Task<Part> GetPart(string name, int id)
+        public async Task<Part> GetPart(string id)
         {
             var filter = Builders<Part>.Filter.Eq("Id", id);
             return await _context.Parts

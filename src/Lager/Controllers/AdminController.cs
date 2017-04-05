@@ -39,6 +39,8 @@ namespace Lager.Controllers
 
             pagingInfo.SortDesc = true;
             pagingInfo.PageSize = 10;
+            pagingInfo.CurrentPageIndex = 0;
+            pagingInfo.SortField = "Category";
 
             var Db = await _PartRepository.GetAllPart();
             var DbList = Db.ToList();
@@ -47,9 +49,6 @@ namespace Lager.Controllers
             pagingInfo.PageCount = DbCount % pagingInfo.PageSize > 0 ?
                 DbCount / pagingInfo.PageSize + 1 :
                 DbCount / pagingInfo.PageSize;
-
-            pagingInfo.CurrentPageIndex = 0;
-            pagingInfo.SortField = "Category";
 
             model.PagingInfo = pagingInfo;
             model.Parts = DbList.Take(pagingInfo.PageSize);
@@ -108,50 +107,13 @@ namespace Lager.Controllers
 
             if (model.Parts.Count() != 0)
             {
-                switch (model.PagingInfo.SortField)
-                {
-                    case "Category":
-                        query = model.PagingInfo.SortDesc ?
-                            query.OrderByDescending(x => x.Category) :
-                            query.OrderBy(x => x.Category);
-                        break;
-                    case "Name":
-                        query = model.PagingInfo.SortDesc ?
-                            query.OrderByDescending(x => x.Name) :
-                            query.OrderBy(x => x.Name);
-                        break;
-                    case "PartId":
-                        query = model.PagingInfo.SortDesc ?
-                            query.OrderByDescending(x => x.PartId) :
-                            query.OrderBy(x => x.PartId);
-                        break;
-                    case "Cost":
-                        query = model.PagingInfo.SortDesc ?
-                            query.OrderByDescending(x => x.Cost) :
-                            query.OrderBy(x => x.Cost);
-                        break;
-                    case "Holder":
-                        query = model.PagingInfo.SortDesc ?
-                            query.OrderByDescending(x => x.Holder) :
-                            query.OrderBy(x => x.Holder);
-                        break;
-                    case "Vendor":
-                        query = model.PagingInfo.SortDesc ?
-                            query.OrderByDescending(x => x.Vendor) :
-                            query.OrderBy(x => x.Vendor);
-                        break;
-                    case "PurchaseUrl":
-                        query = model.PagingInfo.SortDesc ?
-                            query.OrderByDescending(x => x.PurchaseUrl) :
-                            query.OrderBy(x => x.PurchaseUrl);
-                        break;
+                var pagingInfo = new PagingInfo();
+                pagingInfo.SortDesc = true;
+                pagingInfo.PageSize = 10;
+                pagingInfo.CurrentPageIndex = 0;
+                pagingInfo.SortField = "Category";
 
-                    default:
-                        query = model.PagingInfo.SortDesc ?
-                            query.OrderByDescending(x => x.DateAdded) :
-                            query.OrderBy(x => x.DateAdded);
-                        break;
-                }
+                model.PagingInfo = pagingInfo;
 
                 var count = model.Parts.Count();
                 model.PagingInfo.PageCount = count % model.PagingInfo.PageSize > 0 ?
@@ -190,22 +152,28 @@ namespace Lager.Controllers
             }
         }
         [HttpPost]
-
-        public async Task<IActionResult> EditItem(string name, int id)
+        public async Task<IActionResult> EditItem(PartViewModel p)
         {
-            Part a = _PartRepository.GetPart(name, id).Result;
-            await _PartRepository.UpdatePart(a.Id, a);
+            await _PartRepository.UpdatePart(p.Part.Id, p.Part);
             return RedirectToAction("Inventory");
 
         }
-
+        
         [HttpPost]
-        public async Task<ActionResult> RemoveItem(string name, int id)
+        public async Task<ActionResult> Edit(string id)
         {
-            Part a = _PartRepository.GetPart(name, id).Result;
+            Part a = _PartRepository.GetPart(id).Result;
+            await _PartRepository.UpdatePart(a.Id, a);
+            //to be implemented
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> RemoveItem(string id)
+        {
+            Part a = _PartRepository.GetPart(id).Result;
             a.IsActive = false;
             await _PartRepository.UpdatePart(a.Id, a);
-            return View();
+            return await Inventory();
         }
 
         public IActionResult edit()
@@ -230,13 +198,11 @@ namespace Lager.Controllers
                 }
                 model.Parts = list;
             }
-            if(model.Parts == null)
+            if (model.Parts == null)
             {
                 model.Parts = model.Parts ?? await _PartRepository.GetAllPart();
                 model.Parts = model.Parts.ToList();
             }
-
-
             return InventorySearch(model);
         }
 

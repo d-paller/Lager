@@ -6,7 +6,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace Lager.Models
 {
@@ -91,7 +90,7 @@ namespace Lager.Models
         /// A short description of the part
         /// </summary>
         [Required]
-        [StringLength(100)]
+        [StringLength(400)]
         [BsonElement("Description")]
         public string Description { get; set; }
 
