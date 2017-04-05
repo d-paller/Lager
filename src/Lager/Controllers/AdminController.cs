@@ -12,6 +12,8 @@ using Lager.Services;
 using MongoDB.Driver.Linq;
 using Lager.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Lager.Controllers
 {
@@ -129,7 +131,26 @@ namespace Lager.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> duplicate(string id)
+        {
+            Part a = _PartRepository.GetPart(id).Result;
+            Part b = new Part();
+            b.Holder = "lab";
+            var count = await _PartRepository.GetAllParts(a.Name);
+            b.PartId = count.Count + 1 ;
+            b.Name = a.Name;
+            b.PurchaseUrl = a.PurchaseUrl;
+            b.Category = a.Category;
+            b.Cost = a.Cost;
+            b.Description = a.Description;
+            b.DatePurchased = DateTime.Now;
+            b.Vendor = a.Vendor;
+            b.VendorID = a.VendorID;
+            await _PartRepository.AddPart(b);
+            return await Inventory();
 
+        }
         [HttpPost]
         public async Task<IActionResult> AddItem(PartViewModel item)
         {
@@ -142,7 +163,7 @@ namespace Lager.Controllers
                 item.Part.Name = item.Part.Name.ToLower();
                 item.Part.Vendor = item.Part.Vendor.ToLower();
                 if(item.Part.Holder ==null){
-                    item.Part.Holder = "Lab";
+                    item.Part.Holder = "lab";
                 }
                 else
                 {
