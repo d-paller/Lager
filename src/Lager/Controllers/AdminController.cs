@@ -138,7 +138,7 @@ namespace Lager.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> duplicate(string id)
+        public async void DuplicateItem(string id)
         {
             Part a = _PartRepository.GetPart(id).Result;
             Part b = new Part();
@@ -146,6 +146,7 @@ namespace Lager.Controllers
             var count = await _PartRepository.GetAllParts(a.Name);
             b.PartId = count.Count + 1 ;
             b.Name = a.Name;
+            b.IsActive = true;
             b.PurchaseUrl = a.PurchaseUrl;
             b.Category = a.Category;
             b.Cost = a.Cost;
@@ -154,7 +155,6 @@ namespace Lager.Controllers
             b.Vendor = a.Vendor;
             b.VendorID = a.VendorID;
             await _PartRepository.AddPart(b);
-            return await Inventory();
 
         }
         [HttpPost]

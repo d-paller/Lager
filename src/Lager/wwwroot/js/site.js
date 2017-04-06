@@ -17,6 +17,17 @@ $(".edit-Btn").click(function () {
     })
 });
 
+$(".btn-success").click(function () {
+    $.ajax({
+        url: "/Admin/DuplicateItem",
+        type: "POST",
+        data: { id: $(this).data("part-id") },
+        success: function () {
+            alert("success");
+        }
+    })
+});
+
 
 $(".btn-danger").click(function () {
     $.ajax({
@@ -27,7 +38,8 @@ $(".btn-danger").click(function () {
             alert("success");
         },
     })
-})
+});
+
 
 $(".expand-btn").click(function () {
     var id = $(this).data("item-id");
