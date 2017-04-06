@@ -88,6 +88,22 @@ namespace Lager.Services.Repositories
         {
             return await _context.Parts.DeleteManyAsync(new BsonDocument());
         }
+
+        //For sidebar navigation
+        //public async Task<IEnumerable<IEnumerable<Part>>> GetAllByCategoryAsync()
+        //{
+            //List<Part> categories = await _context.Parts.Find(_ => true).ToListAsync();
+            //List<List<Part>> list = new List<List<Part>>();
+
+            //for (int i = 0; i < categories.Count; i++)
+            //{
+                //var filter = Builders<Part>.Filter.Eq("Section", categories[i].Category);
+                //var newList = await _context.Parts.Find(filter).ToListAsync();
+              //  list.Add(newList);
+            //}
+
+          //  return list;
+        //}
     }
 }
 

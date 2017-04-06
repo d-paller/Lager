@@ -4,8 +4,62 @@
 @using Lager.Models
 @model Lager.Models.Part
 
-<div><h1>Administrator Dashboard</h1></div>
 
-<p>Total items in inventory: #</p>
-<p>Total items checked out: #</p>
-<p>Days since last login: #</p>
+
+<div id="picRoll" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#picRoll" data-slide-to="0" class="active"></li>
+        <li data-target="#picRoll" data-slide-to="1"></li>
+        <li data-target="#picRoll" data-slide-to="2"></li>
+    </ol>
+
+
+<div class="carousel-inner" role="listbox">
+    <div class="item active">
+        <img src="~/images/p01.jpg" width="800" height="600" alt="pic01" />
+        <div class="carousel-caption">
+            <h3>Welcome!</h3>
+            <p>This is PROJECT LAGER an inventory management system for the IUS Robotics Lab.</p>
+        </div>
+    </div>
+
+
+<div class="item">
+        <img src="~/images/p02.jpg" width="800" height="600" alt="pic02" />
+        <div class="carousel-caption">
+            <h3>MVC Framework</h3>
+            <p>PROJECT LAGER is an MVC web app.</p>
+        </div>
+    </div>
+
+
+<div class="item">
+        <img src="~/images/p03.jpg" width="800" height="600" alt="pic03" />
+        <div class="carousel-caption">
+            <h3>Developers</h3>
+            <p>PROJECT LAGER was developed by IUS undergraduates in Spring 2017. The team consisted of: David Paller, Leo Wu, and Mariano Floro.</p>
+        </div>
+    </div>
+
+
+    <a class="left carousel-control" href="#picRoll" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+
+    <a class="right carousel-control" href="#picRoll" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+    </div>
+
+<!--<div><h1 class="text-center">Welcome to PROJECT LAGER</h1></div>-->
+
+<p></p>
+<div><h3 class="text-center">Project LAGER is an MVC web application created by a team of IUS undergraduate students for their Capstone C445 requirement. Lager, Sweedish for inventory, was developed with simplicity and functionality in mind. Lager's purpose is to provide real-time data for the IUS Robotics lab, and facilitate Lab-related financial reporting to the CS department.</h3></div>
+<p></p>
+<div>
+    <p>Total items in inventory: #</p>
+    <p>Total items checked out: #</p>
+</div>

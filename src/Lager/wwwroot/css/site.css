@@ -93,3 +93,7 @@ body{
 #inventory-table{
     margin-bottom: 150px;
 }
+
+.carousel-inner > .item > img {
+    margin: auto;
+}

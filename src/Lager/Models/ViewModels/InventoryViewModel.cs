@@ -14,5 +14,10 @@ namespace Lager.Models.ViewModels
         public string Id { get; set; }
 
         public PartViewModel PartViewModel { get; set; }
+
+        //For sidebar navigation
+       // public IEnumerable<IEnumerable<Part>> ListByCategory { get; set; }
+   
+        //public string Category { get; set; }
     }
 }
